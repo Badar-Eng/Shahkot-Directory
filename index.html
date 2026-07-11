@@ -1,0 +1,3207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- GOOGLE ANALYTICS -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SRBX1RJTP3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+    gtag("config", "G-SRBX1RJTP3");
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shahkot ki tamam shops aur services ek jagah — free, fast aur reliable." />
+  <meta name="keywords" content="Shahkot shops, Shahkot directory, shops in Shahkot, Shahkot market" />
+  <meta name="author" content="Badar - Shahkot Directory" />
+  <meta name="robots" content="index, follow" />
+  <title>Shahkot Bazar</title>
+
+  <link rel="shortcut icon" href="images/skt-logo.png" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&family=Amiri:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="manifest" href="manifest.json" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      /* overflow-x: hidden; */
+      width: 100%;
+    }
+
+    /* ==================== LIGHT MODE VARIABLES ==================== */
+    :root {
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-deep: #1e3a8a;
+      --blue-light: #eff6ff;
+      --blue-mid: #dbeafe;
+      --gold: #b8942a;
+      --gold-bg: #fdf8ee;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --card-shadow: 0 2px 16px rgba(37, 99, 235, 0.07);
+      --card-shadow-hover: 0 18px 50px rgba(37, 99, 235, 0.16);
+      --radius: 18px;
+    }
+
+    /* ==================== DARK MODE VARIABLES ==================== */
+    [data-theme="dark"] {
+      --blue: #60a5fa;
+      --blue-dark: #3b82f6;
+      --blue-deep: #93c5fd;
+      --blue-light: #1e3a5f;
+      --blue-mid: #1e3a5f;
+      --gold: #fbbf24;
+      --gold-bg: #1a1500;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #334155;
+      --bg: #0f172a;
+      --white: #1e293b;
+      --card-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+      --card-shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ==================== DARK MODE OVERRIDES ==================== */
+    [data-theme="dark"] body {
+      background: #0f172a;
+    }
+
+    [data-theme="dark"] .navbar {
+      background: rgba(15, 23, 42, 0.98) !important;
+      border-bottom-color: #334155;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+
+    /* Desktop: nav transparent, mobile: nav dark */
+    [data-theme="dark"] nav {
+      background: transparent;
+    }
+
+    @media (max-width: 768px) {
+      [data-theme="dark"] nav {
+        background: #1e293b !important;
+      }
+
+      [data-theme="dark"] .dropdown a {
+        background: #162032 !important;
+      }
+    }
+
+    [data-theme="dark"] .hero-overlay {
+      background: linear-gradient(155deg,
+          rgba(2, 6, 23, 0.95) 0%,
+          rgba(15, 23, 80, 0.85) 48%,
+          rgba(30, 58, 138, 0.65) 100%);
+    }
+
+    [data-theme="dark"] .hero::after {
+      background: linear-gradient(to bottom, transparent, #0f172a);
+    }
+
+    [data-theme="dark"] .darood-band {
+      background: #1a1500;
+    }
+
+    [data-theme="dark"] .darood-arabic {
+      color: #fcd34d;
+    }
+
+    [data-theme="dark"] .darood-line span {
+      color: #fbbf24;
+    }
+
+    [data-theme="dark"] .search-section {
+      background: #0f172a;
+    }
+
+    [data-theme="dark"] .search-box {
+      background: #1e293b;
+      border-color: #334155;
+      overflow: visible;
+    }
+
+    [data-theme="dark"] .s-icon {
+      background: #1e293b;
+    }
+
+    [data-theme="dark"] #search {
+      background: #1e293b;
+      color: #e2e8f0;
+    }
+
+    [data-theme="dark"] #search::placeholder {
+      color: #64748b;
+    }
+
+    [data-theme="dark"] .search-filter {
+      background: #1e293b;
+      overflow: visible;
+    }
+
+    [data-theme="dark"] .filter-btn {
+      background: transparent;
+      color: #94a3b8;
+    }
+
+    [data-theme="dark"] .s-clear {
+      background: #1e293b;
+    }
+
+    [data-theme="dark"] .filter-option {
+      color: #e2e8f0 !important;
+      background: #1e293b !important;
+      border-bottom-color: #334155 !important;
+    }
+
+    [data-theme="dark"] .filter-option:hover,
+    [data-theme="dark"] .filter-option.active {
+      background: #1e3a5f !important;
+      color: #60a5fa !important;
+    }
+
+    [data-theme="dark"] .suggestions {
+      background: #1e293b;
+      border-color: #334155;
+    }
+
+    [data-theme="dark"] .suggestions div {
+      color: #e2e8f0;
+      border-bottom-color: #334155;
+    }
+
+    [data-theme="dark"] .suggestions div:hover {
+      background: #1e3a5f;
+      color: #60a5fa;
+    }
+
+    [data-theme="dark"] .dropdown {
+      background: #1e293b;
+      border-color: #334155;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    [data-theme="dark"] .dropdown a {
+      color: #e2e8f0 !important;
+      border-bottom-color: #334155 !important;
+      background: #1e293b !important;
+    }
+
+    [data-theme="dark"] .dropdown a:hover {
+      background: #1e3a5f !important;
+      color: #60a5fa !important;
+    }
+
+    [data-theme="dark"] .chip {
+      background: #1e293b;
+      border-color: #334155;
+      color: #94a3b8;
+    }
+
+    [data-theme="dark"] .chip.active {
+      background: #2563eb;
+      color: #fff;
+      border-color: #2563eb;
+    }
+
+    [data-theme="dark"] .card {
+      background: #1e293b;
+      border-color: #334155;
+    }
+
+    [data-theme="dark"] .card-body h3 {
+      color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .verified-badge {
+      background: #422006;
+      color: #fcd34d;
+      border-color: #92400e;
+    }
+
+    [data-theme="dark"] .verified-head-title {
+      color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .verified-head-badge {
+      background: #1e3a5f;
+      color: #60a5fa;
+      border-color: #1e3a5f;
+    }
+
+    [data-theme="dark"] .verified-expand-btn {
+      background: #1e293b;
+      border-color: #334155;
+      color: #94a3b8;
+    }
+
+    [data-theme="dark"] .verified-fade {
+      background: linear-gradient(to bottom, transparent, #0f172a);
+    }
+
+    [data-theme="dark"] .sd-text {
+      color: #94a3b8;
+    }
+
+    [data-theme="dark"] .sd-line {
+      background: #334155;
+    }
+
+    [data-theme="dark"] .list-title {
+      color: #e2e8f0;
+    }
+
+    [data-theme="dark"] .list-line {
+      background: #334155;
+    }
+
+    [data-theme="dark"] .footer {
+      background: #1e293b;
+      border-top-color: #334155;
+    }
+
+    [data-theme="dark"] .f-copy {
+      color: #94a3b8;
+    }
+
+    [data-theme="dark"] .toggle-track {
+      background: #2563eb;
+      border-color: #3b82f6;
+    }
+
+    [data-theme="dark"] .toggle-thumb {
+      transform: translateX(20px);
+    }
+
+    /* ==================== BASE ==================== */
+    body {
+      background: var(--bg);
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    /* ==================== NAVBAR ==================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 68px;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 32px;
+      border-bottom: 1px solid var(--border);
+      z-index: 1001;
+      transition: box-shadow 0.4s;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 2px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .logo:hover {
+      opacity: 0.75;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 28px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 14px;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    nav a:hover::after,
+    nav a.active::after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: var(--blue);
+    }
+
+    .category {
+      position: relative;
+      margin-left: 28px;
+      padding-bottom: 12px;
+      margin-bottom: -12px;
+    }
+
+    .category-btn {
+      color: var(--muted);
+      font-weight: 500;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-family: "Poppins", sans-serif;
+      transition: color 0.2s;
+      padding: 0;
+    }
+
+    .category-btn:hover {
+      color: var(--blue);
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: var(--white);
+      border-radius: 14px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.13);
+      display: flex;
+      flex-direction: column;
+      min-width: 175px;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition:
+        max-height 0.35s ease,
+        opacity 0.28s ease,
+        transform 0.28s ease;
+      border: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    .dropdown.show {
+      max-height: 400px;
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .dropdown a {
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      margin-left: 0 !important;
+      transition:
+        background 0.15s,
+        color 0.15s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .dropdown a::after {
+      display: none !important;
+    }
+
+    .dropdown a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown a:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text);
+      background: none;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .menu-btn:hover {
+      background: var(--blue-light);
+    }
+
+    /* ==================== THEME TOGGLE ==================== */
+    .theme-toggle {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 20px;
+      margin-right: 10px;
+      flex-shrink: 0;
+    }
+
+    .toggle-track {
+      width: 44px;
+      height: 24px;
+      border-radius: 40px;
+      background: #cbd5e1;
+      border: 1.5px solid #94a3b8;
+      position: relative;
+      transition:
+        background 0.3s ease,
+        border-color 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .toggle-thumb {
+      position: absolute;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+      transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+
+    .toggle-label {
+      font-size: 16px;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .toggle-text {
+      display: none;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--blue);
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      background: var(--blue-light);
+      border: 1px solid var(--blue-mid);
+    }
+
+    .theme-toggle:hover .toggle-track {
+      border-color: var(--blue);
+    }
+
+    .theme-toggle:hover .toggle-label {
+      transform: rotate(15deg) scale(1.15);
+    }
+
+    /* ==================== RESPONSIVE NAVBAR ==================== */
+    @media (min-width: 769px) {
+      .category:hover .dropdown {
+        max-height: 400px;
+        opacity: 1;
+        pointer-events: all;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      .category:hover .category-btn {
+        color: var(--blue);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0 18px;
+      }
+
+      nav {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: var(--white);
+        flex-direction: column;
+        display: flex;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          max-height 0.5s ease,
+          opacity 0.3s ease;
+        border-bottom: 1px solid var(--border);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      }
+
+      nav.active {
+        max-height: 800px;
+        opacity: 1;
+      }
+
+      nav a,
+      .category-btn {
+        padding: 14px 20px;
+        border-top: 1px solid var(--border);
+        width: 100%;
+        text-align: left;
+        margin-left: 0 !important;
+        display: block;
+      }
+
+      nav a::after {
+        display: none !important;
+      }
+
+      .category {
+        width: 100%;
+        margin-left: 0;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+
+      .dropdown {
+        position: static;
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        align-items: stretch;
+        transform: none !important;
+        left: 0;
+        padding-top: 0;
+        background: transparent;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.28s ease;
+      }
+
+      .dropdown.show {
+        max-height: 600px;
+        opacity: 1;
+        pointer-events: all;
+        transform: none !important;
+      }
+
+      .dropdown a {
+        padding: 12px 20px 12px 44px;
+        background: #f1f5f9;
+        border-bottom: 1px solid var(--border);
+        border-radius: 0;
+      }
+
+      .dropdown a:last-child {
+        border-bottom: none;
+      }
+
+      .menu-btn {
+        display: flex;
+      }
+
+      .theme-toggle {
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-left: auto;
+      }
+
+      .toggle-label {
+        display: none;
+      }
+
+      .toggle-text {
+        display: inline-block;
+      }
+    }
+
+    /* ==================== HERO ==================== */
+    .hero {
+      margin-top: 68px;
+      min-height: 30vh;
+      background: url("shahkot.jpg") center/cover no-repeat;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      padding: 28px 24px 40px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(155deg,
+          rgba(8, 16, 54, 0.9) 0%,
+          rgba(20, 50, 140, 0.76) 48%,
+          rgba(37, 99, 235, 0.52) 100%);
+      z-index: 1;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.055;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+      background-size: 56px 56px;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+          rgba(255, 255, 255, 0.07),
+          transparent 70%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .orb1 {
+      width: 520px;
+      height: 520px;
+      top: -170px;
+      right: -130px;
+      animation: orbF 12s ease-in-out infinite;
+    }
+
+    .orb2 {
+      width: 340px;
+      height: 340px;
+      bottom: -110px;
+      left: -90px;
+      animation: orbF 9s ease-in-out infinite reverse;
+    }
+
+    .orb3 {
+      width: 220px;
+      height: 220px;
+      top: 28%;
+      left: 8%;
+      animation: orbF 14s ease-in-out 2s infinite;
+    }
+
+    @keyframes orbF {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-26px) scale(1.04);
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 680px;
+      animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes hReveal {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 40px;
+      margin-bottom: 10px;
+      backdrop-filter: blur(10px);
+      animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #93c5fd;
+      animation: bdot 2s ease-in-out infinite;
+    }
+
+    @keyframes bdot {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.35;
+        transform: scale(0.75);
+      }
+    }
+
+    .hero-content h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 8px;
+      letter-spacing: 0.3px;
+      animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+    }
+
+    .hero-content h1 em {
+      font-style: italic;
+      color: #93c5fd;
+    }
+
+    .hero-content p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.5;
+      max-width: 420px;
+      margin: 0 auto;
+      animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      z-index: 4;
+    }
+
+   @media (max-width: 640px) {
+      .hero {
+        min-height: 26vh;
+        padding: 22px 20px 32px;
+      }
+
+      .hero-content h1 {
+        font-size: 24px;
+      }
+
+      .hero-content p {
+        font-size: 12px;
+      }
+    }
+
+    /* ==================== DAROOD BAND ==================== */
+    .darood-band {
+      background: var(--gold-bg);
+      border-top: 1px solid rgba(184, 148, 42, 0.2);
+      border-bottom: 1px solid rgba(184, 148, 42, 0.2);
+      padding: 14px 24px 10px;
+      text-align: center;
+      overflow: hidden;
+      transition: box-shadow 0.3s;
+    }
+
+    .sticky-header-group {
+      position: sticky;
+      top: 68px;
+      z-index: 999;
+    }
+
+    .darood-band.stuck {
+      box-shadow: 0 4px 16px rgba(184, 148, 42, 0.12);
+    }
+
+    .darood-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 80% at 50% 50%,
+          rgba(184, 148, 42, 0.06),
+          transparent);
+    }
+
+    .darood-arabic {
+      position: relative;
+      z-index: 1;
+      font-family: "Amiri", serif;
+      font-size: 30px;
+      font-weight: 400;
+      color: #7a5c10;
+      letter-spacing: 0.5px;
+      line-height: 1.7;
+      direction: rtl;
+      animation: hReveal 1s ease 0.2s both;
+    }
+
+    .darood-line {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .darood-line::before,
+    .darood-line::after {
+      content: "";
+      flex: 0 0 56px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+    .darood-line::after {
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .darood-line span {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ==================== SEARCH ==================== */
+    .search-section {
+      padding: 10px 24px 10px;
+      display: flex;
+      justify-content: center;
+      background: var(--bg);
+      transition: box-shadow 0.3s;
+    }
+
+    .search-section.stuck {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .search-wrap {
+      width: 100%;
+      max-width: 580px;
+      position: relative;
+      overflow: visible;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border: 1.5px solid rgba(37, 99, 235, 0.18);
+      border-radius: 15px;
+      box-shadow:
+        0 2px 20px rgba(37, 99, 235, 0.09),
+        0 0 0 5px rgba(37, 99, 235, 0.04);
+      transition:
+        border-color 0.3s,
+        box-shadow 0.3s;
+      overflow: visible;
+      position: relative;
+    }
+
+    .search-box:focus-within {
+      border-color: var(--blue);
+      box-shadow:
+        0 4px 24px rgba(37, 99, 235, 0.15),
+        0 0 0 5px rgba(37, 99, 235, 0.08);
+    }
+
+    .s-icon {
+      padding: 0 12px 0 20px;
+      display: flex;
+      align-items: center;
+      color: var(--blue);
+      flex-shrink: 0;
+      border-radius: 60px 0 0 60px;
+      background: var(--white);
+    }
+
+    #search {
+      flex: 1;
+      min-width: 0;
+      padding: 16px 0;
+      border: none;
+      outline: none;
+      background: var(--white);
+      font-size: 14px;
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+    }
+
+    #search::placeholder {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .search-filter {
+      position: relative;
+      margin-left: auto;
+      border-left: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      background: var(--white);
+      border-radius: 0 60px 60px 0;
+      overflow: visible;
+    }
+
+    .filter-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 16px;
+      height: 52px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      color: var(--blue);
+    }
+
+    .filter-arrow {
+      font-size: 20px;
+      transition: transform 0.3s;
+    }
+
+    .filter-btn.active .filter-arrow {
+      transform: rotate(180deg);
+    }
+
+    .filter-dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      border: 1px solid var(--border);
+      min-width: 140px;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s;
+      z-index: 9999;
+    }
+
+    .filter-dropdown.show {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .filter-option {
+      padding: 10px 16px;
+      font-size: 13px;
+      color: var(--text);
+      cursor: pointer;
+      transition:
+        background 0.15s,
+        color 0.15s;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .filter-option:last-child {
+      border-bottom: none;
+    }
+
+    .filter-option:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .filter-option.active {
+      background: var(--blue-light);
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    .s-clear {
+      padding: 0 18px;
+      font-size: 20px;
+      color: #94a3b8;
+      cursor: pointer;
+      display: none;
+      line-height: 1;
+      transition: color 0.2s;
+      background: var(--white);
+      border-radius: 0 60px 60px 0;
+    }
+
+    .s-clear:hover {
+      color: var(--blue);
+    }
+
+    .s-clear.on {
+      display: block;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      width: 100%;
+      background: var(--white);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--border);
+      display: none;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .sug-label {
+      padding: 10px 16px 6px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .suggestions div {
+      padding: 11px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.15s;
+    }
+
+    .suggestions div:last-child {
+      border-bottom: none;
+    }
+
+    .suggestions div:hover {
+      background: var(--blue-light);
+      color: var(--blue);
+    }
+
+    .rec-icon {
+      display: inline-flex;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .rec-text {
+      flex: 1;
+    }
+
+   .rec-del {
+      margin-left: auto;
+      padding-left: 10px;
+      font-size: 16px;
+      line-height: 1;
+      color: #94a3b8;
+      opacity: 0;
+      transition: opacity 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .suggestions div:hover .rec-del {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .rec-del {
+        opacity: 1;
+      }
+    }
+
+    .rec-del:hover {
+      color: var(--blue);
+    }
+
+    /* ==================== CHIPS ==================== */
+    .chips-wrap {
+      max-width: 100%;
+      margin: 20px auto;
+      padding: 5px 24px 22px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .chips-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 20px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--muted);
+      transition: all 0.25s cubic-bezier(0.34, 1.3, 0.64, 1);
+      user-select: none;
+      white-space: nowrap;
+      flex-shrink: 0
+    }
+
+    .chip:hover {
+      border-color: var(--blue);
+      color: white;
+      background: var(--blue-light);
+      transform: translateY(-2px);
+    }
+
+    .chip.active {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      box-shadow: 0 4px 14px rgba(37, 100, 235, 0.308);
+      transform: translateY(-2px);
+    }
+
+    .chip.time-based {
+      position: relative;
+      animation: slideIn 0.4s cubic-bezier(0.34, 1.3, 0.64, 1);
+    }
+
+    .chip.time-based::before {
+      content: "";
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      width: 8px;
+      height: 8px;
+      background: #ef4444;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+      }
+    }
+
+    /* ==================== VERIFIED BADGE ==================== */
+    .verified-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #fef9c3;
+      color: #854d0e;
+      border: 1px solid #854d0e;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+      letter-spacing: 0.3px;
+      font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+    }
+
+    /* ==================== VERIFIED SECTION ==================== */
+    .verified-section {
+      padding: 0 16px 10px;
+    }
+
+    @media (min-width: 640px) {
+      .verified-section {
+        padding: 0 20px 10px;
+      }
+    }
+
+    .verified-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .verified-head-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .verified-head-title {
+      font-family: "Playfair Display", serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .verified-head-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--blue-mid);
+    }
+
+    .verified-head-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    .verified-expand-btn {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 16px;
+      border-radius: 40px;
+      cursor: pointer;
+      font-family: "Poppins", sans-serif;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .verified-expand-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    .verified-expand-btn.visible {
+      display: inline-flex;
+    }
+
+    .vexp-arrow {
+      font-size: 13px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .verified-expand-btn.expanded .vexp-arrow {
+      transform: rotate(180deg);
+    }
+
+    .verified-scroll-wrap {
+      position: relative;
+    }
+
+    .verified-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, 1fr);
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @media (min-width: 640px) {
+      .verified-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .verified-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+      }
+    }
+
+    .verified-fade {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      background: linear-gradient(to bottom, transparent, var(--bg));
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .verified-fade.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ==================== SECTION DIVIDER ==================== */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 16px;
+    }
+
+    @media (min-width: 640px) {
+      .section-divider {
+        padding: 20px 20px;
+      }
+    }
+
+    .sd-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .sd-text {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ==================== LISTING HEADER ==================== */
+    .list-head {
+      width: 100%;
+      margin: 0 0 18px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .list-title {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .list-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .list-count {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: normal;
+      overflow-wrap: break-word;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    .list-count strong {
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    /* ==================== GRID VIEW TOGGLE ==================== */
+    .view-toggle {
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+
+    .view-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .view-btn svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .view-btn:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    .view-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.3);
+    }
+
+    [data-theme="dark"] .view-btn {
+      background: #1e293b;
+      border-color: #334155;
+      color: #94a3b8;
+    }
+
+    [data-theme="dark"] .view-btn.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #fff;
+    }
+
+    /* Sirf desktop par 3x3 button hide rahega (wo mobile-only hai) */
+    .view-btn.mobile-only {
+      display: none;
+    }
+
+    @media (max-width: 639px) {
+      .view-btn.mobile-only {
+        display: flex;
+      }
+    }
+
+    /* Desktop-only 5x5 button mobile par hide */
+    .view-btn.desktop-only {
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .view-btn.desktop-only {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 639px) {
+
+      /* 3x3 mobile grid mode */
+      .grid.grid-3col {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .grid.grid-3col .card-img {
+        padding-top: 100%;
+      }
+
+      .grid.grid-3col .card-body {
+        padding: 8px 8px 4px;
+      }
+
+      .grid.grid-3col .card-body h3 {
+        font-size: 10.5px;
+        line-height: 1.3;
+      }
+
+      .grid.grid-3col .card-btn {
+        margin: 0 8px 8px;
+        padding: 7px;
+        font-size: 10px;
+      }
+
+      .grid.grid-3col .card-status {
+        font-size: 9px;
+        padding: 2px 7px;
+        margin-top: 4px;
+      }
+
+      .grid.grid-3col .card-status::before {
+        width: 5px;
+        height: 5px;
+      }
+    }
+
+    /* ==================== LIST VIEW (MOBILE + DESKTOP) ==================== */
+    .grid.grid-list {
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 640px) {
+      .grid.grid-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .grid.grid-list .card {
+      flex-direction: row;
+      align-items: stretch;
+    }
+
+    .grid.grid-list .card-img {
+      width: 110px;
+      min-width: 110px;
+      padding-top: 0;
+      height: auto;
+    }
+
+    @media (min-width: 640px) {
+      .grid.grid-list .card-img {
+        width: 140px;
+        min-width: 140px;
+        min-height: 160px;
+      }
+
+      .grid.grid-list .card-body {
+        padding: 18px 18px;
+        gap: 8px;
+      }
+
+      .grid.grid-list .card-body h3 {
+        font-size: 16px;
+      }
+    }
+
+    .grid.grid-list .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 14px;
+    }
+
+    .grid.grid-list .card-body h3 {
+      font-size: 14px;
+    }
+
+    .grid.grid-list .list-cat {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .grid.grid-list .card-status {
+      width: fit-content;
+    }
+
+    .grid.grid-list .card-btn {
+      display: none;
+    }
+
+    .grid.grid-list .list-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .list-action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      color: #fff;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .list-action-btn.call {
+      background: var(--blue);
+    }
+
+    .list-action-btn.call:hover {
+      background: var(--blue-dark);
+    }
+
+    .list-action-btn.whatsapp {
+      background: #16a34a;
+    }
+
+    .list-action-btn.whatsapp:hover {
+      background: #15803d;
+    }
+
+    .list-action-btn svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    /* ==================== GRID ==================== */
+    .grid {
+      width: 100%;
+      margin: 0;
+      padding: 0 16px 72px;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 640px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        padding: 0 20px 72px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 18px;
+        padding: 0 20px 72px;
+      }
+    }
+
+    /* ==================== CARD ==================== */
+    .card {
+      background: var(--white);
+      /* border-radius: var(--radius); */
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--card-shadow);
+      transition:
+        transform 0.38s cubic-bezier(0.34, 1.3, 0.64, 1),
+        box-shadow 0.32s ease,
+        border-color 0.3s;
+      position: relative;
+      animation: cardIn 0.42s ease both;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.015);
+      box-shadow: var(--card-shadow-hover);
+      border-color: rgba(37, 99, 235, 0.18);
+    }
+
+    .card-img {
+      position: relative;
+      overflow: hidden;
+      padding-top: 85%;
+      height: 0;
+    }
+
+    .card-img img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .card:hover .card-img img {
+      transform: scale(1.09);
+    }
+
+    .card-body {
+      padding: 13px 14px 9px;
+      flex: 1;
+    }
+
+    .card-body h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .card-btn {
+      display: block;
+      margin: 0 12px 12px;
+      padding: 10px;
+      text-align: center;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 40px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition:
+        background 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
+    }
+
+    .card-btn:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 16px rgba(37, 99, 235, 0.3);
+    }
+
+    .card-btn:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-top: 6px;
+    }
+
+    .card-status.open {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .card-status.closed {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .card-status.warning {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+
+    .card-status::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .card-status.open::before {
+      background: #22c55e;
+    }
+
+    .card-status.closed::before {
+      background: #ef4444;
+    }
+
+    .card-status.warning::before {
+      background: #facc15;
+    }
+
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 72px 20px;
+    }
+
+    .empty-ico {
+      font-size: 52px;
+      margin-bottom: 16px;
+    }
+
+    .empty-state h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+      font-family: "Playfair Display", serif;
+    }
+
+    .empty-state p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* ==================== FOOTER ==================== */
+    .footer {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px 28px;
+      text-align: center;
+    }
+
+    .f-logo {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .f-nav {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .f-nav a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .f-nav a:hover {
+      color: var(--blue);
+    }
+
+    .f-copy {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .f-copy a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    /* ==================== SCROLL HINT ==================== */
+    .scroll-hint {
+      position: fixed;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 22px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 9999;
+      pointer-events: none;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+      animation:
+        hintIn 0.4s cubic-bezier(0.34, 1.3, 0.64, 1) both,
+        hintOut 0.4s ease 3s forwards;
+    }
+
+    .hint-arrow {
+      font-size: 16px;
+      animation: hintArrow 0.6s ease-in-out infinite alternate;
+    }
+
+    @keyframes hintIn {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    @keyframes hintOut {
+      from {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+        pointer-events: none;
+      }
+    }
+
+    @keyframes hintArrow {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-4px);
+      }
+    }
+
+    /* ==================== SCROLL TOP ==================== */
+    .totop {
+      position: fixed;
+      bottom: 28px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(14px) scale(0.88);
+      transition:
+        opacity 0.3s,
+        transform 0.3s;
+      z-index: 990;
+    }
+
+    .totop.show {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0) scale(1);
+    }
+
+    .totop:hover {
+      background: var(--blue-dark);
+      transform: translateY(-3px) scale(1.06) !important;
+    }
+
+    @media (max-width: 560px) {
+      .grid {
+        gap: 10px;
+        padding: 0 12px 60px;
+      }
+
+      .card-img {
+        padding-top: 90%;
+      }
+
+      .card-body {
+        padding: 10px 12px 6px;
+      }
+
+      .card-body h3 {
+        font-size: 13px;
+      }
+
+      .card-btn {
+        margin: 0 10px 10px;
+        padding: 9px;
+        font-size: 12px;
+      }
+
+      .darood-arabic {
+        font-size: 20px;
+      }
+
+      .list-line {
+        display: none;
+      }
+
+      .filter-btn {
+        padding: 0 12px;
+        font-size: 11px;
+        gap: 4px;
+      }
+
+      #filterLabel {
+        display: inline-block;
+        max-width: 60px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .filter-arrow {
+        font-size: 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <a href="index.html" class="logo">SHAHKOT</a>
+    <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">☰</button>
+    <nav id="nav">
+      <a href="index.html" class="active">Home</a>
+      <div class="category">
+        <button class="category-btn" onclick="toggleDropdown()">
+          Categories ▾
+        </button>
+        <div class="dropdown" id="dropdown">
+          <a onclick="
+                filterCat('all');
+                closeAll();
+              "> All</a>
+          <a onclick="
+                filterCat('medical');
+                closeAll();
+              "> Medical</a>
+          <a onclick="
+                filterCat('electronics');
+                closeAll();
+              "> Electronics</a>
+          <a onclick="
+                filterCat('grocery');
+                closeAll();
+              "> Grocery</a>
+          <a onclick="
+                filterCat('clothing');
+                closeAll();
+              "> Clothing</a>
+          <a onclick="
+                filterCat('education');
+                closeAll();
+              "> Education</a>
+        </div>
+      </div>
+      <a href="about.html">About</a>
+      <a href="how_to_use.html">Kaisy istemal karein</a>
+      <a href="how_to_use.html#plans">Plan's</a>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span class="toggle-text" id="toggleText">Dark Mode</span>
+        <span class="toggle-track">
+          <span class="toggle-thumb" id="toggleThumb"></span>
+        </span>
+        <span class="toggle-label" id="themeIcon">🌙</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span></span>Shahkot Ki Digital Directory
+      </div>
+      <h1>Shehar e <em>Shahkot</em> Ki Sari Shops.</h1>
+      <p>
+        Pharmacies, Schools, Electronics, Clothing aur bahut kuch — sab ek jagah, bilkul free.
+      </p>
+    </div>
+  </section>
+
+  <div class="sticky-header-group">
+
+  <!-- ===== DAROOD PAK ===== -->
+  <div class="darood-band">
+    <div class="darood-arabic">
+      اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ
+    </div>
+    <div class="darood-line"><span></span></div>
+  </div>
+
+  <!-- ===== SEARCH ===== -->
+  <div class="search-section" id="searchSec">
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="s-icon">
+          <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </span>
+        <input type="text" id="search" placeholder="Search shops, categories..." autocomplete="off" />
+        <div class="search-filter">
+          <button class="filter-btn" id="filterBtn" onclick="toggleFilterDropdown()">
+            <span id="filterLabel">All</span>
+            <span class="filter-arrow">▾</span>
+          </button>
+          <div class="filter-dropdown" id="filterDropdown">
+            <div class="filter-option active" data-value="all" onclick="selectFilter('all', 'All')">
+              All
+            </div>
+            <div class="filter-option" data-value="name" onclick="selectFilter('name', 'Shop Name')">
+              Shop Name
+            </div>
+            <div class="filter-option" data-value="owner" onclick="selectFilter('owner', 'Owner')">
+              Owner
+            </div>
+            <div class="filter-option" data-value="category" onclick="selectFilter('category', 'Category')">
+              Category
+            </div>
+            <!-- <div class="filter-option" data-value="road" onclick="selectFilter('road', 'Road')">
+              Road
+            </div> -->
+          </div>
+        </div>
+        <span class="s-clear" id="sClear" onclick="clearSearch()">×</span>
+      </div>
+      <div class="suggestions" id="suggestions"></div>
+    </div>
+  </div>
+
+  </div>
+
+  <!-- ===== CATEGORY CHIPS ===== -->
+  <div class="chips-wrap">
+    <div class="chip active" data-cat="all" onclick="filterCat('all')">
+      All
+    </div>
+    <div class="chip" data-cat="medical" onclick="filterCat('medical')">
+      Medical
+    </div>
+    <div class="chip" data-cat="electronics" onclick="filterCat('electronics')">
+      Electronics
+    </div>
+    <div class="chip" data-cat="grocery" onclick="filterCat('grocery')">
+      Grocery
+    </div>
+    <div class="chip" data-cat="clothing" onclick="filterCat('clothing')">
+      Clothing
+    </div>
+    <div class="chip" data-cat="education" onclick="filterCat('education')">
+      Education
+    </div>
+  </div>
+
+  <!-- ===== VERIFIED SHOPS SECTION ===== -->
+  <section class="verified-section" id="verifiedSection" style="display: none">
+    <div class="verified-head">
+      <div class="verified-head-left">
+        <span class="verified-head-title">✓ Verified Shops</span>
+        <span class="verified-head-badge" id="verifiedCount">0 shops</span>
+      </div>
+      <button class="verified-expand-btn" id="verifiedExpandBtn" onclick="toggleVerifiedExpand()">
+        <span id="vexpLabel">See All</span>
+        <span class="vexp-arrow">▾</span>
+      </button>
+    </div>
+    <div class="verified-scroll-wrap">
+      <div class="verified-grid" id="verifiedGrid"></div>
+      <div class="verified-fade" id="verifiedFade"></div>
+    </div>
+  </section>
+
+  <div class="section-divider" id="sectionDivider" style="display: none">
+    <div class="sd-line"></div>
+    <span class="sd-text">All Shops</span>
+    <div class="sd-line"></div>
+  </div>
+
+  <!-- ===== LISTING HEADER ===== -->
+  <div class="list-head">
+    <span class="list-title" id="listTitle">All Shops</span>
+    <div class="list-line"></div>
+    <span class="list-count" id="listCount"></span>
+    <div class="view-toggle" id="viewToggle">
+      <button class="view-btn active mobile-only" data-view="2" onclick="setGridView('2')" aria-label="2 column view">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <rect x="0" y="0" width="7" height="7" rx="1.5" />
+          <rect x="9" y="0" width="7" height="7" rx="1.5" />
+          <rect x="0" y="9" width="7" height="7" rx="1.5" />
+          <rect x="9" y="9" width="7" height="7" rx="1.5" />
+        </svg>
+      </button>
+      <button class="view-btn mobile-only" data-view="3" onclick="setGridView('3')" aria-label="3 column view">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <rect x="0" y="0" width="4" height="4" rx="1" />
+          <rect x="6" y="0" width="4" height="4" rx="1" />
+          <rect x="12" y="0" width="4" height="4" rx="1" />
+          <rect x="0" y="6" width="4" height="4" rx="1" />
+          <rect x="6" y="6" width="4" height="4" rx="1" />
+          <rect x="12" y="6" width="4" height="4" rx="1" />
+          <rect x="0" y="12" width="4" height="4" rx="1" />
+          <rect x="6" y="12" width="4" height="4" rx="1" />
+          <rect x="12" y="12" width="4" height="4" rx="1" />
+        </svg>
+      </button>
+      <button class="view-btn active desktop-only" data-view="5" onclick="setGridView('5')"
+        aria-label="5 column grid view">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <rect x="0" y="0" width="2.6" height="2.6" rx="0.6" />
+          <rect x="3.4" y="0" width="2.6" height="2.6" rx="0.6" />
+          <rect x="6.8" y="0" width="2.6" height="2.6" rx="0.6" />
+          <rect x="10.2" y="0" width="2.6" height="2.6" rx="0.6" />
+          <rect x="13.4" y="0" width="2.6" height="2.6" rx="0.6" />
+          <rect x="0" y="3.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="3.4" y="3.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="6.8" y="3.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="10.2" y="3.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="13.4" y="3.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="0" y="6.8" width="2.6" height="2.6" rx="0.6" />
+          <rect x="3.4" y="6.8" width="2.6" height="2.6" rx="0.6" />
+          <rect x="6.8" y="6.8" width="2.6" height="2.6" rx="0.6" />
+          <rect x="10.2" y="6.8" width="2.6" height="2.6" rx="0.6" />
+          <rect x="13.4" y="6.8" width="2.6" height="2.6" rx="0.6" />
+          <rect x="0" y="10.2" width="2.6" height="2.6" rx="0.6" />
+          <rect x="3.4" y="10.2" width="2.6" height="2.6" rx="0.6" />
+          <rect x="6.8" y="10.2" width="2.6" height="2.6" rx="0.6" />
+          <rect x="10.2" y="10.2" width="2.6" height="2.6" rx="0.6" />
+          <rect x="13.4" y="10.2" width="2.6" height="2.6" rx="0.6" />
+          <rect x="0" y="13.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="3.4" y="13.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="6.8" y="13.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="10.2" y="13.4" width="2.6" height="2.6" rx="0.6" />
+          <rect x="13.4" y="13.4" width="2.6" height="2.6" rx="0.6" />
+        </svg>
+      </button>
+      <button class="view-btn" data-view="list" onclick="setGridView('list')" aria-label="List view">
+        <svg viewBox="0 0 16 16" fill="currentColor">
+          <rect x="0" y="1" width="5" height="5" rx="1" />
+          <rect x="6.5" y="1.5" width="9.5" height="1.5" rx="0.75" />
+          <rect x="6.5" y="4" width="7" height="1.5" rx="0.75" />
+          <rect x="0" y="9" width="5" height="5" rx="1" />
+          <rect x="6.5" y="9.5" width="9.5" height="1.5" rx="0.75" />
+          <rect x="6.5" y="12" width="7" height="1.5" rx="0.75" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== GRID ===== -->
+  <div class="grid" id="shops"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="f-logo">SHAHKOT</div>
+    <!-- <nav class="f-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a> -->
+    </nav>
+    <p class="f-copy">
+      &copy; 2026 <a href="index.html">Shahkot Directory</a> — Designed &amp;
+      Developed by Badar-Zaman
+    </p>
+  </footer>
+
+  <div class="scroll-hint" id="scrollHint">
+    <span class="hint-arrow">↑</span>Upar scroll karein
+  </div>
+  <button class="totop" id="toTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+    ↑
+  </button>
+
+  <script>
+    /* ========== DARK MODE — page flash rokne ke liye sabse pehle ========== */
+    (function () {
+      const saved = localStorage.getItem("sk_theme");
+      if (saved === "dark")
+        document.documentElement.setAttribute("data-theme", "dark");
+    })();
+
+    /* ==================== DARK MODE TOGGLE ==================== */
+    function toggleTheme() {
+      const html = document.documentElement;
+      const icon = document.getElementById("themeIcon");
+      const text = document.getElementById("toggleText");
+      const isDark = html.getAttribute("data-theme") === "dark";
+      if (isDark) {
+        html.removeAttribute("data-theme");
+        localStorage.setItem("sk_theme", "light");
+        icon.textContent = "🌙";
+        if (text) text.textContent = "Dark Mode";
+      } else {
+        html.setAttribute("data-theme", "dark");
+        localStorage.setItem("sk_theme", "dark");
+        icon.textContent = "☀️";
+        if (text) text.textContent = "Light Mode";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const saved = localStorage.getItem("sk_theme");
+      const icon = document.getElementById("themeIcon");
+      const text = document.getElementById("toggleText");
+      if (saved === "dark") {
+        if (icon) icon.textContent = "☀️";
+        if (text) text.textContent = "Light Mode";
+      }
+    });
+    /* ==================== GRID VIEW TOGGLE (MOBILE + DESKTOP) ==================== */
+    let currentView = "2"; // mobile default; desktop default "5" set DOMContentLoaded mein
+
+    function setGridView(view) {
+      const grid = document.getElementById("shops");
+      const isMobile = window.innerWidth <= 639;
+
+      currentView = view;
+
+      document.querySelectorAll(".view-btn").forEach((b) => {
+        b.classList.toggle("active", b.dataset.view === view);
+      });
+
+      grid.classList.remove("grid-3col", "grid-list");
+      if (view === "3") grid.classList.add("grid-3col");
+      if (view === "list") grid.classList.add("grid-list");
+
+      if (isMobile) {
+        localStorage.setItem("sk_gridview_mobile", view);
+      } else {
+        localStorage.setItem("sk_gridview_desktop", view);
+      }
+
+      // List view re-render karna zaroori hai (extra info chahiye)
+      if (allShops.length) {
+        const activeFilterChip = document.querySelector(".chip.active");
+        if (inp.value.trim()) {
+          doSearch(inp.value);
+        } else if (activeFilterChip) {
+          filterCat(activeFilterChip.dataset.cat || activeCat);
+        } else {
+          render(allShops);
+        }
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const isMobile = window.innerWidth <= 639;
+      if (isMobile) {
+        const saved = localStorage.getItem("sk_gridview_mobile");
+        if (saved === "3" || saved === "list") setGridView(saved);
+        else setGridView("2");
+      } else {
+        const saved = localStorage.getItem("sk_gridview_desktop");
+        if (saved === "list") setGridView("list");
+        else setGridView("5");
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      const isMobile = window.innerWidth <= 639;
+      const saved = isMobile
+        ? localStorage.getItem("sk_gridview_mobile") || "2"
+        : localStorage.getItem("sk_gridview_desktop") || "5";
+      // Sirf jab device-type switch ho (mobile<->desktop) tab hi reset karo
+      if (
+        (isMobile && !["2", "3", "list"].includes(currentView)) ||
+        (!isMobile && !["5", "list"].includes(currentView))
+      ) {
+        setGridView(saved);
+      }
+    });
+
+    /* ==================== SEARCH FILTER ==================== */
+    let activeFilter = "all";
+
+    function toggleFilterDropdown() {
+      const dropdown = document.getElementById("filterDropdown");
+      const btn = document.getElementById("filterBtn");
+      const isShowing = dropdown.classList.contains("show");
+
+      // pehle band karo
+      dropdown.classList.remove("show");
+      btn.classList.remove("active");
+
+      if (!isShowing) {
+        // position: fixed use karo taake overflow clip na kare
+        const btnRect = btn.getBoundingClientRect();
+        dropdown.style.position = "fixed";
+        dropdown.style.top = btnRect.bottom + 8 + "px";
+        dropdown.style.right = window.innerWidth - btnRect.right + "px";
+        dropdown.style.left = "auto";
+        dropdown.style.zIndex = "999999";
+        dropdown.classList.add("show");
+        btn.classList.add("active");
+      }
+    }
+
+    function resetFilterDropdownPosition() {
+      const dropdown = document.getElementById("filterDropdown");
+      dropdown.style.position = "";
+      dropdown.style.top = "";
+      dropdown.style.right = "";
+      dropdown.style.left = "";
+      dropdown.style.zIndex = "";
+    }
+
+    function selectFilter(value, label) {
+      activeFilter = value;
+      const searchInput = document.getElementById("search");
+      document.getElementById("filterLabel").textContent = label;
+      const placeholders = {
+        all: "Search shops, categories...",
+        name: "Search shop names...",
+        owner: "Search owners...",
+        category: "Search categories...",
+        road: "Search roads...",
+      };
+      searchInput.placeholder = placeholders[value] || "Search...";
+      document.querySelectorAll(".filter-option").forEach((opt) => {
+        opt.classList.toggle("active", opt.dataset.value === value);
+      });
+      const dropdown = document.getElementById("filterDropdown");
+      const btn = document.getElementById("filterBtn");
+      dropdown.classList.remove("show");
+      btn.classList.remove("active");
+      resetFilterDropdownPosition();
+      searchInput.focus();
+      const searchValue = searchInput.value;
+      if (searchValue.trim()) doSearch(searchValue);
+    }
+
+    document.addEventListener("click", (e) => {
+      const dropdown = document.getElementById("filterDropdown");
+      const btn = document.getElementById("filterBtn");
+      if (btn && !btn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove("show");
+        btn.classList.remove("active");
+        resetFilterDropdownPosition();
+      }
+    });
+
+    /* ==================== MOBILE NAV OUTSIDE CLICK ==================== */
+    document.addEventListener("click", (e) => {
+      const nav = document.getElementById("nav");
+      const menuBtn = document.getElementById("menuBtn");
+      if (
+        nav.classList.contains("active") &&
+        !nav.contains(e.target) &&
+        !menuBtn.contains(e.target)
+      ) {
+        nav.classList.remove("active");
+        menuBtn.textContent = "☰";
+      }
+    });
+
+    /* ==================== TIME-BASED CATEGORIES ==================== */
+    const timeCategories = {
+      breakfast: {
+        start: 4,
+        end: 10,
+        label: "🍳 Breakfast Time",
+        cats: ["breakfast", "cafe", "bakery", "tea"],
+        color: "#f59e0b",
+      },
+      lunch: {
+        start: 10,
+        end: 17,
+        label: "🍛 Lunch Time",
+        cats: ["lunch", "restaurant", "desi", "biryani"],
+        color: "#10b981",
+      },
+      dinner: {
+        start: 17,
+        end: 24,
+        label: "🍕 Dinner Time",
+        cats: ["dinner", "bbq", "fastfood", "pizza", "burger"],
+        color: "#8b5cf6",
+      },
+      latenight: {
+        start: 0,
+        end: 4,
+        label: "🌙 Late Night",
+        cats: ["fastfood", "pizza", "burger", "tea"],
+        color: "#6366f1",
+      },
+    };
+
+    function getCurrentTimeSlot() {
+      const hour = new Date().getHours();
+      for (let slot in timeCategories) {
+        const { start, end } = timeCategories[slot];
+        if (hour >= start && hour < end) return slot;
+      }
+      return null;
+    }
+
+    function updateTimeBasedChips() {
+      document
+        .querySelectorAll('.chip[data-timebased="true"]')
+        .forEach((c) => c.remove());
+      const slot = getCurrentTimeSlot();
+      if (!slot) return;
+      const { label, cats, color } = timeCategories[slot];
+      const chip = document.createElement("div");
+      chip.className = "chip time-based";
+      chip.setAttribute("data-cat", slot);
+      chip.setAttribute("data-timebased", "true");
+      chip.setAttribute("data-categories", cats.join(","));
+      chip.onclick = () => filterTimeCategory(slot, cats, label);
+      chip.innerHTML = label;
+      chip.style.borderColor = color;
+      const allChip = document.querySelector('.chip[data-cat="all"]');
+      if (allChip) allChip.after(chip);
+    }
+
+    function filterTimeCategory(slot, cats, label) {
+      activeCat = slot;
+      const shopsEl = document.getElementById("shops");
+      window.scrollTo({
+        top: shopsEl.getBoundingClientRect().top + window.scrollY - 280,
+        behavior: "smooth",
+      });
+      document
+        .querySelectorAll(".chip")
+        .forEach((c) => c.classList.remove("active"));
+      document
+        .querySelector(`.chip[data-cat="${slot}"]`)
+        .classList.add("active");
+      document.getElementById("listTitle").textContent = label;
+      const out = allShops.filter(
+        (s) =>
+          s.category &&
+          cats.some((cat) =>
+            s.category.toLowerCase().includes(cat.toLowerCase()),
+          ),
+      );
+      render(out);
+      setCount(out.length);
+      document.getElementById("search").value = "";
+      document.getElementById("sClear").classList.remove("on");
+    }
+
+    /* ==================== INIT ==================== */
+    window.addEventListener("load", () => {
+      if (!sessionStorage.getItem("sk_scrollY")) {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      }
+    });
+
+    /* ==================== SCROLL ==================== */
+    window.addEventListener("scroll", () => {
+      const y = window.scrollY;
+      document.getElementById("navbar").classList.toggle("scrolled", y > 10);
+      document.getElementById("toTop").classList.toggle("show", y > 500);
+      if (y > 80) {
+        const h = document.getElementById("scrollHint");
+        if (h) h.remove();
+      }
+     const stickyGroup = document.querySelector(".sticky-header-group");
+      const isStuck = stickyGroup.getBoundingClientRect().top <= 68;
+      document.querySelector(".darood-band").classList.toggle("stuck", isStuck);
+      document.getElementById("searchSec").classList.toggle("stuck", isStuck);
+    });
+
+    /* ==================== MENU ==================== */
+    function toggleMenu() {
+      const nav = document.getElementById("nav"),
+        btn = document.getElementById("menuBtn");
+      nav.classList.toggle("active");
+      btn.textContent = nav.classList.contains("active") ? "✖" : "☰";
+    }
+    function closeAll() {
+      document.getElementById("nav").classList.remove("active");
+      document.getElementById("menuBtn").textContent = "☰";
+      document.getElementById("dropdown").classList.remove("show");
+    }
+
+    /* ==================== NAV DROPDOWN ==================== */
+    function toggleDropdown() {
+      document.getElementById("dropdown").classList.toggle("show");
+    }
+    document.addEventListener("click", (e) => {
+      const dd = document.getElementById("dropdown"),
+        btn = document.querySelector(".category-btn");
+      if (btn && !btn.contains(e.target) && !dd.contains(e.target))
+        dd.classList.remove("show");
+    }); 
+
+    /* ==================== DATA ==================== */
+    let allShops = [],
+      activeCat = "all";
+    fetch("shops.json")
+  .then((r) => r.json())
+  .then((data) => {
+    // Hidden shops (billing panel se hide ki hui) live site pe nahi dikhengi
+    allShops = data.filter((s) => !s.hidden);
+    const params = new URLSearchParams(window.location.search);
+        const cat = params.get("cat");
+        if (cat) filterCat(cat);
+        else render(data);
+        if (params.get("scroll")) {
+          setTimeout(
+            () =>
+              document
+                .getElementById("shops")
+                .scrollIntoView({ behavior: "smooth", block: "start" }),
+            400,
+          );
+        }
+
+        // NAYA — pichla scroll position restore karo
+        const savedScroll = sessionStorage.getItem("sk_scrollY");
+        if (savedScroll !== null && !params.get("scroll")) {
+          sessionStorage.removeItem("sk_scrollY");
+          setTimeout(() => {
+            window.scrollTo({
+              top: parseInt(savedScroll, 10),
+              behavior: "instant",
+            });
+          }, 60);
+        }
+      });
+
+    /* ==================== STATUS BADGE ==================== */
+    function getStatusBadge(timing) {
+      if (!timing) return "";
+      const parts = timing.split(" - ");
+      if (parts.length !== 2) return "";
+      const toMin = (t) => {
+        let [time, mod] = t.split(" ");
+        let [h, m] = time.split(":");
+        h = parseInt(h);
+        if (mod === "PM" && h !== 12) h += 12;
+        if (mod === "AM" && h === 12) h = 0;
+        return h * 60 + parseInt(m);
+      };
+      const open = toMin(parts[0]),
+        close = toMin(parts[1]);
+      const cur = new Date().getHours() * 60 + new Date().getMinutes();
+      const isOpen =
+        close > open
+          ? cur >= open && cur <= close
+          : cur >= open || cur <= close;
+      if (!isOpen) return "";
+      const rem = close - cur;
+      if (rem <= 30 && rem > 0)
+        return `<div class="card-status warning">Closing Soon</div>`;
+      return `<div class="card-status open">Open Now</div>`;
+    }
+
+    /* ==================== RENDER VERIFIED ==================== */
+    function renderVerified(data) {
+      const verified = data.filter((s) => s.verified === "ok");
+      const section = document.getElementById("verifiedSection");
+      const divider = document.getElementById("sectionDivider");
+      const grid = document.getElementById("verifiedGrid");
+      const countEl = document.getElementById("verifiedCount");
+      const expandBtn = document.getElementById("verifiedExpandBtn");
+      const fade = document.getElementById("verifiedFade");
+
+      if (!verified.length) {
+        section.style.display = "none";
+        divider.style.display = "none";
+        return;
+      }
+
+      section.style.display = "block";
+      divider.style.display = "flex";
+      countEl.textContent =
+        verified.length + " shop" + (verified.length !== 1 ? "s" : "");
+      expandBtn.classList.remove("expanded");
+      document.getElementById("vexpLabel").textContent = "See All";
+      expandBtn.classList.remove("visible");
+      fade.classList.add("hidden");
+      grid.style.maxHeight = "9999px";
+      grid.innerHTML = "";
+
+      verified.forEach((shop, i) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.animationDelay = Math.min(i * 0.05, 0.4) + "s";
+        card.innerHTML = `<div class="verified-badge">✓ Verified</div>
+            <div class="card-img"><img src="${shop.cardImage}" alt="${shop.name}" loading="lazy"></div>
+            <div class="card-body"><h3>${shop.name}</h3>${getStatusBadge(shop.timing)}</div>
+           <a href="details.html?id=${shop.id}" class="card-btn" onclick="event.stopPropagation(); sessionStorage.setItem('sk_scrollY', window.scrollY)">View Details</a>`;
+        card.style.cursor = "pointer";
+        card.onclick = (e) => {
+          if (e.target.closest(".card-btn")) return;
+          sessionStorage.setItem("sk_scrollY", window.scrollY);
+          window.location.href = `details.html?id=${shop.id}`;
+        };
+        grid.appendChild(card);
+      });
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          applyOneRowHeight(verified.length);
+        });
+      });
+    }
+
+    /* ==================== ONE-ROW HEIGHT ==================== */
+    function applyOneRowHeight(count) {
+      const grid = document.getElementById("verifiedGrid");
+      const fade = document.getElementById("verifiedFade");
+      const expandBtn = document.getElementById("verifiedExpandBtn");
+      const cols =
+        window.innerWidth >= 1024 ? 5 : window.innerWidth >= 640 ? 3 : 2;
+      const totalRows = Math.ceil(count / cols);
+      if (totalRows <= 1) {
+        grid.style.maxHeight = "9999px";
+        fade.classList.add("hidden");
+        expandBtn.classList.remove("visible");
+        return;
+      }
+      const cards = grid.querySelectorAll(".card");
+      if (!cards.length) return;
+      const cardH = cards[0].offsetHeight;
+      const gap =
+        window.innerWidth >= 1024 ? 18 : window.innerWidth >= 640 ? 16 : 14;
+      grid.style.maxHeight = cardH + gap + "px";
+      fade.classList.remove("hidden");
+      expandBtn.classList.add("visible");
+    }
+
+    /* ==================== TOGGLE VERIFIED EXPAND ==================== */
+    function toggleVerifiedExpand() {
+      const grid = document.getElementById("verifiedGrid");
+      const fade = document.getElementById("verifiedFade");
+      const btn = document.getElementById("verifiedExpandBtn");
+      const label = document.getElementById("vexpLabel");
+      const isExpanded = btn.classList.contains("expanded");
+      if (isExpanded) {
+        const count = grid.querySelectorAll(".card").length;
+        btn.classList.remove("expanded");
+        label.textContent = "See All";
+        applyOneRowHeight(count);
+        setTimeout(() => {
+          document
+            .getElementById("verifiedSection")
+            .scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      } else {
+        grid.style.maxHeight = grid.scrollHeight + "px";
+        fade.classList.add("hidden");
+        btn.classList.add("expanded");
+        label.textContent = "Show Less";
+        setTimeout(() => {
+          grid.style.maxHeight = "9999px";
+        }, 520);
+      }
+    }
+
+    window.addEventListener("resize", () => {
+      const grid = document.getElementById("verifiedGrid");
+      const btn = document.getElementById("verifiedExpandBtn");
+      if (!grid || !btn) return;
+      const count = grid.querySelectorAll(".card").length;
+      if (!count) return;
+      if (!btn.classList.contains("expanded")) applyOneRowHeight(count);
+    });
+
+    /* ==================== STATUS TEXT (for list view) ==================== */
+    function getStatusInfo(timing) {
+      if (!timing) return { text: "", cls: "" };
+      const parts = timing.split(" - ");
+      if (parts.length !== 2) return { text: "", cls: "" };
+      const toMin = (t) => {
+        let [time, mod] = t.split(" ");
+        let [h, m] = time.split(":");
+        h = parseInt(h);
+        if (mod === "PM" && h !== 12) h += 12;
+        if (mod === "AM" && h === 12) h = 0;
+        return h * 60 + parseInt(m);
+      };
+      const open = toMin(parts[0]),
+        close = toMin(parts[1]);
+      const cur = new Date().getHours() * 60 + new Date().getMinutes();
+      const isOpen =
+        close > open
+          ? cur >= open && cur <= close
+          : cur >= open || cur <= close;
+      if (!isOpen) return { text: "Closed", cls: "closed" };
+      const rem = close - cur;
+      if (rem <= 30 && rem > 0) return { text: "Closing Soon", cls: "warning" };
+      return { text: "Open Now", cls: "open" };
+    }
+
+    /* ==================== LIST CARD ACTIONS (call/whatsapp) ==================== */
+    function getListActions(shop) {
+      const phone = shop.phone || shop.whatsapp || shop.contact || "";
+      if (!phone) return "";
+      const cleanPhone = String(phone).replace(/[^\d+]/g, "");
+      const waPhone = cleanPhone.replace(/^0/, "92").replace(/^\+/, "");
+      return `<div class="list-actions">
+          <a href="tel:${cleanPhone}" class="list-action-btn call" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call
+          </a>
+          <a href="https://wa.me/${waPhone}" target="_blank" class="list-action-btn whatsapp" onclick="event.stopPropagation()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.86 8.86 0 0 0 12 4a8.93 8.93 0 0 0-7.7 13.42L3 21l3.65-1.27A8.93 8.93 0 0 0 12 21a8.93 8.93 0 0 0 5.6-15.68zM12 19.4a7.4 7.4 0 0 1-3.78-1.04l-.27-.16-2.81.98.95-2.74-.18-.28A7.45 7.45 0 1 1 19.45 12 7.46 7.46 0 0 1 12 19.4zm4.07-5.6c-.22-.11-1.3-.64-1.5-.71s-.35-.11-.5.11-.58.71-.71.86-.26.16-.48.05a6.05 6.05 0 0 1-1.78-1.1 6.7 6.7 0 0 1-1.23-1.54c-.13-.22 0-.34.07-.46s.5-.6.63-.81.13-.34.04-.46-.61-1.48-.84-2-.41-.43-.57-.43-.34 0-.52 0-.71.1-1.08.46a3.3 3.3 0 0 0-1 2.45 5.7 5.7 0 0 0 1.2 3 12.8 12.8 0 0 0 4.9 4.34c.7.3 1.25.48 1.68.61a4 4 0 0 0 1.85.12 3 3 0 0 0 1.97-1.39 2.5 2.5 0 0 0 .17-1.39c-.06-.13-.22-.2-.45-.31z"/></svg>
+            WhatsApp
+          </a>
+        </div>`;
+    }
+
+    /* ==================== RENDER (MAIN GRID) ==================== */
+    function render(data) {
+      const grid = document.getElementById("shops");
+      grid.innerHTML = "";
+      if (!data.length) {
+        grid.innerHTML = `<div class="empty-state"><div class="empty-ico">🔍</div><h3>Koi shop nahi mili</h3><p>Alag keywords ya category try karein</p></div>`;
+        renderVerified([]);
+        return;
+      }
+      const isListView = grid.classList.contains("grid-list");
+      data.forEach((shop, i) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.animationDelay = Math.min(i * 0.05, 0.5) + "s";
+
+        if (isListView) {
+          const status = getStatusInfo(shop.timing);
+          card.innerHTML = `${shop.verified === "ok" ? '<div class="verified-badge">✓ Verified</div>' : ""}
+              <div class="card-img"><img src="${shop.cardImage}" alt="${shop.name}" loading="lazy"></div>
+              <div class="card-body">
+                <h3>${shop.name}</h3>
+                ${shop.category ? `<span class="list-cat">${shop.category}</span>` : ""}
+                ${status.text ? `<div class="card-status ${status.cls}">${status.text}</div>` : ""}
+                ${getListActions(shop)}
+              </div>`;
+        } else {
+          card.innerHTML = `${shop.verified === "ok" ? '<div class="verified-badge">✓ Verified</div>' : ""}
+              <div class="card-img"><img src="${shop.cardImage}" alt="${shop.name}" loading="lazy"></div>
+              <div class="card-body"><h3>${shop.name}</h3>${getStatusBadge(shop.timing)}</div>
+              <a href="details.html?id=${shop.id}" class="card-btn" onclick="sessionStorage.setItem('sk_scrollY', window.scrollY)">View Details</a>`;
+        }
+
+        card.style.cursor = "pointer";
+        card.onclick = (e) => {
+          if (e.target.closest(".card-btn") || e.target.closest(".list-action-btn")) return;
+          sessionStorage.setItem("sk_scrollY", window.scrollY);
+          window.location.href = `details.html?id=${shop.id}`;
+        };
+        grid.appendChild(card);
+      });
+      renderVerified(data);
+    }
+
+    /* ==================== COUNT ==================== */
+    function setCount(n, q) {
+      document.getElementById("listCount").innerHTML = q
+        ? `<strong>${n}</strong> result${n !== 1 ? "s" : ""} for "<strong>${q}</strong>"`
+        : `<strong>${n}</strong> shop${n !== 1 ? "s" : ""} found`;
+    }
+
+    /* ==================== CATEGORY FILTER ==================== */
+    const catNames = {
+      all: "All Shops",
+      medical: "Medical & Health",
+      electronics: "Electronics",
+      grocery: "Grocery & Daily",
+      clothing: "Clothing & Fashion",
+      education: "Education",
+    };
+
+    function filterCat(cat) {
+      activeCat = cat;
+      const shopsEl = document.getElementById("shops");
+      window.scrollTo({
+        top: shopsEl.getBoundingClientRect().top + window.scrollY - 280,
+        behavior: "smooth",
+      });
+      document
+        .querySelectorAll(".chip")
+        .forEach((c) => c.classList.toggle("active", c.dataset.cat === cat));
+      document.getElementById("listTitle").textContent = catNames[cat] || cat;
+      const out =
+        cat === "all"
+          ? allShops
+          : allShops.filter(
+            (s) => s.category && s.category.toLowerCase() === cat,
+          );
+      render(out);
+      setCount(out.length);
+      document.getElementById("search").value = "";
+      document.getElementById("sClear").classList.remove("on");
+    }
+
+    /* ==================== SEARCH ==================== */
+    let recents = JSON.parse(localStorage.getItem("sk_rec") || "[]");
+    const inp = document.getElementById("search"),
+      sug = document.getElementById("suggestions");
+
+   function saveRecent(term) {
+      const t = term.trim();
+      if (!t) return;
+      recents = recents.filter((r) => r.toLowerCase() !== t.toLowerCase());
+      recents.unshift(t);
+      recents = recents.slice(0, 8);
+      localStorage.setItem("sk_rec", JSON.stringify(recents));
+    }
+
+    function doSearch(val) {
+      const v = val.trim().toLowerCase();
+      if (!v) {
+        filterCat(activeCat);
+        return;
+      }
+
+      const out = allShops.filter((s) => {
+        switch (activeFilter) {
+          case "name":
+            return s.name && s.name.toLowerCase().includes(v);
+          case "owner":
+            return (
+              (s.owner && s.owner.toLowerCase().includes(v)) ||
+              (s.ownerName && s.ownerName.toLowerCase().includes(v))
+            );
+          case "category":
+            return s.category && s.category.toLowerCase().includes(v);
+          case "road":
+            return (
+              (s.address && s.address.toLowerCase().includes(v)) ||
+              (s.road && s.road.toLowerCase().includes(v))
+            );
+          default:
+            return (
+              (s.name && s.name.toLowerCase().includes(v)) ||
+              (s.category && s.category.toLowerCase().includes(v)) ||
+              (s.details && s.details.toLowerCase().includes(v)) ||
+              (s.keywords && s.keywords.toLowerCase().includes(v)) ||
+              (s.owner && s.owner.toLowerCase().includes(v)) ||
+              (s.ownerName && s.ownerName.toLowerCase().includes(v)) ||
+              (s.address && s.address.toLowerCase().includes(v)) ||
+              (s.road && s.road.toLowerCase().includes(v))
+            );
+        }
+      });
+      out.sort((a, b) => {
+        const av = a.verified === "ok" ? 0 : 1;
+        const bv = b.verified === "ok" ? 0 : 1;
+        return av - bv;
+      });
+      render(out);
+      setCount(out.length, val.trim());
+      document
+        .querySelectorAll(".chip")
+        .forEach((c) => c.classList.remove("active"));
+    }
+
+    function clearSearch() {
+      inp.value = "";
+      document.getElementById("sClear").classList.remove("on");
+      sug.style.display = "none";
+      filterCat(activeCat);
+      inp.focus();
+    }
+
+    function highlightMatch(text, query) {
+      if (!query) return text;
+      const idx = text.toLowerCase().indexOf(query.toLowerCase());
+      if (idx === -1) return text;
+      return (
+        text.slice(0, idx) +
+        '<strong style="color:var(--blue)">' +
+        text.slice(idx, idx + query.length) +
+        "</strong>" +
+        text.slice(idx + query.length)
+      );
+    }
+
+    function showSuggestions(val) {
+      const v = (val || "").trim().toLowerCase();
+      sug.innerHTML = "";
+
+      // Khaali input -> Recent searches dikhao
+      if (!v) {
+        if (!recents.length) {
+          sug.style.display = "none";
+          return;
+        }
+        const lbl = document.createElement("div");
+        lbl.className = "sug-label";
+        lbl.textContent = "Recent searches";
+        sug.appendChild(lbl);
+        recents
+          recents
+          .slice(0, 5)
+          .forEach((item) => {
+            const d = document.createElement("div");
+            d.innerHTML = `<span class="rec-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span><span class="rec-text">${item}</span><span class="rec-del" title="Remove">×</span>`;
+            d.onclick = (e) => {
+              if (e.target.closest(".rec-del")) return;
+              inp.value = item;
+              document.getElementById("sClear").classList.add("on");
+              sug.style.display = "none";
+              clearTimeout(searchDebounce);
+              doSearch(item);
+            };
+            d.querySelector(".rec-del").addEventListener("click", (e) => {
+              e.stopPropagation();
+              recents = recents.filter((r) => r !== item);
+              localStorage.setItem("sk_rec", JSON.stringify(recents));
+              showSuggestions(inp.value);
+            });
+            sug.appendChild(d);
+          });
+        sug.style.display = "block";
+        return;
+      }
+
+      // Type karte waqt -> matching shops suggest karo
+      const matches = [];
+      const seen = new Set();
+
+      allShops.forEach((s) => {
+        if (matches.length >= 6) return;
+        const hay = `${s.name || ""} ${s.category || ""} ${s.details || ""} ${s.keywords || ""}`.toLowerCase();
+        if (hay.includes(v) && !seen.has(s.name)) {
+          matches.push(s.name);
+          seen.add(s.name);
+        }
+      });
+
+      if (!matches.length) {
+        sug.style.display = "none";
+        return;
+      }
+
+      const lbl = document.createElement("div");
+      lbl.className = "sug-label";
+      lbl.textContent = "Suggestions";
+      sug.appendChild(lbl);
+
+      matches.forEach((name) => {
+        const d = document.createElement("div");
+        d.innerHTML = `<span>${highlightMatch(name, v)}</span>`;
+        d.onclick = () => {
+          saveRecent(name);
+          inp.value = name;
+          document.getElementById("sClear").classList.add("on");
+          sug.style.display = "none";
+          clearTimeout(searchDebounce);
+          doSearch(name);
+        };
+        sug.appendChild(d);
+      });
+      sug.style.display = "block";
+    }
+    
+    let searchDebounce;
+
+    inp.addEventListener("focus", function () {
+      showSuggestions(this.value);
+    });
+
+    inp.addEventListener("input", function () {
+      const val = this.value;
+      val
+        ? document.getElementById("sClear").classList.add("on")
+        : document.getElementById("sClear").classList.remove("on");
+
+      showSuggestions(val);
+
+      clearTimeout(searchDebounce);
+      if (!val.trim()) {
+        doSearch(val); // clear hone par fauran reset
+        return;
+      }
+      searchDebounce = setTimeout(() => doSearch(val), 500);
+    });
+
+    inp.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        saveRecent(inp.value.trim());
+        sug.style.display = "none";
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!inp.contains(e.target) && !sug.contains(e.target))
+        sug.style.display = "none";
+    });
+
+    /* ==================== SERVICE WORKER REGISTER (OFFLINE SUPPORT) ==================== */
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(() => console.log("Shahkot Directory: offline mode ready ✅"))
+          .catch((err) => console.log("Service worker failed:", err));
+      });
+    }
+  </script>
+</body>
+
+</html>

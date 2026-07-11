@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Shop — Shahkot Directory Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --purple-50: #f5f3ff;
+            --purple-100: #ede9fe;
+            --purple-200: #ddd6fe;
+            --purple-400: #a78bfa;
+            --purple-500: #8b5cf6;
+            --purple-600: #7c3aed;
+            --purple-700: #6d28d9;
+
+            --bg: #f6f5fb;
+            --surface: #ffffff;
+            --surface-alt: #faf9ff;
+            --border: #e7e4f5;
+            --text: #1e1b2e;
+            --text-muted: #6b6680;
+            --text-faint: #9490a8;
+
+            --success: #16a34a;
+            --success-bg: #ecfdf3;
+            --danger: #e11d48;
+            --danger-bg: #fef1f4;
+            --warning: #d97706;
+            --warning-bg: #fffaeb;
+
+            --radius-sm: 8px;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px rgba(31, 20, 70, .05);
+            --shadow: 0 4px 14px rgba(60, 30, 140, .07);
+            --shadow-lg: 0 12px 32px rgba(60, 30, 140, .14);
+            --sidebar-w: 248px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #131020;
+            --surface: #1b1730;
+            --surface-alt: #221d3b;
+            --border: #31294f;
+            --text: #f1eefc;
+            --text-muted: #a79fc4;
+            --text-faint: #756d94;
+            --success-bg: rgba(22, 163, 74, .14);
+            --danger-bg: rgba(225, 29, 72, .14);
+            --warning-bg: rgba(217, 119, 6, .14);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Inter, -apple-system, Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 14.5px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--purple-200);
+            border-radius: 8px;
+        }
+
+        .app-shell {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-w);
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 14px;
+            z-index: 40;
+            transition: transform .25s ease;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 10px 22px;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--purple-500), var(--purple-700));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .brand-text b {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .brand-text span {
+            display: block;
+            font-size: 11px;
+            color: var(--text-faint);
+        }
+
+        .nav-group-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            margin: 16px 10px 6px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 9px 12px;
+            border-radius: 10px;
+            color: var(--text-muted);
+            font-size: 13.5px;
+            font-weight: 500;
+            margin-bottom: 2px;
+            cursor: pointer;
+            transition: background .15s, color .15s;
+        }
+
+        .nav-item i {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .nav-item:hover {
+            background: var(--purple-50);
+            color: var(--purple-700);
+        }
+
+        [data-theme="dark"] .nav-item:hover {
+            background: var(--surface-alt);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+            color: #fff;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-item .badge-count {
+            margin-left: auto;
+            background: var(--purple-100);
+            color: var(--purple-700);
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 20px;
+        }
+
+        .nav-item.active .badge-count {
+            background: rgba(255, 255, 255, .25);
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .main {
+            margin-left: var(--sidebar-w);
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            height: 66px;
+            flex: none;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 0 26px;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+        }
+
+        .topbar h1 {
+            font-size: 19px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .topbar .crumb {
+            font-size: 12.5px;
+            color: var(--text-faint);
+            margin-top: 1px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .topbar-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--surface-alt);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background .15s;
+        }
+
+        .icon-btn:hover {
+            background: var(--purple-50);
+            color: var(--purple-700);
+        }
+
+        .content {
+            padding: 24px 26px 60px;
+        }
+
+        .page-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .page-actions .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .page-actions .back-link:hover {
+            color: var(--purple-700);
+        }
+
+        .page-actions .spacer {
+            flex: 1;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            border: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: transform .1s, box-shadow .15s, background .15s;
+        }
+
+        .btn:active {
+            transform: scale(.97);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(124, 58, 237, .28);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 6px 16px rgba(124, 58, 237, .36);
+        }
+
+        .btn-outline {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            background: var(--surface-alt);
+        }
+
+        .form-layout {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .section {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-header {
+            padding: 18px 22px 4px;
+        }
+
+        .section-header h3 {
+            font-size: 14.5px;
+            margin: 0 0 3px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .section-header h3 i {
+            color: var(--purple-600);
+            font-size: 13px;
+        }
+
+        .section-header p {
+            font-size: 12px;
+            color: var(--text-faint);
+            margin: 0;
+        }
+
+        .section-body {
+            padding: 14px 22px 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px 16px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-field.span-2 {
+            grid-column: 1 / -1;
+        }
+
+        .form-field label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .form-field label .req {
+            color: var(--danger);
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            padding: 10px 12px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--surface-alt);
+            color: var(--text);
+            font-size: 13.3px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: var(--purple-400);
+            box-shadow: 0 0 0 3px var(--purple-100);
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .field-error {
+            font-size: 11px;
+            color: var(--danger);
+            display: none;
+        }
+
+        .form-field.has-error input,
+        .form-field.has-error textarea {
+            border-color: var(--danger);
+        }
+
+        .form-field.has-error .field-error {
+            display: block;
+        }
+
+        .gallery-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .gallery-item {
+            display: flex;
+            gap: 8px;
+        }
+
+        .gallery-item input {
+            flex: 1;
+        }
+
+        .gallery-remove {
+            width: 38px;
+            height: 38px;
+            flex: none;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--danger-bg);
+            color: var(--danger);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .add-gallery-btn {
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--purple-600);
+            cursor: pointer;
+        }
+
+        .preview-sticky {
+            position: sticky;
+            top: 90px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .preview-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            padding: 0 2px;
+        }
+
+        .shop-card-preview {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .pcard-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            background: var(--surface-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-faint);
+            font-size: 26px;
+        }
+
+        .pcard-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .pcard-body {
+            padding: 16px;
+        }
+
+        .pcard-cat {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--purple-700);
+            background: var(--purple-50);
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .pcard-name {
+            font-size: 15.5px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .pcard-details {
+            font-size: 12.5px;
+            color: var(--text-faint);
+            margin-bottom: 10px;
+        }
+
+        .pcard-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .pcard-row i {
+            width: 13px;
+            color: var(--purple-500);
+            font-size: 11px;
+        }
+
+        .checklist {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .checklist h4 {
+            font-size: 12.5px;
+            margin: 0 0 10px;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .check-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 12.8px;
+            padding: 5px 0;
+            color: var(--text-faint);
+        }
+
+        .check-row i {
+            width: 15px;
+            font-size: 12px;
+        }
+
+        .check-row.done {
+            color: var(--text);
+        }
+
+        .check-row.done i {
+            color: var(--success);
+        }
+
+        .check-row.pending i {
+            color: var(--text-faint);
+        }
+
+        .pending-note {
+            display: flex;
+            gap: 10px;
+            background: var(--warning-bg);
+            border: 1px solid rgba(217, 119, 6, .3);
+            color: var(--warning);
+            padding: 12px 14px;
+            border-radius: 12px;
+            font-size: 12.3px;
+            line-height: 1.5;
+        }
+
+        .pending-note i {
+            font-size: 14px;
+            margin-top: 1px;
+        }
+
+        #toastHost {
+            position: fixed;
+            bottom: 22px;
+            right: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 200;
+        }
+
+        .toast {
+            background: var(--text);
+            color: var(--surface);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slidein .2s ease;
+        }
+
+        .toast i {
+            font-size: 14px;
+        }
+
+        .toast.success i {
+            color: #4ade80;
+        }
+
+        .toast.error i {
+            color: #fb7185;
+        }
+
+        @keyframes slidein {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media(max-width:1180px) {
+            .form-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-sticky {
+                position: static;
+            }
+        }
+
+        @media(max-width:900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <div class="brand-mark">SK</div>
+                <div class="brand-text"><b>Shahkot Directory</b><span>Admin Panel</span></div>
+            </div>
+
+            <div class="nav-group-label">Overview</div>
+            <a class="nav-item" href="dashboard.html"><i class="fa-solid fa-grid-2"></i>Dashboard</a>
+
+            <div class="nav-group-label">Manage</div>
+            <a class="nav-item active" href="shops.html"><i class="fa-solid fa-store"></i>Shops<span class="badge-count"
+                    id="navShopCount">0</span></a>
+            <a class="nav-item" href="categories.html"><i class="fa-solid fa-layer-group"></i>Categories</a>
+            <a class="nav-item" href="featured.html"><i class="fa-solid fa-star"></i>Featured</a>
+            <a class="nav-item" href="advertisements.html"><i class="fa-solid fa-rectangle-ad"></i>Advertisements</a>
+
+            <div class="nav-group-label">Insights</div>
+            <a class="nav-item" href="analytics.html"><i class="fa-solid fa-chart-line"></i>Analytics</a>
+            <a class="nav-item" href="seo.html"><i class="fa-solid fa-magnifying-glass-chart"></i>SEO</a>
+
+            <div class="nav-group-label">System</div>
+            <a class="nav-item" href="backup.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a class="nav-item" href="settings.html"><i class="fa-solid fa-gear"></i>Settings</a>
+
+            <div class="sidebar-footer">
+                <a class="nav-item" href="login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+            </div>
+        </aside>
+
+        <div class="main">
+
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h1>Add Shop</h1>
+                    <div class="crumb">Dashboard / Shops / Add Shop</div>
+                </div>
+                <div class="topbar-right">
+                    <button class="icon-btn" id="themeToggle" title="Toggle dark mode"><i
+                            class="fa-solid fa-moon"></i></button>
+                </div>
+            </header>
+
+            <div class="content">
+
+                <div class="page-actions">
+                    <a class="back-link" href="shops.html"><i class="fa-solid fa-arrow-left"></i> Back to Shops</a>
+                    <div class="spacer"></div>
+                    <button class="btn btn-outline" id="resetBtn"><i class="fa-solid fa-rotate-left"></i> Reset
+                        Form</button>
+                    <button class="btn btn-primary" id="saveBtn"><i class="fa-solid fa-check"></i> Save Shop</button>
+                </div>
+
+                <form id="addShopForm" novalidate>
+                    <div class="form-layout">
+
+                        <div class="panel">
+
+                            <div class="section">
+                                <div class="section-header">
+                                    <h3><i class="fa-solid fa-shop"></i>Basic Information</h3>
+                                    <p>The core details that identify this shop.</p>
+                                </div>
+                                <div class="section-body">
+                                    <div class="form-grid">
+                                        <div class="form-field span-2" id="f-name-wrap">
+                                            <label>Shop Name <span class="req">*</span></label>
+                                            <input type="text" id="f_name" placeholder="e.g. Mughal auto & Meter house">
+                                            <span class="field-error">Shop name is required.</span>
+                                        </div>
+                                        <div class="form-field span-2">
+                                            <label>Details</label>
+                                            <input type="text" id="f_details"
+                                                placeholder="Short one-line description, e.g. bikes bike workshop">
+                                        </div>
+                                        <div class="form-field" id="f-category-wrap">
+                                            <label>Category <span class="req">*</span></label>
+                                            <input type="text" id="f_category" list="categoryList"
+                                                placeholder="e.g. work shop">
+                                            <datalist id="categoryList"></datalist>
+                                            <span class="field-error">Category is required.</span>
+                                        </div>
+                                        <div class="form-field">
+                                            <label>Timing</label>
+                                            <input type="text" id="f_timing" placeholder="08:00AM - 06:00 PM">
+                                        </div>
+                                        <div class="form-field span-2">
+                                            <label>About</label>
+                                            <textarea id="f_about"
+                                                placeholder="A longer description of the shop, services offered, etc."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="section-header">
+                                    <h3><i class="fa-solid fa-images"></i>Images</h3>
+                                    <p>Paste image paths exactly as they exist in your /images folder.</p>
+                                </div>
+                                <div class="section-body">
+                                    <div class="form-grid">
+                                        <div class="form-field">
+                                            <label>Card Image URL</label>
+                                            <input type="text" id="f_cardImage"
+                                                placeholder="/images/Shop Name/hero.webp">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>Hero Image URL</label>
+                                            <input type="text" id="f_hero" placeholder="/images/Shop Name/hero.webp">
+                                        </div>
+                                        <div class="form-field span-2">
+                                            <label>Gallery Images</label>
+                                            <div class="gallery-list" id="galleryList"></div>
+                                            <span class="add-gallery-btn" id="addGalleryBtn"><i
+                                                    class="fa-solid fa-plus"></i> Add another image</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="section-header">
+                                    <h3><i class="fa-solid fa-user"></i>Owner Details</h3>
+                                    <p>Who runs this shop.</p>
+                                </div>
+                                <div class="section-body">
+                                    <div class="form-grid">
+                                        <div class="form-field">
+                                            <label>Owner Name</label>
+                                            <input type="text" id="f_ownerName" placeholder="e.g. Muhammad Siddique">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>Owner Image URL</label>
+                                            <input type="text" id="f_ownerImage"
+                                                placeholder="/images/Shop Name/owner.webp">
+                                        </div>
+                                        <div class="form-field span-2">
+                                            <label>Owner Info</label>
+                                            <input type="text" id="f_ownerInfo"
+                                                placeholder="Optional short note about the owner">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="section">
+                                <div class="section-header">
+                                    <h3><i class="fa-solid fa-location-dot"></i>Contact &amp; Location</h3>
+                                    <p>How customers reach and find this shop.</p>
+                                </div>
+                                <div class="section-body">
+                                    <div class="form-grid">
+                                        <div class="form-field">
+                                            <label>Phone</label>
+                                            <input type="text" id="f_phone" placeholder="0300-0000000">
+                                        </div>
+                                        <div class="form-field">
+                                            <label>WhatsApp</label>
+                                            <input type="text" id="f_whatsapp" placeholder="0300-0000000">
+                                        </div>
+                                        <div class="form-field span-2">
+                                            <label>Email</label>
+                                            <input type="email" id="f_email" placeholder="owner@example.com">
+                                        </div>
+                                        <div class="form-field span-2">
+                                            <label>Address</label>
+                                            <input type="text" id="f_address"
+                                                placeholder="Nankana Road near Govt. Elementary School No.3, Shahkot">
+                                        </div>
+                                        <div class="form-field span-2">
+                                            <label>Google Map URL</label>
+                                            <input type="text" id="f_map"
+                                                placeholder="https://www.google.com/maps?q=...">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="preview-sticky">
+                            <div>
+                                <div class="preview-label">Live Preview</div>
+                                <div class="shop-card-preview" style="margin-top:8px;">
+                                    <div class="pcard-img" id="previewImgWrap"><i class="fa-solid fa-image"></i></div>
+                                    <div class="pcard-body">
+                                        <span class="pcard-cat" id="previewCategory">Category</span>
+                                        <div class="pcard-name" id="previewName">Shop Name</div>
+                                        <div class="pcard-details" id="previewDetails">Shop details will appear here...
+                                        </div>
+                                        <div class="pcard-row"><i class="fa-solid fa-phone"></i><span
+                                                id="previewPhone">No phone yet</span></div>
+                                        <div class="pcard-row"><i class="fa-solid fa-location-dot"></i><span
+                                                id="previewAddress">No address yet</span></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="checklist">
+                                <h4>Completeness Check</h4>
+                                <div id="checklistBody"></div>
+                            </div>
+
+                            <div class="pending-note">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                                <span>Saving here adds the shop to this browser's in-memory copy of
+                                    <code>shops.json</code>, then downloads the updated file. Upload that file to your
+                                    server to make it live — this is temporary until your backend/Supabase save is wired
+                                    up.</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="toastHost"></div>
+
+    <script>
+        /* ============================================================
+           ADD SHOP — appends a new entry to the existing shops.json
+           dataset and lets you download the updated file.
+           ------------------------------------------------------------
+           Same honesty note as shops.html / dashboard.html: there's no
+           backend write endpoint wired up yet, so "Save" here:
+             1. Fetches the CURRENT data/shops.json (so we never
+                overwrite shops you already have),
+             2. Appends this new shop with the next available id,
+             3. Triggers a download of the full, updated shops.json.
+           You then upload that file to replace the one on your server.
+           Once hosting/Supabase is confirmed, only this fetch+save
+           logic changes — the form and preview stay the same.
+           ============================================================ */
+
+        const DATA_URL = '../shops.json'; // adjust if path differs
+
+        let existingShops = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadExistingShops();
+            setupGalleryRepeater();
+            bindEvents();
+            updatePreview();
+        });
+
+        async function loadExistingShops() {
+            try {
+                const res = await fetch(DATA_URL, { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                existingShops = Array.isArray(data) ? data : (data.shops || []);
+                document.getElementById('navShopCount').textContent = existingShops.length;
+                populateCategoryList();
+            } catch (err) {
+                console.error('Could not load existing shops.json', err);
+                showToast('error', 'Could not load data/shops.json — new shop IDs may clash with existing ones. Check DATA_URL.');
+            }
+        }
+
+        function populateCategoryList() {
+            const cats = [...new Set(existingShops.map(s => (s.category || '').trim()).filter(Boolean))].sort();
+            document.getElementById('categoryList').innerHTML =
+                cats.map(c => `<option value="${escapeHtml(c)}">`).join('');
+        }
+
+        function setupGalleryRepeater() {
+            addGalleryRow();
+        }
+        function addGalleryRow(value) {
+            const list = document.getElementById('galleryList');
+            const row = document.createElement('div');
+            row.className = 'gallery-item';
+            row.innerHTML = `
+    <input type="text" class="gallery-input" placeholder="/images/Shop Name/g1.webp" value="${value ? escapeHtml(value) : ''}">
+    <button type="button" class="gallery-remove" title="Remove"><i class="fa-solid fa-xmark"></i></button>
+  `;
+            row.querySelector('.gallery-remove').addEventListener('click', () => row.remove());
+            list.appendChild(row);
+        }
+
+        function updatePreview() {
+            const name = document.getElementById('f_name').value.trim();
+            const category = document.getElementById('f_category').value.trim();
+            const details = document.getElementById('f_details').value.trim();
+            const phone = document.getElementById('f_phone').value.trim();
+            const address = document.getElementById('f_address').value.trim();
+            const img = document.getElementById('f_cardImage').value.trim() || document.getElementById('f_hero').value.trim();
+
+            document.getElementById('previewName').textContent = name || 'Shop Name';
+            document.getElementById('previewCategory').textContent = category || 'Category';
+            document.getElementById('previewDetails').textContent = details || 'Shop details will appear here...';
+            document.getElementById('previewPhone').textContent = phone || 'No phone yet';
+            document.getElementById('previewAddress').textContent = address || 'No address yet';
+
+            const imgWrap = document.getElementById('previewImgWrap');
+            if (img) {
+                imgWrap.innerHTML = `<img src="${escapeHtml(img)}" onerror="this.parentElement.innerHTML='<i class=\\'fa-solid fa-image-slash\\'></i>'">`;
+            } else {
+                imgWrap.innerHTML = `<i class="fa-solid fa-image"></i>`;
+            }
+
+            renderChecklist({ name, category, details, phone, address });
+        }
+
+        function renderChecklist(vals) {
+            const items = [
+                { label: 'Shop name', ok: !!vals.name },
+                { label: 'Category', ok: !!vals.category },
+                { label: 'Phone or WhatsApp', ok: !!(document.getElementById('f_phone').value.trim() || document.getElementById('f_whatsapp').value.trim()) },
+                { label: 'Address', ok: !!vals.address },
+                { label: 'At least one image', ok: !!(document.getElementById('f_cardImage').value.trim() || document.getElementById('f_hero').value.trim()) },
+            ];
+            document.getElementById('checklistBody').innerHTML = items.map(it => `
+    <div class="check-row ${it.ok ? 'done' : 'pending'}">
+      <i class="fa-solid ${it.ok ? 'fa-circle-check' : 'fa-circle'}"></i>${it.label}
+    </div>
+  `).join('');
+        }
+
+        function validateForm() {
+            let valid = true;
+            const nameWrap = document.getElementById('f-name-wrap');
+            const catWrap = document.getElementById('f-category-wrap');
+            nameWrap.classList.remove('has-error');
+            catWrap.classList.remove('has-error');
+
+            if (!document.getElementById('f_name').value.trim()) {
+                nameWrap.classList.add('has-error'); valid = false;
+            }
+            if (!document.getElementById('f_category').value.trim()) {
+                catWrap.classList.add('has-error'); valid = false;
+            }
+            return valid;
+        }
+
+        function collectGalleryValues() {
+            return [...document.querySelectorAll('.gallery-input')]
+                .map(i => i.value.trim())
+                .filter(Boolean);
+        }
+
+        function collectFormData() {
+            return {
+                name: document.getElementById('f_name').value.trim(),
+                details: document.getElementById('f_details').value.trim(),
+                category: document.getElementById('f_category').value.trim(),
+                cardImage: document.getElementById('f_cardImage').value.trim(),
+                hero: document.getElementById('f_hero').value.trim(),
+                gallery: collectGalleryValues(),
+                about: document.getElementById('f_about').value.trim(),
+                ownerName: document.getElementById('f_ownerName').value.trim(),
+                ownerImage: document.getElementById('f_ownerImage').value.trim(),
+                ownerInfo: document.getElementById('f_ownerInfo').value.trim(),
+                phone: document.getElementById('f_phone').value.trim(),
+                whatsapp: document.getElementById('f_whatsapp').value.trim(),
+                email: document.getElementById('f_email').value.trim(),
+                timing: document.getElementById('f_timing').value.trim(),
+                address: document.getElementById('f_address').value.trim(),
+                map: document.getElementById('f_map').value.trim()
+            };
+        }
+
+        function saveShop() {
+            if (!validateForm()) {
+                showToast('error', 'Please fill in the required fields (Shop Name and Category).');
+                return;
+            }
+
+            const formData = collectFormData();
+            const nextId = existingShops.length ? Math.max(...existingShops.map(s => s.id || 0)) + 1 : 1;
+            const newShop = { id: nextId, ...formData };
+
+            const updatedShops = [...existingShops, newShop];
+
+            const blob = new Blob([JSON.stringify(updatedShops, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'shops.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            showToast('success', `"${newShop.name}" added (id ${nextId}). shops.json downloaded — upload it to your server to go live.`);
+            existingShops = updatedShops;
+        }
+
+        function bindEvents() {
+            document.getElementById('addGalleryBtn').addEventListener('click', () => addGalleryRow());
+            document.getElementById('saveBtn').addEventListener('click', saveShop);
+            document.getElementById('resetBtn').addEventListener('click', () => {
+                if (confirm('Clear all fields in this form?')) {
+                    document.getElementById('addShopForm').reset();
+                    document.getElementById('galleryList').innerHTML = '';
+                    addGalleryRow();
+                    updatePreview();
+                }
+            });
+
+            document.getElementById('addShopForm').addEventListener('input', updatePreview);
+
+            document.getElementById('menuToggle').addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('open');
+            });
+            document.getElementById('themeToggle').addEventListener('click', () => {
+                const html = document.documentElement;
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                document.getElementById('themeToggle').innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            });
+
+            window.addEventListener('beforeunload', (e) => {
+                if (document.getElementById('f_name').value.trim()) { e.preventDefault(); e.returnValue = ''; }
+            });
+        }
+
+        function escapeHtml(str) {
+            return String(str ?? '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+        }
+        function showToast(type, message) {
+            const host = document.getElementById('toastHost');
+            const el = document.createElement('div');
+            el.className = 'toast ' + type;
+            el.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i><span>${escapeHtml(message)}</span>`;
+            host.appendChild(el);
+            setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .25s'; setTimeout(() => el.remove(), 250); }, 3600);
+        }
+    </script>
+</body>
+
+</html>

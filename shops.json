@@ -1,0 +1,236 @@
+[
+    {
+   "id": 1255,
+    "name": "Ayesha Dental Clinic",
+    "details": "dentist, lady dental sergion, NankanaRoad",
+    "category": "medical",
+    "verified": "ok",
+
+    "favicon": "../images/ayesha-dental/favicon.webp",
+    "cardImage": "/images/Ayesha Dental Clinic/hero.webp",
+    "hero": "/images/Ayesha Dental Clinic/hero.webp",
+
+    "gallery": ["/images/Ayesha Dental Clinic/g1.webp","/images/Ayesha Dental Clinic/g2.webp", "/images/Ayesha Dental Clinic/g3.webp"],
+
+    "about": "Ayesha Dental Clinic Shahkot ki ek trusted aur professional clinic hai jo makhtalif dental problems ka ilaj karti hai. Yahan teeth cleaning, filling, extraction aur all other dental treatments available hain. Clinic mein experienced doctors hain jo best treatment provide karte hain. Saaf suthra mahaul aur affordable prices ki wajah se yeh clinic logon mein kaafi popular hai.",
+
+    "ownerName": "Dr. Ayesha Amjad",
+    "ownerImage": "/images/Ayesha Dental Clinic/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0349-2077889",
+    "whatsapp": "0349-2077889",
+    "email": "drayesha@gmail.com",
+    "timing": "10:00AM - 04:00 PM",
+    "address": "Nankana Road near Govt. Elementry School No.3, Shahkot",
+
+    "map": "https://www.google.com/maps?q=Ayesha+Dental+Clinic+Shahkot&output=embed"
+  },
+  
+  {
+    "id": 3116,
+    "name": "Capsule Pharmacy",
+    "details": "medicine injections tablets",
+    "category": "medical",
+
+    "cardImage": "/images/Capsule Pharmacy/hero.webp",
+    "hero": "/images/Capsule Pharmacy/hero.webp",
+
+    "gallery": ["/images/Capsule Pharmacy/g1.webp","/images/Capsule Pharmacy/g2.webp", "/images/Capsule Pharmacy/g3.webp"],
+
+    "about": "**Capsule Pharmacy** Shahkot ki ek reliable aur well-stocked pharmacy hai jahan tamam qisam ki dawaiyan asaani se mil jati hain.Yahan experienced staff maujood hai jo customers ko sahi dawai chunne mein madad karta hai.Fresh aur quality medicines ki wajah se log is pharmacy par bharosa karte hain. Shahkot ke logon ki sehat ka khayal rakhna hi Capsule Pharmacy ki pehli priority hai.",
+
+    "ownerName": "Numan Majeed atta",
+    "ownerImage": "/images/Capsule Pharmacy/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0313-4500019",
+    "whatsapp": "0313-4500019",
+    "email": "mnumanatta14@gmail.com",
+    "timing": "7:30AM - 11:30 PM",
+    "address": "Jarawala road near Meezan Bank, Shahkot",
+
+    "map": "https://www.google.com/maps?q=Capsule+Pharmacy+Shahkot&output=embed"
+  },
+
+  {
+  "id": 2018,
+    "name": "Tahir Medical Store",
+    "details": "medical store oldcollageNankanaRoad",
+    "category": "medical",
+    "verified":"ok",
+
+    "cardImage": "/images/Tahir Medical Store/hero.webp",
+    "hero": "/images/Tahir Medical Store/hero.webp",
+
+    "gallery": ["/images/Tahir Medical Store/g1.webp","/images/Tahir Medical Store/g2.webp", "/images/Tahir Medical Store/g3.webp"],
+
+    "about": "Ayesha Dental Clinic Shahkot ki ek trusted aur professional clinic hai jo makhtalif dental problems ka ilaj karti hai. Yahan teeth cleaning, filling, extraction aur all other dental treatments available hain. Clinic mein experienced doctors hain jo best treatment provide karte hain. Saaf suthra mahaul aur affordable prices ki wajah se yeh clinic logon mein kaafi popular hai.",
+
+    "ownerName": "Zain Sair",
+    "ownerImage": "/images/Ayesha Dental Clinic/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0329-4275460",
+    "whatsapp": "0329-4275460",
+    "email": "zainsair@gmail.com",
+    "timing": "10:00AM - 09:00 PM",
+    "address": "Old Collage Road/TMA road, Shahkot",
+
+    "map": "https://www.google.com/maps?q=Tahir+Medical+Store+Shahkot&output=embed"
+  },
+
+
+    {
+    "id": 62118,
+    "name": "Furqan Saeed Printing Press",
+    "details": "printing press flaxes banneers",
+    "category": "Printing press",
+    "verified":"ok",
+
+    "cardImage": "/images/Furqan Saeed Printing Press/hero.webp",
+    "hero": "/images/Furqan Saeed Printing Press/hero.webp",
+
+    "gallery": ["/images/Furqan Saeed Printing Press/g1.webp","/images/Furqan Saeed Printing Press/g2.webp", "/images/Furqan Saeed Printing Press/g3.webp"],
+
+    "about": "Furqan Saeed Printing Press Shahkot ki ek trusted aur experienced printing service hai jo har qisam ki printing needs puri karti hai. Yahan visiting cards, banners, pamphlets, books aur wedding cards high quality mein print kiye jate hain. Modern machinery aur skilled staff ki wajah se kaam jaldi aur behtareen quality mein mukammal hota hai. Affordable prices aur time par delivery hoti hy.",
+
+    "ownerName": "Furqan Saeed",
+    "ownerImage": "/images/Ayesha Dental Clinic/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0308-5000392",
+    "whatsapp": "0346-7640392",
+    "email": "furqansaeed@gmail.com",
+    "timing": "10:00AM - 08:00 PM",
+    "address": "Nankana Road near Govt. Elementry School No.3, Shahkot",
+
+    "map": "https://www.google.com/maps?q=Furqan+Saeed+Printing+Press+Shahkot&output=embed"
+  },
+      {
+    "id": 13187,
+    "name": "Mughal auto & Meter house",
+    "details": "bikes bike workshop",
+    "category": "work shop",
+
+    "cardImage": "/images/Mughal Autos/hero.webp",
+    "hero": "/images/Mughal Autos/hero.webp",
+
+    "gallery": ["/images/Mughal Autos/g1.webp","/images/Mughal Autos/g2.webp", "/images/Mughal Autos/g3.webp"],
+
+    "about": "Mughal Auto & Meter House Shahkot ki ek trusted aur experienced bike workshop hai. Yahan har qisam ki motorcycles ki repair aur servicing ki jati hai — engine repair, meter fixing, electrical work, aur routine maintenance sab ek jagah par milti hai. Skilled mechanics ki team har kaam mehnat aur imandari se karti hai. Genuine parts aur affordable rates hamare kaam ki pehchaan hain. Shahkot ke logon ka bharosa hamare liye sabse badi daulat hai.",
+
+    "ownerName": "Muhammad Siddique",
+    "ownerImage": "/images/Mughal Autos/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0300-6689290",
+    "whatsapp": "0300-6689290",
+    "email": "msaddique@gmail.com",
+    "timing": "08:00AM - 06:00 PM",
+    "address": "Nankana Road near Govt. Elementry School No.3, Shahkot",
+
+    "map": "https://www.google.com/maps?q=Furqan+Mughal+Autos+Shahkot&output=embed"
+  },
+     {
+    "id": 453,
+    "name": "Decent Baby Shoe's",
+    "details": "anar gali anargali waqas mian waqas gali no.2",
+    "category": "Shoes",
+
+    "cardImage": "/images/Decent Baby Shoe's/hero.webp",
+    "hero": "/images/Decent Baby Shoe's/hero.webp",
+
+    "gallery": ["/images/Decent Baby Shoe's/g1.webp","/images/Decent Baby Shoe's/g2.webp", "/images/Decent Baby Shoe's/g3.webp"],
+
+    "about": "Decent baby shoe's shahkot ki ak mashoor dukan jha par ladie's kyliy har kisam ki chapal, shoes etc sab kuch asani sy milta hy bilkul kam price main. **(Friday OFF)**",
+
+    "ownerName": "Mian Waqas",
+    "ownerImage": "/images/Decent Baby Shoe's/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0300-6689290",
+    "whatsapp": "0300-6689290",
+    "email": "",
+    "timing": "10:00AM - 07:00 PM",
+    "address": "Anar gali No.2 near hera matching center, Shahkot",
+
+    "map": "https://www.google.com/maps?q=Decent+Baby+Shoe's+Shahkot&output=embed"
+  },
+       {
+    "id": 1981,
+    "name": "Shahkot Sale Mela",
+    "details": "anar gali anargali waqas mian waqas gali no.2",
+    "category": "all",
+
+    "cardImage": "/images/Shahkot Sale Mela/hero.webp",
+    "hero": "/images/Shahkot Sale Mela/hero.webp",
+
+    "gallery": ["/images/Shahkot Sale Mela/g1.webp","/images/Shahkot Sale Mela/g2.webp", "/images/Shahkot Sale Mela/g3.webp"],
+
+    "about": "Shahkot Sale Mela Anar gali ki ak kafi mashoor dukan hy jha par daily life ki sari cheezy gadets, kitchen accesories, complete makeup etc **(Friday OFF)**",
+
+    "ownerName": "Faizan Awaisi",
+    "ownerImage": "/images/Shahkot Sale Mela/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0303-9948812",
+    "whatsapp": "0303-9948812",
+    "email": "",
+    "timing": "10:00AM - 07:30 PM",
+    "address": "Anar gali No.2 near hera matching center, Shahkot",
+
+    "map": "https://www.google.com/maps?q=Shahkot+Sale+Mela+Shahkot&output=embed"
+  },
+         {
+    "id": 11212,
+    "name": "Al-Arab Krakari Store",
+    "details": "anar gali anargali waqas mian waqas gali no.2",
+    "category": "all",
+
+    "cardImage": "/images/Al-Arab Krakari Store/hero.webp",
+    "hero": "/images/Al-Arab Krakari Store/hero.webp",
+
+    "gallery": ["/images/Al-Arab Krakari Store/g1.webp","/images/Al-Arab Krakari Store/g2.webp", "/images/Al-Arab Krakari Store/g3.webp"],
+
+    "about": "**Al-Arab Krakari Store** Anar gali ki ak kafi mashoor dukan hy jha par daily life ki sari cheezy gadets, kitchen accesories, complete makeup etc **(Friday OFF)**",
+
+    "ownerName": "Irfan Awaisi",
+    "ownerImage": "/images/Al-Arab Krakari Store/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0302-7046360",
+    "whatsapp": "0302-7046360",
+    "email": "",
+    "timing": "10:00AM - 07:30 PM",
+    "address": "Anar gali No.2 near hera matching center, Shahkot",
+
+    "map": ""
+  },
+         {
+    "id": 18114,
+    "name": "Randhawa Krakari Store",
+    "details": "anar gali anargali waqas mian waqas gali no.2",
+    "category": "all",
+
+    "cardImage": "/images/Randhawa Krakari Store/hero.webp",
+    "hero": "/images/Randhawa Krakari Store/hero.webp",
+
+    "gallery": ["/images/Randhawa Krakari Store/g1.webp","/images/Randhawa Krakari Store/g2.webp", "/images/Randhawa Krakari Store/g3.webp"],
+
+    "about": "Shahkot Sale Mela Anar gali ki ak kafi mashoor dukan hy jha par daily life ki sari cheezy gadets, kitchen accesories, complete makeup etc **(Friday OFF)**",
+
+    "ownerName": "Randhawa",
+    "ownerImage": "/images/Randhawa Krakari Store/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0303-9948812",
+    "whatsapp": "0303-9948812",
+    "email": "",
+    "timing": "10:00AM - 07:30 PM",
+    "address": "Anar gali No.2 near hera matching center, Shahkot",
+
+    "map": ""
+  }
+  
+]

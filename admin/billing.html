@@ -1,0 +1,2525 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing & Subscriptions — Shahkot Directory Admin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="shortcut icon" href="/images/Fav-icon/billing-logo.webp" type="image/x-icon">
+
+    <style>
+        /* ============================================================
+   Same design tokens as the rest of the admin panel.
+   Kept intentionally basic per request — features over polish.
+   ============================================================ */
+        :root {
+            --purple-50: #f5f3ff;
+            --purple-100: #ede9fe;
+            --purple-200: #ddd6fe;
+            --purple-400: #a78bfa;
+            --purple-500: #8b5cf6;
+            --purple-600: #7c3aed;
+            --purple-700: #6d28d9;
+            --bg: #f6f5fb;
+            --surface: #ffffff;
+            --surface-alt: #faf9ff;
+            --border: #e7e4f5;
+            --text: #1e1b2e;
+            --text-muted: #6b6680;
+            --text-faint: #9490a8;
+            --success: #16a34a;
+            --success-bg: #ecfdf3;
+            --danger: #e11d48;
+            --danger-bg: #fef1f4;
+            --warning: #d97706;
+            --warning-bg: #fffaeb;
+            --info: #0369a1;
+            --info-bg: #e0f2fe;
+            --radius-sm: 8px;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --shadow-sm: 0 1px 2px rgba(31, 20, 70, .05);
+            --shadow: 0 4px 14px rgba(60, 30, 140, .07);
+            --shadow-lg: 0 12px 32px rgba(60, 30, 140, .14);
+            --sidebar-w: 248px;
+        }
+
+        [data-theme="dark"] {
+            --bg: #131020;
+            --surface: #1b1730;
+            --surface-alt: #221d3b;
+            --border: #31294f;
+            --text: #f1eefc;
+            --text-muted: #a79fc4;
+            --text-faint: #756d94;
+            --success-bg: rgba(22, 163, 74, .14);
+            --danger-bg: rgba(225, 29, 72, .14);
+            --warning-bg: rgba(217, 119, 6, .14);
+            --info-bg: rgba(3, 105, 161, .16);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Inter, -apple-system, Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--purple-200);
+            border-radius: 8px;
+        }
+
+        .app-shell {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: var(--sidebar-w);
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 14px;
+            z-index: 40;
+            transition: transform .25s ease;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 10px 22px;
+        }
+
+        .brand-mark {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--purple-500), var(--purple-700));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .brand-text b {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .brand-text span {
+            display: block;
+            font-size: 11px;
+            color: var(--text-faint);
+        }
+
+        .nav-group-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            color: var(--text-faint);
+            text-transform: uppercase;
+            margin: 16px 10px 6px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 9px 12px;
+            border-radius: 10px;
+            color: var(--text-muted);
+            font-size: 13.5px;
+            font-weight: 500;
+            margin-bottom: 2px;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            width: 18px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .nav-item:hover {
+            background: var(--purple-50);
+            color: var(--purple-700);
+        }
+
+        [data-theme="dark"] .nav-item:hover {
+            background: var(--surface-alt);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+            color: #fff;
+        }
+
+        .nav-item .badge-count {
+            margin-left: auto;
+            background: var(--purple-100);
+            color: var(--purple-700);
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 1px 7px;
+            border-radius: 20px;
+        }
+
+        .nav-item.active .badge-count {
+            background: rgba(255, 255, 255, .25);
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .main {
+            margin-left: var(--sidebar-w);
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            height: 64px;
+            flex: none;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 0 26px;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+        }
+
+        .topbar h1 {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .topbar .crumb {
+            font-size: 12px;
+            color: var(--text-faint);
+            margin-top: 1px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .topbar-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            background: var(--surface-alt);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .icon-btn:hover {
+            background: var(--purple-50);
+            color: var(--purple-700);
+        }
+
+        .content {
+            padding: 22px 26px 60px;
+        }
+
+        .data-note {
+            display: flex;
+            gap: 10px;
+            background: var(--info-bg);
+            border: 1px solid rgba(3, 105, 161, .25);
+            color: var(--info);
+            padding: 11px 15px;
+            border-radius: 12px;
+            font-size: 12.3px;
+            line-height: 1.55;
+            margin-bottom: 18px;
+        }
+
+        [data-theme="dark"] .data-note {
+            color: #7dd3fc;
+        }
+
+        .data-note i {
+            font-size: 13px;
+            margin-top: 2px;
+        }
+
+        .pending-banner {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            background: var(--warning-bg);
+            border: 1px solid rgba(217, 119, 6, .3);
+            color: var(--warning);
+            padding: 11px 16px;
+            border-radius: 12px;
+            font-size: 12.5px;
+            margin-bottom: 18px;
+        }
+
+        .pending-banner.show {
+            display: flex;
+        }
+
+        .pending-banner i {
+            font-size: 14px;
+        }
+
+        .pending-banner .btn {
+            margin-left: auto;
+        }
+
+        .hidden-tag {
+            font-size: 10px;
+            color: var(--danger);
+            background: var(--danger-bg);
+            padding: 2px 7px;
+            border-radius: 20px;
+            margin-left: 6px;
+            font-weight: 700;
+        }
+
+        /* stats */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px 14px 12px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stat-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12.5px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 19px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        .i-total {
+            background: var(--purple-100);
+            color: var(--purple-700);
+        }
+
+        .i-free {
+            background: var(--info-bg);
+            color: var(--info);
+        }
+
+        .i-paid {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .i-pending {
+            background: var(--warning-bg);
+            color: var(--warning);
+        }
+
+        .i-overdue {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        .i-revenue {
+            background: var(--purple-100);
+            color: var(--purple-700);
+        }
+
+        /* tabs */
+        .tabs {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tab-btn {
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-faint);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--purple-700);
+            border-color: var(--purple-600);
+        }
+
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-faint);
+            font-size: 12px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 9px 12px 9px 34px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--surface-alt);
+            color: var(--text);
+            font-size: 13px;
+            outline: none;
+        }
+
+        select.select-ctl {
+            padding: 9px 28px 9px 12px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--surface-alt) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6"><path d="M0 0l5 6 5-6z" fill="%236b6680"/></svg>') no-repeat right 10px center;
+            color: var(--text);
+            font-size: 12.5px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        input[type=date] {
+            padding: 9px 10px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--surface-alt);
+            color: var(--text);
+            font-size: 12.5px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 14px;
+            border-radius: 9px;
+            border: none;
+            font-size: 12.8px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .btn:active {
+            transform: scale(.97);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple-600), var(--purple-500));
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            background: var(--surface-alt);
+        }
+
+        .btn-soft-success {
+            /* background: var(--success-bg);
+            color: var(--success-bg); */
+            /* color: var(--success); */
+                background: var(--surface);
+                 border: 1px solid var(--border);
+               color: var(--text);
+        }
+
+        .btn-soft-danger {
+            /* background: var(--danger-bg);
+            color: var(--danger); */
+                background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+        }
+
+        .btn-sm {
+            padding: 6px 10px;
+            font-size: 11.8px;
+            border-radius: 7px;
+        }
+
+        .table-wrap {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 980px;
+        }
+
+        thead th {
+            text-align: left;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--text-faint);
+            font-weight: 700;
+            padding: 11px 16px;
+            background: var(--surface-alt);
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        tbody td {
+            padding: 11px 16px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+            font-size: 13px;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: var(--surface-alt);
+        }
+
+        .shop-cell {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .shop-thumb {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            object-fit: cover;
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            flex: none;
+        }
+
+        .shop-name {
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .shop-sub {
+            font-size: 11px;
+            color: var(--text-faint);
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11.3px;
+            font-weight: 700;
+        }
+
+        .pill-free {
+            background: var(--info-bg);
+            color: var(--info);
+        }
+
+        .pill-paid {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .pill-pending {
+            background: var(--warning-bg);
+            color: var(--warning);
+        }
+
+        .pill-overdue {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        .pill-plan-paid {
+            background: var(--purple-50);
+            color: var(--purple-700);
+        }
+
+        .pill-plan-free {
+            background: var(--surface-alt);
+            color: var(--text-faint);
+            border: 1px solid var(--border);
+        }
+
+        .tier-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11.3px;
+            font-weight: 700;
+        }
+
+        .tier-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            flex: none;
+        }
+
+        /* tier manager */
+        .tier-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .tier-row:last-child {
+            border-bottom: none;
+        }
+
+        .tier-row .tier-color-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            flex: none;
+            border: 1px solid var(--border);
+        }
+
+        .tier-row .tier-info {
+            flex: 1;
+        }
+
+        .tier-row .tier-info b {
+            font-size: 13px;
+            display: block;
+        }
+
+        .tier-row .tier-info span {
+            font-size: 11.5px;
+            color: var(--text-faint);
+        }
+
+        .tier-row .tier-actions {
+            display: flex;
+            gap: 6px;
+        }
+
+        .color-swatch-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .color-swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .color-swatch.selected {
+            border-color: var(--text);
+        }
+
+        .tier-empty {
+            text-align: center;
+            color: var(--text-faint);
+            font-size: 12.5px;
+            padding: 16px;
+        }
+
+        .tier-revenue-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .tier-revenue-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tier-revenue-card .trv {
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .tier-revenue-card .trl {
+            font-size: 11px;
+            color: var(--text-faint);
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 6px;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .action-btn:hover {
+            background: var(--purple-50);
+            color: var(--purple-700);
+        }
+
+        .action-btn.success:hover {
+            background: var(--success-bg);
+            color: var(--success);
+        }
+
+        .action-btn.danger:hover {
+            background: var(--danger-bg);
+            color: var(--danger);
+        }
+
+        .empty-state {
+            padding: 50px 20px;
+            text-align: center;
+            color: var(--text-faint);
+        }
+
+        .empty-state i {
+            font-size: 30px;
+            color: var(--purple-200);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .orphan-tag {
+            font-size: 10px;
+            color: var(--danger);
+            background: var(--danger-bg);
+            padding: 2px 7px;
+            border-radius: 20px;
+            margin-left: 6px;
+        }
+
+        /* pagination reuse */
+        .pagination-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pg-info {
+            font-size: 12px;
+            color: var(--text-faint);
+        }
+
+        .pg-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .pg-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .pg-btn.active {
+            background: var(--purple-600);
+            border-color: var(--purple-600);
+            color: #fff;
+        }
+
+        .pg-btn:disabled {
+            opacity: .4;
+            cursor: not-allowed;
+        }
+
+        /* reports */
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .report-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .report-card .rv {
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .report-card .rl {
+            font-size: 11.5px;
+            color: var(--text-faint);
+            margin-top: 4px;
+        }
+
+        .preset-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .preset-btn {
+            padding: 7px 13px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--surface-alt);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .preset-btn.active {
+            background: var(--purple-600);
+            border-color: var(--purple-600);
+            color: #fff;
+        }
+
+        .range-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .mini-bar-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 120px;
+            padding: 10px 4px;
+        }
+
+        .mini-bar {
+            flex: 1;
+            background: linear-gradient(180deg, var(--purple-500), var(--purple-400));
+            border-radius: 6px 6px 0 0;
+            min-height: 3px;
+            position: relative;
+        }
+
+        .mini-bar-label {
+            font-size: 10px;
+            color: var(--text-faint);
+            text-align: center;
+            margin-top: 6px;
+        }
+
+        .mini-bar-wrap {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        /* modals */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(20, 12, 45, .45);
+            display: none;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 36px 16px;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .overlay.open {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-md {
+            max-width: 560px;
+        }
+
+        .modal-lg {
+            max-width: 760px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header h2 {
+            font-size: 15.5px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-faint);
+            font-size: 15px;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+        }
+
+        .modal-close:hover {
+            background: var(--surface-alt);
+        }
+
+        .modal-body {
+            padding: 20px 22px;
+            max-height: 72vh;
+            overflow-y: auto;
+        }
+
+        .modal-footer {
+            padding: 14px 22px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 14px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-field.span-2 {
+            grid-column: 1/-1;
+        }
+
+        .form-field label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            padding: 9px 11px;
+            border-radius: 9px;
+            border: 1px solid var(--border);
+            background: var(--surface-alt);
+            color: var(--text);
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .form-field textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        .billing-summary {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 16px;
+        }
+
+        .billing-summary div {
+            flex: 1;
+            min-width: 110px;
+        }
+
+        .billing-summary b {
+            display: block;
+            font-size: 16px;
+        }
+
+        .billing-summary span {
+            font-size: 11px;
+            color: var(--text-faint);
+        }
+
+        .hist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+        }
+
+        .hist-table th {
+            text-align: left;
+            font-size: 10.5px;
+            text-transform: uppercase;
+            color: var(--text-faint);
+            padding: 8px 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hist-table td {
+            padding: 8px 10px;
+            font-size: 12.5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hist-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .hist-empty {
+            text-align: center;
+            color: var(--text-faint);
+            font-size: 12.5px;
+            padding: 20px;
+        }
+
+        .biodata-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 18px;
+            font-size: 13px;
+        }
+
+        .biodata-grid div b {
+            display: block;
+            font-size: 10.5px;
+            color: var(--text-faint);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            margin-bottom: 2px;
+        }
+
+        .biodata-hero {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            margin-bottom: 14px;
+        }
+
+        .biodata-gallery {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .biodata-gallery img {
+            width: 58px;
+            height: 58px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        #toastHost {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 200;
+        }
+
+        .toast {
+            background: var(--text);
+            color: var(--surface);
+            padding: 11px 15px;
+            border-radius: 10px;
+            font-size: 12.5px;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .toast i {
+            font-size: 13px;
+        }
+
+        .toast.success i {
+            color: #4ade80;
+        }
+
+        .toast.error i {
+            color: #fb7185;
+        }
+
+        @media(max-width:1200px) {
+            .stats-row {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .report-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width:900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .biodata-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-shell">
+
+        <aside class="sidebar" id="sidebar">
+            <div class="brand">
+                <div class="brand-mark">SK</div>
+                <div class="brand-text"><b>Shahkot Directory</b><span>Admin Panel</span></div>
+            </div>
+            <div class="nav-group-label">Overview</div>
+            <a class="nav-item" href="dashboard.html"><i class="fa-solid fa-grid-2"></i>Dashboard</a>
+            <div class="nav-group-label">Manage</div>
+            <a class="nav-item" href="shops.html"><i class="fa-solid fa-store"></i>Shops<span class="badge-count"
+                    id="navShopCount">0</span></a>
+            <a class="nav-item" href="categories.html"><i class="fa-solid fa-layer-group"></i>Categories</a>
+            <a class="nav-item" href="featured.html"><i class="fa-solid fa-star"></i>Featured</a>
+            <a class="nav-item active" href="billing.html"><i class="fa-solid fa-file-invoice-dollar"></i>Billing</a>
+            <a class="nav-item" href="advertisements.html"><i class="fa-solid fa-rectangle-ad"></i>Advertisements</a>
+            <div class="nav-group-label">Insights</div>
+            <a class="nav-item" href="analytics.html"><i class="fa-solid fa-chart-line"></i>Analytics</a>
+            <a class="nav-item" href="seo.html"><i class="fa-solid fa-magnifying-glass-chart"></i>SEO</a>
+            <div class="nav-group-label">System</div>
+            <a class="nav-item" href="backup.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a class="nav-item" href="settings.html"><i class="fa-solid fa-gear"></i>Settings</a>
+            <div class="sidebar-footer">
+                <a class="nav-item" href="login.html"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+            </div>
+        </aside>
+
+        <div class="main">
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h1>Billing &amp; Subscriptions</h1>
+                    <div class="crumb">Dashboard / Billing</div>
+                </div>
+                <div class="topbar-right">
+                    <button class="icon-btn" id="themeToggle" title="Toggle dark mode"><i
+                            class="fa-solid fa-moon"></i></button>
+                </div>
+            </header>
+
+            <div class="content">
+
+                <div class="data-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>
+                        Billing data is <b>not part of shops.json</b> — I kept your shop schema untouched. Instead,
+                        plans and payments are stored separately in this browser (localStorage), keyed to each shop's
+                        existing <code>id</code>. Use <b>Export Billing Data</b> regularly to back it up, and
+                        <b>Import</b> to restore it on another device/browser. New shops from shops.json are
+                        auto-detected below as "Free / Untracked" until you set them up.
+                    </span>
+                </div>
+
+                <div class="pending-banner" id="pendingBanner">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span id="pendingText">Kuch shops ki visibility change hui hai (hide/show). Live site pe lagane ke
+                        liye shops.json export karein aur server pe upload karein.</span>
+                    <button class="btn btn-primary btn-sm" id="exportVisibilityBtn"><i class="fa-solid fa-download"></i>
+                        Export shops.json</button>
+                </div>
+                <div class="stats-row" id="statsRow">
+                    <div class="stat-card">
+                        <div class="stat-icon i-total"><i class="fa-solid fa-store"></i></div>
+                        <div class="stat-value" id="statTotal">0</div>
+                        <div class="stat-label">Total Shops</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon i-free"><i class="fa-solid fa-gift"></i></div>
+                        <div class="stat-value" id="statFree">0</div>
+                        <div class="stat-label">Free Plan</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon i-paid"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="stat-value" id="statPaidThisMonth">0</div>
+                        <div class="stat-label">Paid This Month</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon i-pending"><i class="fa-solid fa-hourglass-half"></i></div>
+                        <div class="stat-value" id="statPending">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon i-overdue"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <div class="stat-value" id="statOverdue">0</div>
+                        <div class="stat-label">Overdue</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon i-revenue"><i class="fa-solid fa-sack-dollar"></i></div>
+                        <div class="stat-value" id="statRevenueMonth">Rs 0</div>
+                        <div class="stat-label">Collected This Month</div>
+                    </div>
+                </div>
+
+                <!-- ============ TABS ============ -->
+                <div class="tabs">
+                    <div class="tab-btn active" data-tab="tabShops">Shops &amp; Billing</div>
+                    <div class="tab-btn" data-tab="tabReports">Reports</div>
+                </div>
+
+                <!-- ============ TAB: SHOPS & BILLING ============ -->
+                <div class="tab-panel active" id="tabShops">
+                    <div class="panel">
+                        <div class="toolbar">
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" id="searchInput" placeholder="Search shop, owner or phone...">
+                            </div>
+                            <select class="select-ctl" id="statusFilter">
+                                <option value="">All Statuses</option>
+                                <option value="paid">Paid (this month)</option>
+                                <option value="pending">Pending</option>
+                                <option value="overdue">Overdue</option>
+                                <option value="free">Free</option>
+                            </select>
+                            <select class="select-ctl" id="planFilter">
+                                <option value="">All Plans</option>
+                                <option value="paid">Paid Plan</option>
+                                <option value="free">Free Plan</option>
+                            </select>
+                            <select class="select-ctl" id="tierFilter">
+                                <option value="">All Tiers</option>
+                            </select>
+                            <select class="select-ctl" id="categoryFilter">
+                                <option value="">All Categories</option>
+                            </select>
+                            <button class="btn btn-outline" id="refreshBtn"><i class="fa-solid fa-rotate"></i>
+                                Refresh</button>
+                            <button class="btn btn-soft-danger" id="hiddenShopsBtn"><i
+                                    class="fa-solid fa-eye-slash"></i> Hidden Shops <span id="hiddenCountBadge"
+                                    style="background:var(--danger);color:#fff;border-radius:20px;padding:1px 7px;font-size:10.5px;margin-left:4px;">0</span></button>
+                            <button class="btn btn-soft-success" id="manageTiersBtn"><i
+                                    class="fa-solid fa-layer-group"></i> Manage Tiers</button>
+                            <button class="btn btn-outline" id="exportBillingBtn"><i class="fa-solid fa-download"></i>
+                                Export Billing Data</button>
+                            <label class="btn btn-outline" style="cursor:pointer;">
+                                <i class="fa-solid fa-upload"></i> Import
+                                <input type="file" id="importBillingInput" accept="application/json"
+                                    style="display:none;">
+                            </label>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Shop</th>
+                                        <th>Category</th>
+                                        <th>Plan</th>
+                                        <th>Amount / month</th>
+                                        <th>This Month</th>
+                                        <th>Last Payment</th>
+                                        <th>Total Paid (all-time)</th>
+                                        <th style="text-align:right;">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="billingTbody"></tbody>
+                            </table>
+                        </div>
+
+                        <div id="emptyState" class="empty-state" style="display:none;">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            <div>No shops match your filters.</div>
+                        </div>
+
+                        <div class="pagination-bar">
+                            <div class="pg-info" id="pgInfo">Showing 0 of 0 shops</div>
+                            <div class="pg-controls" id="pgControls"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ============ TAB: REPORTS ============ -->
+                <div class="tab-panel" id="tabReports">
+                    <div class="panel" style="padding:20px;">
+                        <div class="preset-row" id="presetRow">
+                            <div class="preset-btn" data-preset="today">Today</div>
+                            <div class="preset-btn" data-preset="yesterday">Yesterday</div>
+                            <div class="preset-btn" data-preset="last2">Last 2 Days</div>
+                            <div class="preset-btn" data-preset="last7">Last 7 Days</div>
+                            <div class="preset-btn active" data-preset="thismonth">This Month</div>
+                            <div class="preset-btn" data-preset="lastmonth">Last Month</div>
+                            <div class="preset-btn" data-preset="custom">Custom Range</div>
+                        </div>
+                        <div class="range-row" id="customRangeRow" style="display:none;">
+                            <input type="date" id="rangeFrom">
+                            <span style="color:var(--text-faint);font-size:12px;">to</span>
+                            <input type="date" id="rangeTo">
+                            <button class="btn btn-primary btn-sm" id="applyRangeBtn">Apply</button>
+                        </div>
+
+                        <div class="report-grid">
+                            <div class="report-card">
+                                <div class="rv" id="repTotalCollected">Rs 0</div>
+                                <div class="rl">Total Collected in Range</div>
+                            </div>
+                            <div class="report-card">
+                                <div class="rv" id="repPaymentCount">0</div>
+                                <div class="rl">Payments Recorded</div>
+                            </div>
+                            <div class="report-card">
+                                <div class="rv" id="repShopsAdded">0</div>
+                                <div class="rl">Shops Added to Billing (range)</div>
+                            </div>
+                            <div class="report-card">
+                                <div class="rv" id="repAvgPayment">Rs 0</div>
+                                <div class="rl">Average Payment</div>
+                            </div>
+                        </div>
+
+                        <b style="font-size:13px;display:block;margin-bottom:10px;">Revenue by Tier (in range, based on
+                            each shop's current tier)</b>
+                        <div class="tier-revenue-grid" id="tierRevenueGrid"></div>
+
+                        <div class="panel" style="margin-bottom:18px;">
+                            <div class="toolbar" style="border-bottom:1px solid var(--border);">
+                                <b style="font-size:13px;">Collections — Last 6 Months</b>
+                            </div>
+                            <div class="mini-bar-chart" id="miniChart"></div>
+                        </div>
+
+                        <div class="panel">
+                            <div class="toolbar" style="justify-content:space-between;">
+                                <b style="font-size:13px;">Payments in Range</b>
+                                <button class="btn btn-outline btn-sm" id="exportReportCsvBtn"><i
+                                        class="fa-solid fa-file-csv"></i> Export CSV</button>
+                            </div>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Shop</th>
+                                            <th>Category</th>
+                                            <th>Month Billed</th>
+                                            <th>Amount</th>
+                                            <th>Method</th>
+                                            <th>Note</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="reportTbody"></tbody>
+                                </table>
+                            </div>
+                            <div id="reportEmpty" class="empty-state" style="display:none;"><i
+                                    class="fa-solid fa-receipt"></i>
+                                <div>No payments recorded in this range.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ MANAGE BILLING MODAL ============ -->
+    <div class="overlay" id="manageOverlay">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h2 id="manageTitle">Manage Billing</h2>
+                <button class="modal-close" data-close="manageOverlay"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="billing-summary">
+                    <div><b id="sumPlan">—</b><span>Plan</span></div>
+                    <div><b id="sumAmount">—</b><span>Amount / month</span></div>
+                    <div><b id="sumStatus">—</b><span>This Month</span></div>
+                    <div><b id="sumTotalPaid">—</b><span>Total Paid (all-time)</span></div>
+                </div>
+
+                <div class="form-grid" style="margin-bottom:18px;">
+                    <div class="form-field">
+                        <label>Plan Type</label>
+                        <select id="m_plan">
+                            <option value="paid">Paid</option>
+                            <option value="free">Free</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Subscription Tier</label>
+                        <select id="m_tier">
+                            <option value="">Custom (no tier)</option>
+                        </select>
+                    </div>
+                    <div class="form-field span-2">
+                        <label>Monthly Amount (Rs)</label>
+                        <input type="number" id="m_amount" min="0" placeholder="e.g. 500">
+                        <span style="font-size:11px;color:var(--text-faint);">Auto-filled when you pick a tier — you can
+                            still edit it for this shop only.</span>
+                    </div>
+                    <div class="form-field span-2">
+                        <label>Notes</label>
+                        <textarea id="m_notes"
+                            placeholder="Any notes about this shop's billing arrangement..."></textarea>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-sm" id="savePlanBtn" style="margin-bottom:20px;"><i
+                        class="fa-solid fa-check"></i> Save Plan Settings</button>
+
+                <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;">
+
+                <b style="font-size:13px;">Record a Payment</b>
+                <div class="form-grid" style="margin-top:10px;margin-bottom:14px;">
+                    <div class="form-field">
+                        <label>Month Billed</label>
+                        <input type="month" id="p_month">
+                    </div>
+                    <div class="form-field">
+                        <label>Amount Paid (Rs)</label>
+                        <input type="number" id="p_amount" min="0">
+                    </div>
+                    <div class="form-field">
+                        <label>Date Paid</label>
+                        <input type="date" id="p_date">
+                    </div>
+                    <div class="form-field">
+                        <label>Method</label>
+                        <select id="p_method">
+                            <option>Cash</option>
+                            <option>EasyPaisa</option>
+                            <option>JazzCash</option>
+                            <option>Bank Transfer</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="form-field span-2">
+                        <label>Note</label>
+                        <input type="text" id="p_note" placeholder="Optional">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-sm" id="addPaymentBtn"><i class="fa-solid fa-plus"></i> Add
+                    Payment</button>
+
+                <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;">
+
+                <b style="font-size:13px;">Payment History</b>
+                <table class="hist-table" id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Amount</th>
+                            <th>Date Paid</th>
+                            <th>Method</th>
+                            <th>Note</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="historyTbody"></tbody>
+                </table>
+                <div id="historyEmpty" class="hist-empty" style="display:none;">No payments recorded yet.</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" data-close="manageOverlay">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ FULL BIODATA MODAL ============ -->
+    <div class="overlay" id="biodataOverlay">
+        <div class="modal modal-lg">
+            <div class="modal-header">
+                <h2>Complete Shop Biodata</h2>
+                <button class="modal-close" data-close="biodataOverlay"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body" id="biodataBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" data-close="biodataOverlay">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ MANAGE TIERS MODAL ============ -->
+    <div class="overlay" id="tiersOverlay">
+        <div class="modal modal-md">
+            <div class="modal-header">
+                <h2>Subscription Tiers</h2>
+                <button class="modal-close" data-close="tiersOverlay"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <b style="font-size:13px;">Your Tiers</b>
+                <div id="tiersList" style="margin-top:6px;margin-bottom:20px;"></div>
+
+                <hr style="border:none;border-top:1px solid var(--border);margin:16px 0;">
+
+                <b style="font-size:13px;" id="tierFormTitle">Add a New Tier</b>
+                <input type="hidden" id="t_editId">
+                <div class="form-grid" style="margin-top:10px;">
+                    <div class="form-field">
+                        <label>Tier Name</label>
+                        <input type="text" id="t_name" placeholder="e.g. Verified">
+                    </div>
+                    <div class="form-field">
+                        <label>Monthly Amount (Rs)</label>
+                        <input type="number" id="t_amount" min="0" placeholder="e.g. 1000">
+                    </div>
+                    <div class="form-field span-2">
+                        <label>Badge Color</label>
+                        <div class="color-swatch-row" id="colorSwatchRow"></div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px;">
+                    <button class="btn btn-primary btn-sm" id="saveTierBtn"><i class="fa-solid fa-check"></i> Save
+                        Tier</button>
+                    <button class="btn btn-outline btn-sm" id="cancelTierEditBtn" style="display:none;">Cancel
+                        Edit</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" data-close="tiersOverlay">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ HIDDEN SHOPS MODAL ============ -->
+    <div class="overlay" id="hiddenShopsOverlay">
+        <div class="modal modal-md">
+            <div class="modal-header">
+                <h2>Hidden Shops</h2>
+                <button class="modal-close" data-close="hiddenShopsOverlay"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size:12.3px;color:var(--text-faint);margin-top:0;">Ye woh shops hain jo aapne live site
+                    se temporarily hide ki hain (misal ke taur par payment na milne ki wajah se). Live site pe lagane ke
+                    liye "Export shops.json" zaroor karein.</p>
+                <div id="hiddenShopsList"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="exportFromHiddenModalBtn"><i class="fa-solid fa-download"></i>
+                    Export shops.json</button>
+                <button class="btn btn-outline" data-close="hiddenShopsOverlay">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastHost"></div>
+
+    <script>
+        /* ============================================================
+           BILLING & SUBSCRIPTIONS
+           ------------------------------------------------------------
+           ARCHITECTURE NOTE FOR BADAR:
+           - shops.json stays 100% untouched — no schema changes.
+           - All subscription/payment data lives in this browser's
+             localStorage under key 'shahkot_billing_v1', as an array
+             keyed by each shop's existing `id`.
+           - Every shop in shops.json is auto-registered here as a
+             "Free" plan with Rs 0 the first time this page loads it,
+             so nothing is ever missing from the list. You then edit
+             each shop's plan/amount as needed.
+           - This is real persistence (survives refresh, unlike the
+             in-memory-only pattern in shops.html), but it is still
+             LOCAL TO THIS BROWSER. Use Export/Import regularly to back
+             up and move data between devices, until this moves to a
+             real backend/Supabase.
+           ============================================================ */
+
+        const SHOPS_URL = '../shops.json';
+        const STORAGE_KEY = 'shahkot_billing_v1';
+        const TIERS_KEY = 'shahkot_billing_tiers_v1';
+        const OVERDUE_GRACE_DAY = 5; // if unpaid past the 5th of the month, treat as overdue instead of pending
+
+        const TIER_COLORS = ['#7c3aed', '#0369a1', '#d97706', '#16a34a', '#e11d48', '#0891b2', '#ca8a04', '#4f46e5'];
+        const DEFAULT_TIERS = [
+            { id: 'basic', name: 'Basic', amount: 300, color: '#0369a1' },
+            { id: 'verified', name: 'Verified', amount: 1000, color: '#7c3aed' },
+            { id: 'topbanner', name: 'Top Banner', amount: 1500, color: '#d97706' }
+        ];
+
+        let shops = [];             // raw shops from shops.json
+        let billingMap = {};        // { [shopId]: billingRecord }
+        let tiers = [];             // [{id,name,amount,color}]
+        let currentManagingId = null;
+        let editingTierId = null;
+        let selectedSwatch = TIER_COLORS[0];
+
+        let state = { search: '', status: '', plan: '', tier: '', category: '', page: 1, pageSize: 8 };
+        let reportState = { preset: 'thismonth', from: null, to: null };
+        let hasPendingVisibilityChanges = false;
+
+        /* ---------------- INIT ---------------- */
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTiers();
+            loadBillingData();
+            loadShops();
+            bindEvents();
+            renderColorSwatches();
+            renderTiersList();
+            populateTierDropdowns();
+            document.getElementById('p_date').value = todayStr();
+            document.getElementById('p_month').value = todayStr().slice(0, 7);
+        });
+
+        async function loadShops() {
+            try {
+                const res = await fetch(SHOPS_URL, { cache: 'no-store' });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                shops = Array.isArray(data) ? data : (data.shops || []);
+                document.getElementById('navShopCount').textContent = shops.length;
+                ensureBillingRecordsExist();
+                populateCategoryFilter();
+                updateVisibilityBanner();
+                renderAll();
+            } catch (err) {
+                console.error('Failed to load shops.json', err);
+                showToast('error', 'Could not load data/shops.json. Check SHOPS_URL at the top of the script.');
+            }
+        }
+
+        /* ---------------- STORAGE ---------------- */
+        function loadBillingData() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                const arr = raw ? JSON.parse(raw) : [];
+                billingMap = {};
+                arr.forEach(r => billingMap[r.shopId] = r);
+            } catch (err) {
+                console.error('Corrupt billing data in localStorage, starting fresh.', err);
+                billingMap = {};
+            }
+        }
+        function persistBillingData() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(Object.values(billingMap)));
+        }
+        function ensureBillingRecordsExist() {
+            let changed = false;
+            shops.forEach(s => {
+                if (!billingMap[s.id]) {
+                    billingMap[s.id] = {
+                        shopId: s.id,
+                        plan: 'free',
+                        tierId: null,
+                        amount: 0,
+                        notes: '',
+                        dateAdded: todayStr(),
+                        payments: []
+                    };
+                    changed = true;
+                }
+            });
+            if (changed) persistBillingData();
+        }
+
+        /* ---------------- TIERS ---------------- */
+        function loadTiers() {
+            try {
+                const raw = localStorage.getItem(TIERS_KEY);
+                tiers = raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(DEFAULT_TIERS));
+                if (!raw) persistTiers(); // first run — save the defaults
+            } catch (err) {
+                console.error('Corrupt tier data, resetting to defaults.', err);
+                tiers = JSON.parse(JSON.stringify(DEFAULT_TIERS));
+                persistTiers();
+            }
+        }
+        function persistTiers() { localStorage.setItem(TIERS_KEY, JSON.stringify(tiers)); }
+        function getTier(id) { return tiers.find(t => t.id === id); }
+
+        function populateTierDropdowns() {
+            const filterSel = document.getElementById('tierFilter');
+            const modalSel = document.getElementById('m_tier');
+            const filterOptions = '<option value="">All Tiers</option>' + tiers.map(t => `<option value="${t.id}">${escapeHtml(t.name)} (Rs ${t.amount})</option>`).join('');
+            const modalOptions = '<option value="">Custom (no tier)</option>' + tiers.map(t => `<option value="${t.id}">${escapeHtml(t.name)} (Rs ${t.amount})</option>`).join('');
+            filterSel.innerHTML = filterOptions;
+            modalSel.innerHTML = modalOptions;
+        }
+
+        function renderColorSwatches() {
+            document.getElementById('colorSwatchRow').innerHTML = TIER_COLORS.map(c => `
+    <div class="color-swatch ${c === selectedSwatch ? 'selected' : ''}" style="background:${c};" data-color="${c}"></div>
+  `).join('');
+            document.querySelectorAll('.color-swatch').forEach(sw => {
+                sw.addEventListener('click', () => { selectedSwatch = sw.dataset.color; renderColorSwatches(); });
+            });
+        }
+
+        function renderTiersList() {
+            const wrap = document.getElementById('tiersList');
+            if (tiers.length === 0) { wrap.innerHTML = '<div class="tier-empty">No tiers yet — add one below.</div>'; return; }
+            wrap.innerHTML = tiers.map(t => {
+                const inUse = Object.values(billingMap).filter(r => r.tierId === t.id).length;
+                return `
+    <div class="tier-row">
+      <div class="tier-color-dot" style="background:${t.color};"></div>
+      <div class="tier-info"><b>${escapeHtml(t.name)}</b><span>Rs ${t.amount} / month · ${inUse} shop${inUse === 1 ? '' : 's'} using this</span></div>
+      <div class="tier-actions">
+        <button class="action-btn" title="Edit" data-edit-tier="${t.id}"><i class="fa-solid fa-pen"></i></button>
+        <button class="action-btn danger" title="Delete" data-del-tier="${t.id}"><i class="fa-solid fa-trash"></i></button>
+      </div>
+    </div>`;
+            }).join('');
+
+            wrap.querySelectorAll('[data-edit-tier]').forEach(btn => btn.addEventListener('click', () => startEditTier(btn.dataset.editTier)));
+            wrap.querySelectorAll('[data-del-tier]').forEach(btn => btn.addEventListener('click', () => deleteTier(btn.dataset.delTier)));
+        }
+
+        function startEditTier(id) {
+            const t = getTier(id);
+            if (!t) return;
+            editingTierId = id;
+            document.getElementById('tierFormTitle').textContent = 'Edit Tier — ' + t.name;
+            document.getElementById('t_name').value = t.name;
+            document.getElementById('t_amount').value = t.amount;
+            selectedSwatch = t.color;
+            renderColorSwatches();
+            document.getElementById('cancelTierEditBtn').style.display = 'inline-flex';
+        }
+
+        function cancelTierEdit() {
+            editingTierId = null;
+            document.getElementById('tierFormTitle').textContent = 'Add a New Tier';
+            document.getElementById('t_name').value = '';
+            document.getElementById('t_amount').value = '';
+            selectedSwatch = TIER_COLORS[0];
+            renderColorSwatches();
+            document.getElementById('cancelTierEditBtn').style.display = 'none';
+        }
+
+        function saveTier() {
+            const name = document.getElementById('t_name').value.trim();
+            const amount = Number(document.getElementById('t_amount').value);
+            if (!name || !amount) { showToast('error', 'Tier name and amount are required.'); return; }
+
+            if (editingTierId) {
+                const t = getTier(editingTierId);
+                t.name = name; t.amount = amount; t.color = selectedSwatch;
+                showToast('success', 'Tier updated.');
+            } else {
+                tiers.push({ id: 'tier_' + Date.now(), name, amount, color: selectedSwatch });
+                showToast('success', 'Tier added.');
+            }
+            persistTiers();
+            cancelTierEdit();
+            renderTiersList();
+            populateTierDropdowns();
+            renderAll();
+        }
+
+        function deleteTier(id) {
+            const inUse = Object.values(billingMap).filter(r => r.tierId === id).length;
+            if (inUse > 0 && !confirm(`${inUse} shop(s) currently use this tier. Deleting it will switch them to "Custom" (their amount stays the same). Continue?`)) return;
+            tiers = tiers.filter(t => t.id !== id);
+            Object.values(billingMap).forEach(r => { if (r.tierId === id) r.tierId = null; });
+            persistTiers();
+            persistBillingData();
+            renderTiersList();
+            populateTierDropdowns();
+            renderAll();
+        }
+
+        /* ---------------- HELPERS ---------------- */
+        function todayStr() { return new Date().toISOString().slice(0, 10); }
+        function currentMonthStr() { return todayStr().slice(0, 7); }
+        function fmtMoney(n) { return 'Rs ' + Number(n || 0).toLocaleString('en-PK'); }
+        function escapeHtml(str) { return String(str ?? '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])); }
+
+        function getShop(id) { return shops.find(s => s.id === id); }
+
+        function totalPaidAllTime(rec) {
+            return (rec.payments || []).reduce((sum, p) => sum + Number(p.amount || 0), 0);
+        }
+        function lastPayment(rec) {
+            const list = [...(rec.payments || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
+            return list[0] || null;
+        }
+        function statusThisMonth(rec) {
+            if (rec.plan === 'free') return 'free';
+            const paidThisMonth = (rec.payments || []).some(p => p.month === currentMonthStr());
+            if (paidThisMonth) return 'paid';
+            const day = new Date().getDate();
+            return day > OVERDUE_GRACE_DAY ? 'overdue' : 'pending';
+        }
+        function statusLabel(st) {
+            return { paid: 'Paid', pending: 'Pending', overdue: 'Overdue', free: 'Free' }[st] || st;
+        }
+        function tierBadge(rec) {
+            if (rec.plan === 'free') return `<span class="pill pill-plan-free">Free</span>`;
+            const t = rec.tierId ? getTier(rec.tierId) : null;
+            if (t) {
+                return `<span class="tier-badge" style="background:${t.color}20;color:${t.color};">${escapeHtml(t.name)}</span>`;
+            }
+            return `<span class="pill pill-plan-paid">Custom Paid</span>`;
+        }
+
+        /* ---------------- FILTER LIST ---------------- */
+        function getCategories() {
+            return [...new Set(shops.map(s => (s.category || '').trim()).filter(Boolean))].sort();
+        }
+        function populateCategoryFilter() {
+            const sel = document.getElementById('categoryFilter');
+            sel.innerHTML = '<option value="">All Categories</option>' +
+                getCategories().map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+        }
+
+        function getFiltered() {
+            const q = state.search.trim().toLowerCase();
+            return shops.filter(s => {
+                const rec = billingMap[s.id];
+                if (!rec) return false;
+                const matchesSearch = !q || [s.name, s.ownerName, s.phone, s.whatsapp].filter(Boolean).some(f => String(f).toLowerCase().includes(q));
+                const matchesCategory = !state.category || s.category === state.category;
+                const matchesPlan = !state.plan || rec.plan === state.plan;
+                const matchesTier = !state.tier || rec.tierId === state.tier;
+                const matchesStatus = !state.status || statusThisMonth(rec) === state.status;
+                return matchesSearch && matchesCategory && matchesPlan && matchesTier && matchesStatus;
+            });
+        }
+
+        /* ---------------- RENDER: STATS ---------------- */
+        function renderStats() {
+            const recs = shops.map(s => billingMap[s.id]).filter(Boolean);
+            document.getElementById('statTotal').textContent = shops.length;
+            document.getElementById('statFree').textContent = recs.filter(r => r.plan === 'free').length;
+            document.getElementById('statPaidThisMonth').textContent = recs.filter(r => statusThisMonth(r) === 'paid').length;
+            document.getElementById('statPending').textContent = recs.filter(r => statusThisMonth(r) === 'pending').length;
+            document.getElementById('statOverdue').textContent = recs.filter(r => statusThisMonth(r) === 'overdue').length;
+
+            const collectedThisMonth = recs.reduce((sum, r) => sum + (r.payments || []).filter(p => p.month === currentMonthStr()).reduce((s, p) => s + Number(p.amount || 0), 0), 0);
+            document.getElementById('statRevenueMonth').textContent = fmtMoney(collectedThisMonth);
+        }
+
+        /* ---------------- RENDER: TABLE ---------------- */
+        function renderTable() {
+            const filtered = getFiltered();
+            const totalPages = Math.max(1, Math.ceil(filtered.length / state.pageSize));
+            if (state.page > totalPages) state.page = totalPages;
+            const start = (state.page - 1) * state.pageSize;
+            const pageItems = filtered.slice(start, start + state.pageSize);
+
+            const tbody = document.getElementById('billingTbody');
+            const emptyState = document.getElementById('emptyState');
+
+            if (pageItems.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+                tbody.innerHTML = pageItems.map(rowTemplate).join('');
+            }
+            renderPagination(filtered.length, totalPages, start, pageItems.length);
+            bindRowEvents();
+        }
+
+        function rowTemplate(s) {
+            const rec = billingMap[s.id];
+            const st = statusThisMonth(rec);
+            const last = lastPayment(rec);
+            return `
+  <tr data-id="${s.id}">
+    <td>
+      <div class="shop-cell">
+        <img class="shop-thumb" src="${escapeHtml(s.cardImage || s.hero || '')}" onerror="this.style.visibility='hidden'">
+        <div><div class="shop-name">${escapeHtml(s.name || 'Untitled')}${s.hidden ? '<span class="hidden-tag">HIDDEN</span>' : ''}</div><div class="shop-sub">${escapeHtml(s.ownerName || '—')}</div></div>
+      </div>
+    </td>
+    <td>${escapeHtml(s.category || '—')}</td>
+    <td>${tierBadge(rec)}</td>
+    <td>${rec.plan === 'free' ? '—' : fmtMoney(rec.amount)}</td>
+    <td><span class="pill pill-${st}">${statusLabel(st)}</span></td>
+    <td>${last ? escapeHtml(last.date) + ' · ' + fmtMoney(last.amount) : '—'}</td>
+    <td>${fmtMoney(totalPaidAllTime(rec))}</td>
+    <td>
+      <div class="row-actions">
+        ${st !== 'free' && st !== 'paid' ? `<button class="action-btn success" title="Mark paid this month" data-action="quickpay" data-id="${s.id}"><i class="fa-solid fa-check"></i></button>` : ''}
+        <button class="action-btn ${s.hidden ? 'danger' : ''}" title="${s.hidden ? 'Show on live site' : 'Hide from live site'}" data-action="togglehide" data-id="${s.id}"><i class="fa-solid ${s.hidden ? 'fa-eye' : 'fa-eye-slash'}"></i></button>
+        <button class="action-btn" title="Full Biodata" data-action="biodata" data-id="${s.id}"><i class="fa-solid fa-id-card"></i></button>
+        <button class="action-btn" title="Manage Billing" data-action="manage" data-id="${s.id}"><i class="fa-solid fa-file-invoice-dollar"></i></button>
+      </div>
+    </td>
+  </tr>`;
+        }
+
+        function renderPagination(totalItems, totalPages, start, shownCount) {
+            document.getElementById('pgInfo').textContent = totalItems === 0 ? 'Showing 0 of 0 shops' : `Showing ${start + 1}–${start + shownCount} of ${totalItems} shops`;
+            const wrap = document.getElementById('pgControls');
+            let html = `<button class="pg-btn" ${state.page === 1 ? 'disabled' : ''} data-page="${state.page - 1}"><i class="fa-solid fa-chevron-left"></i></button>`;
+            for (let p = 1; p <= totalPages; p++) {
+                if (p === 1 || p === totalPages || Math.abs(p - state.page) <= 1) {
+                    html += `<button class="pg-btn ${p === state.page ? 'active' : ''}" data-page="${p}">${p}</button>`;
+                } else if (Math.abs(p - state.page) === 2) {
+                    html += `<span style="padding:0 4px;color:var(--text-faint);">…</span>`;
+                }
+            }
+            html += `<button class="pg-btn" ${state.page === totalPages ? 'disabled' : ''} data-page="${state.page + 1}"><i class="fa-solid fa-chevron-right"></i></button>`;
+            wrap.innerHTML = html;
+            wrap.querySelectorAll('.pg-btn[data-page]').forEach(btn => {
+                btn.addEventListener('click', () => { const p = parseInt(btn.dataset.page); if (p >= 1 && p <= totalPages) { state.page = p; renderTable(); } });
+            });
+        }
+
+        function bindRowEvents() {
+            document.querySelectorAll('[data-action]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = Number(btn.dataset.id);
+                    const action = btn.dataset.action;
+                    if (action === 'manage') openManageModal(id);
+                    if (action === 'biodata') openBiodataModal(id);
+                    if (action === 'quickpay') quickMarkPaid(id);
+                    if (action === 'togglehide') toggleHidden(id);
+                });
+            });
+        }
+
+        function quickMarkPaid(id) {
+            const rec = billingMap[id];
+            const s = getShop(id);
+            rec.payments.push({
+                id: Date.now(),
+                month: currentMonthStr(),
+                amount: rec.amount || 0,
+                date: todayStr(),
+                method: 'Cash',
+                note: 'Quick-marked paid'
+            });
+            persistBillingData();
+            renderAll();
+            showToast('success', `Marked "${s.name}" as paid for ${currentMonthStr()}.`);
+        }
+
+        /* ---------------- VISIBILITY (hide/show on live site) ----------------
+           IMPORTANT ARCHITECTURE NOTE FOR BADAR:
+           - This adds a `hidden: true` field to a shop ONLY when you hide it
+             (shops that are visible keep no extra field at all — fully
+             backward compatible, nothing changes for existing shops).
+           - This lives in shops.json itself (not billing's localStorage),
+             because the PUBLIC site (index.html / category.html) is what
+             needs to check this field to decide whether to render the shop.
+           - Toggling here only changes the in-memory copy in this tab. You
+             must click "Export shops.json" and upload it to your server for
+             the hide/show to actually take effect on the live site.
+           - Your public-facing pages (index.html etc.) also need a small
+             one-line check added to their shop-rendering code, e.g.
+             skipping any shop where `shop.hidden === true`. I haven't made
+             that change yet since I don't have that file's code in this
+             conversation — share it and I'll wire it up.
+           ------------------------------------------------------------ */
+        function toggleHidden(id) {
+            const s = getShop(id);
+            s.hidden = !s.hidden;
+            if (!s.hidden) delete s.hidden; // keep JSON clean: omit the field entirely when visible
+            hasPendingVisibilityChanges = true;
+            updateVisibilityBanner();
+            renderAll();
+            renderHiddenShopsList();
+            showToast('success', `"${s.name}" ${s.hidden ? 'hidden from' : 'restored to'} the live site (export to make it permanent).`);
+        }
+
+        function updateVisibilityBanner() {
+            document.getElementById('pendingBanner').classList.toggle('show', hasPendingVisibilityChanges);
+            document.getElementById('hiddenCountBadge').textContent = shops.filter(s => s.hidden).length;
+        }
+
+        function exportShopsWithVisibility() {
+            const blob = new Blob([JSON.stringify(shops, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'shops.json';
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            hasPendingVisibilityChanges = false;
+            updateVisibilityBanner();
+            showToast('success', 'shops.json exported with updated visibility. Upload it to your server to go live.');
+        }
+
+        function renderHiddenShopsList() {
+            const wrap = document.getElementById('hiddenShopsList');
+            const hidden = shops.filter(s => s.hidden);
+            if (hidden.length === 0) {
+                wrap.innerHTML = '<div class="tier-empty">Koi shop hidden nahi hai — sab live hain.</div>';
+                return;
+            }
+            wrap.innerHTML = hidden.map(s => `
+    <div class="tier-row">
+      <img class="shop-thumb" src="${escapeHtml(s.cardImage || s.hero || '')}" onerror="this.style.visibility='hidden'">
+      <div class="tier-info"><b>${escapeHtml(s.name)}</b><span>${escapeHtml(s.category || '—')}</span></div>
+      <div class="tier-actions">
+        <button class="btn btn-outline btn-sm" data-unhide="${s.id}"><i class="fa-solid fa-eye"></i> Show Again</button>
+      </div>
+    </div>
+  `).join('');
+            wrap.querySelectorAll('[data-unhide]').forEach(btn => {
+                btn.addEventListener('click', () => toggleHidden(Number(btn.dataset.unhide)));
+            });
+        }
+
+        function renderAll() { renderStats(); renderTable(); }
+
+        /* ---------------- MANAGE BILLING MODAL ---------------- */
+        function openManageModal(id) {
+            currentManagingId = id;
+            const s = getShop(id);
+            const rec = billingMap[id];
+
+            document.getElementById('manageTitle').textContent = 'Manage Billing — ' + (s.name || 'Shop');
+            document.getElementById('m_plan').value = rec.plan;
+            document.getElementById('m_tier').value = rec.tierId || '';
+            document.getElementById('m_amount').value = rec.amount || 0;
+            document.getElementById('m_notes').value = rec.notes || '';
+
+            refreshManageSummary();
+            renderHistory();
+            document.getElementById('manageOverlay').classList.add('open');
+        }
+
+        function refreshManageSummary() {
+            const rec = billingMap[currentManagingId];
+            const st = statusThisMonth(rec);
+            const t = rec.tierId ? getTier(rec.tierId) : null;
+            document.getElementById('sumPlan').textContent = rec.plan === 'free' ? 'Free' : (t ? t.name : 'Custom Paid');
+            document.getElementById('sumAmount').textContent = rec.plan === 'free' ? '—' : fmtMoney(rec.amount);
+            document.getElementById('sumStatus').textContent = statusLabel(st);
+            document.getElementById('sumTotalPaid').textContent = fmtMoney(totalPaidAllTime(rec));
+        }
+
+        function savePlanSettings() {
+            const rec = billingMap[currentManagingId];
+            rec.plan = document.getElementById('m_plan').value;
+            rec.tierId = document.getElementById('m_tier').value || null;
+            rec.amount = Number(document.getElementById('m_amount').value) || 0;
+            rec.notes = document.getElementById('m_notes').value.trim();
+            persistBillingData();
+            refreshManageSummary();
+            renderTiersList();
+            renderAll();
+            showToast('success', 'Plan settings saved.');
+        }
+
+        function addPayment() {
+            const month = document.getElementById('p_month').value;
+            const amount = Number(document.getElementById('p_amount').value);
+            const date = document.getElementById('p_date').value;
+            const method = document.getElementById('p_method').value;
+            const note = document.getElementById('p_note').value.trim();
+
+            if (!month || !amount || !date) {
+                showToast('error', 'Month, amount and date are required to record a payment.');
+                return;
+            }
+            const rec = billingMap[currentManagingId];
+            rec.payments.push({ id: Date.now(), month, amount, date, method, note });
+            persistBillingData();
+            refreshManageSummary();
+            renderHistory();
+            renderAll();
+            showToast('success', 'Payment recorded.');
+            document.getElementById('p_amount').value = '';
+            document.getElementById('p_note').value = '';
+        }
+
+        function renderHistory() {
+            const rec = billingMap[currentManagingId];
+            const list = [...(rec.payments || [])].sort((a, b) => new Date(b.date) - new Date(a.date));
+            const tbody = document.getElementById('historyTbody');
+            const empty = document.getElementById('historyEmpty');
+
+            if (list.length === 0) {
+                tbody.innerHTML = ''; empty.style.display = 'block'; return;
+            }
+            empty.style.display = 'none';
+            tbody.innerHTML = list.map(p => `
+    <tr>
+      <td>${escapeHtml(p.month)}</td>
+      <td>${fmtMoney(p.amount)}</td>
+      <td>${escapeHtml(p.date)}</td>
+      <td>${escapeHtml(p.method || '—')}</td>
+      <td>${escapeHtml(p.note || '—')}</td>
+      <td><button class="action-btn danger" data-del-payment="${p.id}" title="Delete"><i class="fa-solid fa-trash"></i></button></td>
+    </tr>
+  `).join('');
+
+            tbody.querySelectorAll('[data-del-payment]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    if (!confirm('Delete this payment record?')) return;
+                    const pid = Number(btn.dataset.delPayment);
+                    rec.payments = rec.payments.filter(p => p.id !== pid);
+                    persistBillingData();
+                    refreshManageSummary();
+                    renderHistory();
+                    renderAll();
+                });
+            });
+        }
+
+        /* ---------------- FULL BIODATA MODAL ---------------- */
+        function openBiodataModal(id) {
+            const s = getShop(id);
+            const rec = billingMap[id];
+            const gallery = Array.isArray(s.gallery) ? s.gallery : [];
+            document.getElementById('biodataBody').innerHTML = `
+    <img class="biodata-hero" src="${escapeHtml(s.hero || s.cardImage || '')}" onerror="this.style.visibility='hidden'">
+    <div class="biodata-grid">
+      <div><b>Name</b>${escapeHtml(s.name || '—')}</div>
+      <div><b>Category</b>${escapeHtml(s.category || '—')}</div>
+      <div><b>Details</b>${escapeHtml(s.details || '—')}</div>
+      <div><b>Timing</b>${escapeHtml(s.timing || '—')}</div>
+      <div><b>Owner Name</b>${escapeHtml(s.ownerName || '—')}</div>
+      <div><b>Owner Info</b>${escapeHtml(s.ownerInfo || '—')}</div>
+      <div><b>Phone</b>${escapeHtml(s.phone || '—')}</div>
+      <div><b>WhatsApp</b>${escapeHtml(s.whatsapp || '—')}</div>
+      <div><b>Email</b>${escapeHtml(s.email || '—')}</div>
+      <div><b>Shop ID</b>#${s.id}</div>
+      <div class="span-2" style="grid-column:1/-1;"><b>Address</b>${escapeHtml(s.address || '—')}</div>
+      <div class="span-2" style="grid-column:1/-1;"><b>About</b>${escapeHtml(s.about || '—')}</div>
+      ${s.map ? `<div class="span-2" style="grid-column:1/-1;"><b>Google Map</b><a href="${escapeHtml(s.map)}" target="_blank" style="color:var(--purple-600);">Open in Maps</a></div>` : ''}
+    </div>
+    ${gallery.length ? `<div class="biodata-gallery">${gallery.map(g => `<img src="${escapeHtml(g)}" onerror="this.style.display='none'">`).join('')}</div>` : ''}
+    <hr style="border:none;border-top:1px solid var(--border);margin:16px 0;">
+    <div class="biodata-grid">
+      <div><b>Plan / Tier</b>${rec.plan === 'free' ? 'Free' : (rec.tierId && getTier(rec.tierId) ? getTier(rec.tierId).name : 'Custom Paid')}</div>
+      <div><b>Monthly Amount</b>${rec.plan === 'free' ? '—' : fmtMoney(rec.amount)}</div>
+      <div><b>This Month Status</b>${statusLabel(statusThisMonth(rec))}</div>
+      <div><b>Total Paid (all-time)</b>${fmtMoney(totalPaidAllTime(rec))}</div>
+    </div>
+  `;
+            document.getElementById('biodataOverlay').classList.add('open');
+        }
+
+        /* ---------------- EXPORT / IMPORT BILLING DATA ---------------- */
+        function exportBillingData() {
+            const blob = new Blob([JSON.stringify(Object.values(billingMap), null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'shahkot-billing-backup.json';
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('success', 'Billing data exported.');
+        }
+        function importBillingData(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const arr = JSON.parse(e.target.result);
+                    if (!Array.isArray(arr)) throw new Error('Invalid file format');
+                    if (!confirm(`This will replace current billing data with ${arr.length} records from the file. Continue?`)) return;
+                    billingMap = {};
+                    arr.forEach(r => billingMap[r.shopId] = r);
+                    persistBillingData();
+                    ensureBillingRecordsExist();
+                    renderAll();
+                    showToast('success', 'Billing data imported successfully.');
+                } catch (err) {
+                    showToast('error', 'Could not import file — make sure it is a valid billing export.');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        /* ---------------- REPORTS ---------------- */
+        function getDateRangeForPreset(preset) {
+            const now = new Date();
+            const fmt = d => d.toISOString().slice(0, 10);
+            if (preset === 'today') return [fmt(now), fmt(now)];
+            if (preset === 'yesterday') { const y = new Date(now); y.setDate(y.getDate() - 1); return [fmt(y), fmt(y)]; }
+            if (preset === 'last2') { const f = new Date(now); f.setDate(f.getDate() - 2); return [fmt(f), fmt(now)]; }
+            if (preset === 'last7') { const f = new Date(now); f.setDate(f.getDate() - 7); return [fmt(f), fmt(now)]; }
+            if (preset === 'thismonth') { const f = new Date(now.getFullYear(), now.getMonth(), 1); return [fmt(f), fmt(now)]; }
+            if (preset === 'lastmonth') { const f = new Date(now.getFullYear(), now.getMonth() - 1, 1); const l = new Date(now.getFullYear(), now.getMonth(), 0); return [fmt(f), fmt(l)]; }
+            return [reportState.from || fmt(now), reportState.to || fmt(now)];
+        }
+
+        function allPayments() {
+            const list = [];
+            Object.values(billingMap).forEach(rec => {
+                const s = getShop(rec.shopId);
+                (rec.payments || []).forEach(p => list.push({ ...p, shopId: rec.shopId, shopName: s ? s.name : `(deleted shop #${rec.shopId})`, category: s ? s.category : '—' }));
+            });
+            return list;
+        }
+
+        function renderReports() {
+            const [from, to] = reportState.preset === 'custom' ? [reportState.from, reportState.to] : getDateRangeForPreset(reportState.preset);
+            if (!from || !to) return;
+
+            const payments = allPayments().filter(p => p.date >= from && p.date <= to);
+            const total = payments.reduce((s, p) => s + Number(p.amount || 0), 0);
+            document.getElementById('repTotalCollected').textContent = fmtMoney(total);
+            document.getElementById('repPaymentCount').textContent = payments.length;
+            document.getElementById('repAvgPayment').textContent = fmtMoney(payments.length ? Math.round(total / payments.length) : 0);
+
+            const shopsAdded = Object.values(billingMap).filter(r => r.dateAdded >= from && r.dateAdded <= to).length;
+            document.getElementById('repShopsAdded').textContent = shopsAdded;
+
+            const tbody = document.getElementById('reportTbody');
+            const empty = document.getElementById('reportEmpty');
+            if (payments.length === 0) {
+                tbody.innerHTML = ''; empty.style.display = 'block';
+            } else {
+                empty.style.display = 'none';
+                const sorted = [...payments].sort((a, b) => new Date(b.date) - new Date(a.date));
+                tbody.innerHTML = sorted.map(p => `
+      <tr>
+        <td>${escapeHtml(p.date)}</td>
+        <td>${escapeHtml(p.shopName)}</td>
+        <td>${escapeHtml(p.category)}</td>
+        <td>${escapeHtml(p.month)}</td>
+        <td>${fmtMoney(p.amount)}</td>
+        <td>${escapeHtml(p.method || '—')}</td>
+        <td>${escapeHtml(p.note || '—')}</td>
+      </tr>
+    `).join('');
+            }
+
+            renderMiniChart();
+            renderTierRevenue(payments);
+        }
+
+        function renderTierRevenue(payments) {
+            const grid = document.getElementById('tierRevenueGrid');
+            const byTier = {}; // tierId -> total
+            let freeCount = 0, customTotal = 0;
+
+            payments.forEach(p => {
+                const rec = billingMap[p.shopId];
+                if (!rec) { customTotal += Number(p.amount || 0); return; }
+                if (rec.plan === 'free') { return; } // free shops shouldn't have payments, but guard anyway
+                if (rec.tierId) {
+                    byTier[rec.tierId] = (byTier[rec.tierId] || 0) + Number(p.amount || 0);
+                } else {
+                    customTotal += Number(p.amount || 0);
+                }
+            });
+
+            const cards = tiers.map(t => `
+    <div class="tier-revenue-card">
+      <div class="trv">${fmtMoney(byTier[t.id] || 0)}</div>
+      <div class="trl"><span class="tier-dot" style="background:${t.color};"></span>${escapeHtml(t.name)}</div>
+    </div>
+  `);
+            if (customTotal > 0) {
+                cards.push(`
+      <div class="tier-revenue-card">
+        <div class="trv">${fmtMoney(customTotal)}</div>
+        <div class="trl"><span class="tier-dot" style="background:var(--text-faint);"></span>Custom / No Tier</div>
+      </div>
+    `);
+            }
+            grid.innerHTML = cards.join('') || '<div class="tier-empty">No tiers set up yet.</div>';
+        }
+
+        function renderMiniChart() {
+            const now = new Date();
+            const months = [];
+            for (let i = 5; i >= 0; i--) {
+                const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+                months.push(d.toISOString().slice(0, 7));
+            }
+            const payments = allPayments();
+            const totals = months.map(m => payments.filter(p => p.month === m).reduce((s, p) => s + Number(p.amount || 0), 0));
+            const max = Math.max(...totals, 1);
+
+            document.getElementById('miniChart').innerHTML = months.map((m, i) => `
+    <div class="mini-bar-wrap">
+      <div style="flex:1;display:flex;align-items:flex-end;">
+        <div class="mini-bar" style="height:${Math.max(4, Math.round((totals[i] / max) * 100))}%;" title="${fmtMoney(totals[i])}"></div>
+      </div>
+      <div class="mini-bar-label">${m.slice(5)}/${m.slice(2, 4)}</div>
+    </div>
+  `).join('');
+        }
+
+        function exportReportCsv() {
+            const [from, to] = reportState.preset === 'custom' ? [reportState.from, reportState.to] : getDateRangeForPreset(reportState.preset);
+            const payments = allPayments().filter(p => p.date >= from && p.date <= to);
+            const header = ['Date', 'Shop', 'Category', 'Month Billed', 'Amount', 'Method', 'Note'];
+            const rows = payments.map(p => [p.date, p.shopName, p.category, p.month, p.amount, p.method || '', (p.note || '').replace(/,/g, ';')]);
+            const csv = [header, ...rows].map(r => r.map(v => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = `shahkot-payments-${from}_to_${to}.csv`;
+            document.body.appendChild(a); a.click(); document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('success', 'Report exported as CSV.');
+        }
+
+        /* ---------------- EVENTS ---------------- */
+        function bindEvents() {
+            document.getElementById('searchInput').addEventListener('input', e => { state.search = e.target.value; state.page = 1; renderTable(); });
+            document.getElementById('statusFilter').addEventListener('change', e => { state.status = e.target.value; state.page = 1; renderTable(); });
+            document.getElementById('planFilter').addEventListener('change', e => { state.plan = e.target.value; state.page = 1; renderTable(); });
+            document.getElementById('tierFilter').addEventListener('change', e => { state.tier = e.target.value; state.page = 1; renderTable(); });
+            document.getElementById('categoryFilter').addEventListener('change', e => { state.category = e.target.value; state.page = 1; renderTable(); });
+            document.getElementById('refreshBtn').addEventListener('click', () => { loadTiers(); loadBillingData(); loadShops(); populateTierDropdowns(); renderTiersList(); });
+
+            document.getElementById('manageTiersBtn').addEventListener('click', () => {
+                cancelTierEdit();
+                document.getElementById('tiersOverlay').classList.add('open');
+            });
+            document.getElementById('saveTierBtn').addEventListener('click', saveTier);
+            document.getElementById('cancelTierEditBtn').addEventListener('click', cancelTierEdit);
+
+            document.getElementById('hiddenShopsBtn').addEventListener('click', () => {
+                renderHiddenShopsList();
+                document.getElementById('hiddenShopsOverlay').classList.add('open');
+            });
+            document.getElementById('exportVisibilityBtn').addEventListener('click', exportShopsWithVisibility);
+            document.getElementById('exportFromHiddenModalBtn').addEventListener('click', exportShopsWithVisibility);
+
+            document.getElementById('m_tier').addEventListener('change', e => {
+                const t = getTier(e.target.value);
+                if (t) document.getElementById('m_amount').value = t.amount;
+            });
+
+            document.getElementById('exportBillingBtn').addEventListener('click', exportBillingData);
+            document.getElementById('importBillingInput').addEventListener('change', e => { if (e.target.files[0]) importBillingData(e.target.files[0]); e.target.value = ''; });
+
+            document.getElementById('savePlanBtn').addEventListener('click', savePlanSettings);
+            document.getElementById('addPaymentBtn').addEventListener('click', addPayment);
+
+            document.querySelectorAll('[data-close]').forEach(btn => btn.addEventListener('click', () => closeOverlay(btn.dataset.close)));
+            document.querySelectorAll('.overlay').forEach(ov => ov.addEventListener('click', e => { if (e.target === ov) closeOverlay(ov.id); }));
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.overlay.open').forEach(ov => closeOverlay(ov.id)); });
+
+            document.querySelectorAll('.tab-btn').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+                    tab.classList.add('active');
+                    document.getElementById(tab.dataset.tab).classList.add('active');
+                    if (tab.dataset.tab === 'tabReports') renderReports();
+                });
+            });
+
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    reportState.preset = btn.dataset.preset;
+                    document.getElementById('customRangeRow').style.display = reportState.preset === 'custom' ? 'flex' : 'none';
+                    if (reportState.preset !== 'custom') renderReports();
+                });
+            });
+            document.getElementById('applyRangeBtn').addEventListener('click', () => {
+                reportState.from = document.getElementById('rangeFrom').value;
+                reportState.to = document.getElementById('rangeTo').value;
+                if (!reportState.from || !reportState.to) { showToast('error', 'Pick both a from and to date.'); return; }
+                renderReports();
+            });
+            document.getElementById('exportReportCsvBtn').addEventListener('click', exportReportCsv);
+
+            document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('sidebar').classList.toggle('open'));
+            document.getElementById('themeToggle').addEventListener('click', () => {
+                const html = document.documentElement;
+                const isDark = html.getAttribute('data-theme') === 'dark';
+                html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                document.getElementById('themeToggle').innerHTML = isDark ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+            });
+
+            window.addEventListener('beforeunload', (e) => {
+                if (hasPendingVisibilityChanges) { e.preventDefault(); e.returnValue = ''; }
+            });
+        }
+
+        function closeOverlay(id) { document.getElementById(id).classList.remove('open'); }
+
+        function showToast(type, message) {
+            const host = document.getElementById('toastHost');
+            const el = document.createElement('div');
+            el.className = 'toast ' + type;
+            el.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i><span>${escapeHtml(message)}</span>`;
+            host.appendChild(el);
+            setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .25s'; setTimeout(() => el.remove(), 250); }, 3400);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,3539 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-SRBX1RJTP3"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-SRBX1RJTP3");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Shahkot Directory istemal karne ka mukammal tarika — search, filters, categories aur shop details guide."
+    />
+    <title>Kaisy Istemal Karein — Shahkot Directory</title>
+    <link
+      rel="shortcut icon"
+      href="/images/skt-logo.png"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,700&family=Amiri:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="manifest.json" />
+    
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --blue: #2563eb;
+        --blue-dark: #1d4ed8;
+        --blue-deep: #1e3a8a;
+        --blue-light: #eff6ff;
+        --blue-mid: #dbeafe;
+        --gold: #b8942a;
+        --gold-bg: #fdf8ee;
+        --text: #1e293b;
+        --muted: #64748b;
+        --border: #e2e8f0;
+        --bg: #f8fafc;
+        --white: #ffffff;
+        --card-shadow: 0 2px 16px rgba(37, 99, 235, 0.07);
+        --card-shadow-hover: 0 18px 50px rgba(37, 99, 235, 0.16);
+        --radius: 18px;
+      }
+
+      /* dark mode */
+      [data-theme="dark"] {
+        --blue: #60a5fa;
+        --blue-dark: #3b82f6;
+        --blue-deep: #93c5fd;
+        --blue-light: #1e3a5f;
+        --blue-mid: #1e3a5f;
+        --gold: #fbbf24;
+        --gold-bg: #1a1500;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --border: #334155;
+        --bg: #0f172a;
+        --white: #1e293b;
+        --card-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+        --card-shadow-hover: 0 18px 50px rgba(0, 0, 0, 0.6);
+      }
+
+      [data-theme="dark"] body {
+        background: #0f172a;
+      }
+      [data-theme="dark"] .navbar {
+        background: rgba(15, 23, 42, 0.96);
+        border-bottom-color: #334155;
+      }
+      [data-theme="dark"] .hero-overlay {
+        background: linear-gradient(
+          155deg,
+          rgba(2, 6, 23, 0.95) 0%,
+          rgba(15, 23, 80, 0.85) 48%,
+          rgba(30, 58, 138, 0.65) 100%
+        );
+      }
+      [data-theme="dark"] .darood-band {
+        background: #1a1500;
+      }
+      [data-theme="dark"] .darood-arabic {
+        color: #fcd34d;
+      }
+      [data-theme="dark"] .darood-line span {
+        color: #fbbf24;
+      }
+      [data-theme="dark"] .search-section {
+        background: #0f172a;
+      }
+      [data-theme="dark"] #search {
+        background: #1e293b;
+        color: #e2e8f0;
+      }
+      [data-theme="dark"] .search-box {
+        background: #1e293b;
+        border-color: #334155;
+        overflow: hidden;
+      }
+      [data-theme="dark"] .s-icon,
+      [data-theme="dark"] .search-filter,
+      [data-theme="dark"] .filter-btn,
+      [data-theme="dark"] .s-clear {
+        background: #1e293b;
+        border-radius: 0 60px 60px 0;
+      }
+      [data-theme="dark"] .filter-dropdown,
+      [data-theme="dark"] .suggestions {
+        background: #1e293b;
+        border-color: #334155;
+      }
+      [data-theme="dark"] .dropdown {
+        background: #1e293b;
+        border-color: #334155;
+      }
+      [data-theme="dark"] .dropdown a {
+        color: #e2e8f0;
+        border-bottom-color: #334155;
+      }
+      [data-theme="dark"] .dropdown a:hover {
+        background: #1e3a5f;
+      }
+      [data-theme="dark"] .chip {
+        background: #1e293b;
+        border-color: #334155;
+        color: #94a3b8;
+      }
+      [data-theme="dark"] .chip.active {
+        background: #2563eb;
+        color: #fff;
+        border-color: #2563eb;
+      }
+      [data-theme="dark"] .card {
+        background: #1e293b;
+        border-color: #334155;
+      }
+      [data-theme="dark"] .card-body h3 {
+        color: #e2e8f0;
+      }
+      [data-theme="dark"] .verified-badge {
+        background: #422006;
+        color: #fcd34d;
+        border-color: #92400e;
+      }
+      [data-theme="dark"] .verified-head-title {
+        color: #e2e8f0;
+      }
+      [data-theme="dark"] .verified-head-badge {
+        background: #1e3a5f;
+        color: #60a5fa;
+        border-color: #1e3a5f;
+      }
+      [data-theme="dark"] .verified-expand-btn {
+        background: #1e293b;
+        border-color: #334155;
+        color: #94a3b8;
+      }
+      [data-theme="dark"] .verified-fade {
+        background: linear-gradient(to bottom, transparent, #0f172a);
+      }
+      [data-theme="dark"] .sd-text {
+        color: #94a3b8;
+      }
+      [data-theme="dark"] .sd-line {
+        background: #334155;
+      }
+      [data-theme="dark"] .list-title {
+        color: #e2e8f0;
+      }
+      [data-theme="dark"] .list-line {
+        background: #334155;
+      }
+      [data-theme="dark"] .footer {
+        background: #1e293b;
+        border-top-color: #334155;
+      }
+      [data-theme="dark"] .f-copy {
+        color: #94a3b8;
+      }
+      [data-theme="dark"] nav {
+        background: #1e293b;
+      }
+      [data-theme="dark"] .dropdown a:last-child {
+        border-bottom: none;
+      }
+      [data-theme="dark"] #search::placeholder {
+        color: #64748b;
+      }
+      [data-theme="dark"] .filter-option {
+        color: #e2e8f0;
+        border-bottom-color: #334155;
+      }
+      [data-theme="dark"] .filter-option:hover,
+      [data-theme="dark"] .filter-option.active {
+        background: #1e3a5f;
+        color: #60a5fa;
+      }
+      [data-theme="dark"] .suggestions div {
+        color: #e2e8f0;
+        border-bottom-color: #334155;
+      }
+      [data-theme="dark"] .suggestions div:hover {
+        background: #1e3a5f;
+        color: #60a5fa;
+      }
+      [data-theme="dark"] .hero::after {
+        background: linear-gradient(to bottom, transparent, #0f172a);
+      }
+      
+      body {
+        background: var(--bg);
+        font-family: "Poppins", sans-serif;
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      /* ── NAVBAR ── */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 68px;
+        background: rgba(255, 255, 255, 0.94);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 32px;
+        border-bottom: 1px solid var(--border);
+        z-index: 1001;
+        transition: box-shadow 0.4s;
+      }
+      .navbar.scrolled {
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+      }
+      .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 2px;
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .logo:hover {
+        opacity: 0.75;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+      }
+      nav a {
+        margin-left: 28px;
+        text-decoration: none;
+        color: var(--muted);
+        font-weight: 500;
+        font-size: 14px;
+        position: relative;
+        transition: color 0.2s;
+      }
+      nav a::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--blue);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+      }
+      nav a:hover {
+        color: var(--blue);
+      }
+      nav a:hover::after,
+      nav a.active::after {
+        width: 100%;
+      }
+      nav a.active {
+        color: var(--blue);
+      }
+      .menu-btn {
+        display: none;
+        font-size: 22px;
+        cursor: pointer;
+        color: var(--text);
+        background: none;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+      .menu-btn:hover {
+        background: var(--blue-light);
+      }
+
+      /* ── CATEGORY DROPDOWN ── */
+      .category {
+        position: relative;
+        margin-left: 28px;
+        padding-bottom: 12px;
+        margin-bottom: -12px;
+      }
+      .category-btn {
+        color: var(--muted);
+        font-weight: 500;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: "Poppins", sans-serif;
+        transition: color 0.2s;
+        padding: 0;
+      }
+      .category-btn:hover {
+        color: var(--blue);
+      }
+      .dropdown {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-8px);
+        background: var(--white);
+        border-radius: 14px;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.13);
+        display: flex;
+        flex-direction: column;
+        min-width: 175px;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.28s ease,
+          transform 0.28s ease;
+        border: 1px solid var(--border);
+        padding-top: 10px;
+      }
+      .dropdown.show {
+        max-height: 400px;
+        opacity: 1;
+        pointer-events: all;
+        transform: translateX(-50%) translateY(0);
+      }
+      .dropdown a {
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--border);
+        text-decoration: none;
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 500;
+        margin-left: 0 !important;
+        transition:
+          background 0.15s,
+          color 0.15s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+      }
+      .dropdown a::after {
+        display: none !important;
+      }
+      .dropdown a:last-child {
+        border-bottom: none;
+      }
+      .dropdown a:hover {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+
+      /* Desktop hover */
+      @media (min-width: 769px) {
+        .category:hover .dropdown {
+          max-height: 400px;
+          opacity: 1;
+          pointer-events: all;
+          transform: translateX(-50%) translateY(0);
+        }
+        .category:hover .category-btn {
+          color: var(--blue);
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 0 18px;
+        }
+        nav {
+          position: absolute;
+          top: 68px;
+          left: 0;
+          width: 100%;
+          background: var(--white);
+          flex-direction: column;
+          display: flex;
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transition:
+            max-height 0.5s ease,
+            opacity 0.3s ease;
+          border-bottom: 1px solid var(--border);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+        nav.active {
+          max-height: 800px;
+          opacity: 1;
+        }
+        nav a {
+          padding: 14px 20px;
+          border-top: 1px solid var(--border);
+          width: 100%;
+          text-align: left;
+          margin-left: 0 !important;
+          display: block;
+        }
+        nav a::after {
+          display: none !important;
+        }
+        .category {
+          width: 100%;
+          margin-left: 0;
+          padding-bottom: 0;
+          margin-bottom: 0;
+        }
+        .category-btn {
+          padding: 14px 20px;
+          border-top: 1px solid var(--border);
+          width: 100%;
+          text-align: left;
+          display: block;
+        }
+        .dropdown {
+          position: static;
+          box-shadow: none;
+          border: none;
+          border-radius: 0;
+          transform: none !important;
+          left: 0;
+          padding-top: 0;
+          background: transparent;
+          transition:
+            max-height 0.35s ease,
+            opacity 0.28s ease;
+        }
+        .dropdown.show {
+          max-height: 600px;
+          opacity: 1;
+          pointer-events: all;
+          transform: none !important;
+        }
+        .dropdown a {
+          padding: 12px 20px 12px 44px;
+          background: #f1f5f9;
+          border-bottom: 1px solid var(--border);
+          border-radius: 0;
+        }
+        .dropdown a:last-child {
+          border-bottom: none;
+        }
+        .menu-btn {
+          display: flex;
+        }
+      }
+
+      /* ── HERO ── */
+      .hero {
+        margin-top: 68px;
+        min-height: 50vh;
+        background: url("shahkot.jpg") center/cover no-repeat;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        padding: 60px 24px 100px;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          155deg,
+          rgba(8, 16, 54, 0.9) 0%,
+          rgba(20, 50, 140, 0.76) 48%,
+          rgba(37, 99, 235, 0.52) 100%
+        );
+        z-index: 1;
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        opacity: 0.055;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px);
+        background-size: 56px 56px;
+      }
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.07),
+          transparent 70%
+        );
+        z-index: 2;
+        pointer-events: none;
+      }
+      .orb1 {
+        width: 520px;
+        height: 520px;
+        top: -170px;
+        right: -130px;
+        animation: orbF 12s ease-in-out infinite;
+      }
+      .orb2 {
+        width: 340px;
+        height: 340px;
+        bottom: -110px;
+        left: -90px;
+        animation: orbF 9s ease-in-out infinite reverse;
+      }
+      @keyframes orbF {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-26px) scale(1.04);
+        }
+      }
+      .hero-content {
+        position: relative;
+        z-index: 3;
+        max-width: 680px;
+        animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      @keyframes hReveal {
+        from {
+          opacity: 0;
+          transform: translateY(28px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 7px 18px;
+        border-radius: 40px;
+        margin-bottom: 22px;
+        backdrop-filter: blur(10px);
+        animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both;
+      }
+      .badge-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #93c5fd;
+        animation: bdot 2s ease-in-out infinite;
+      }
+      @keyframes bdot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.35;
+          transform: scale(0.75);
+        }
+      }
+      .hero-content h1 {
+        font-family: "Playfair Display", serif;
+        font-size: 52px;
+        line-height: 1.1;
+        color: #fff;
+        margin-bottom: 16px;
+        letter-spacing: 0.3px;
+        animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+      }
+      .hero-content h1 em {
+        font-style: italic;
+        color: #93c5fd;
+      }
+      .hero-content p {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.88;
+        max-width: 500px;
+        margin: 0 auto;
+        animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 90px;
+        background: linear-gradient(to bottom, transparent, var(--bg));
+        z-index: 4;
+      }
+      @media (max-width: 640px) {
+        .hero-content h1 {
+          font-size: 28px;
+        }
+        .hero {
+          min-height: 42vh;
+        }
+      }
+
+      /* ── LAYOUT ── */
+      .page-wrap {
+        max-width: 1060px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      @media (max-width: 640px) {
+        .page-wrap {
+          padding: 0 14px;
+        }
+      }
+
+      /* ── SECTION HEAD ── */
+      .section-head {
+        text-align: center;
+        padding: 58px 0 32px;
+      }
+      .sec-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: var(--blue-light);
+        color: var(--blue);
+        font-size: 11px;
+        font-weight: 600;
+        padding: 5px 16px;
+        border-radius: 40px;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .section-head h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(22px, 4vw, 32px);
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 10px;
+      }
+      .section-head h2 em {
+        font-style: italic;
+        color: var(--blue);
+      }
+      .section-head p {
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 520px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+      .sec-line {
+        width: 56px;
+        height: 3px;
+        background: var(--blue);
+        border-radius: 2px;
+        margin: 16px auto 0;
+      }
+      @media (max-width: 640px) {
+        .section-head {
+          padding: 40px 0 22px;
+        }
+      }
+
+      /* ── VIDEO CARD ── */
+      .video-outer {
+        padding-bottom: 64px;
+      }
+      .video-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: var(--card-shadow-hover);
+        overflow: hidden;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .vc-topbar {
+        background: var(--blue-deep);
+        padding: 14px 20px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .vc-dot {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+      }
+      .vc-dot.r {
+        background: #ff5f57;
+      }
+      .vc-dot.y {
+        background: #febc2e;
+      }
+      .vc-dot.g {
+        background: #28c840;
+      }
+      .vc-title {
+        margin-left: 10px;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .video-wrap {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%;
+        background: #000;
+      }
+      .video-wrap video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background: #000;
+      }
+      .vid-fallback {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #0f172a 0%, var(--blue-deep) 100%);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+      }
+      .vplay {
+        width: 68px;
+        height: 68px;
+        background: var(--blue);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        border: none;
+      }
+      .vplay:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(37, 99, 235, 0.18);
+      }
+      .vplay svg {
+        margin-left: 4px;
+      }
+      .vp-title {
+        font-size: 15px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .vp-sub {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .vc-footer {
+        padding: 16px 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--border);
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .vcf-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .vcf-ico {
+        width: 36px;
+        height: 36px;
+        background: var(--blue-light);
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        font-size: 17px;
+      }
+      .vcf-info strong {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        display: block;
+      }
+      .vcf-info span {
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .vcf-badge {
+        background: #dcfce7;
+        color: #166534;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 5px 14px;
+        border-radius: 40px;
+        border: 1px solid #bbf7d0;
+      }
+
+      /* ── TIMELINE ── */
+      .install-outer {
+        padding-bottom: 64px;
+      }
+      .timeline {
+        max-width: 700px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 27px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--border);
+      }
+      .tl-step {
+        display: flex;
+        gap: 22px;
+        margin-bottom: 20px;
+        position: relative;
+      }
+      .tl-num {
+        width: 54px;
+        height: 54px;
+        background: var(--blue);
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        flex-shrink: 0;
+        border: 3px solid var(--bg);
+        position: relative;
+        z-index: 1;
+      }
+      .tl-body {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 18px 20px;
+        flex: 1;
+        box-shadow: var(--card-shadow);
+        margin-top: 6px;
+        transition:
+          box-shadow 0.25s,
+          border-color 0.25s;
+      }
+      .tl-body:hover {
+        box-shadow: var(--card-shadow-hover);
+        border-color: rgba(37, 99, 235, 0.15);
+      }
+      .tl-body h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .tl-body p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .tl-tip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--gold-bg);
+        color: #7a5c10;
+        font-size: 11px;
+        font-weight: 500;
+        padding: 5px 12px;
+        border-radius: 8px;
+        margin-top: 10px;
+        border: 1px solid rgba(184, 148, 42, 0.25);
+      }
+      @media (max-width: 640px) {
+        .timeline::before {
+          left: 23px;
+        }
+        .tl-num {
+          width: 46px;
+          height: 46px;
+          font-size: 16px;
+        }
+      }
+
+      /* ── CARD GRID (3-col) ── */
+      .feat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+        padding-bottom: 64px;
+      }
+      .feat-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        padding: 24px 20px;
+        box-shadow: var(--card-shadow);
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1),
+          box-shadow 0.3s;
+        animation: cardIn 0.42s ease both;
+      }
+      @keyframes cardIn {
+        from {
+          opacity: 0;
+          transform: translateY(18px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .feat-card::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue), #60a5fa);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1);
+      }
+      .feat-card:hover {
+        transform: translateY(-8px) scale(1.012);
+        box-shadow: var(--card-shadow-hover);
+      }
+      .feat-card:hover::before {
+        transform: scaleX(1);
+      }
+      .feat-num {
+        width: 36px;
+        height: 36px;
+        background: var(--blue-light);
+        color: var(--blue);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 15px;
+        margin-bottom: 14px;
+      }
+      .feat-card h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 8px;
+        line-height: 1.45;
+      }
+      .feat-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      /* ── SEARCH DEMO ── */
+      .search-demo-outer {
+        padding-bottom: 64px;
+      }
+      .sdemo-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: var(--card-shadow-hover);
+        overflow: hidden;
+        max-width: 820px;
+        margin: 0 auto 28px;
+      }
+      .sd-hdr {
+        background: var(--blue-deep);
+        padding: 14px 22px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .sd-hdr span {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 13px;
+        margin-left: 10px;
+      }
+      .sd-body {
+        padding: 24px 22px;
+      }
+      .mock-sb {
+        display: flex;
+        align-items: center;
+        background: var(--bg);
+        border: 1.5px solid rgba(37, 99, 235, 0.22);
+        border-radius: 60px;
+        padding: 10px 18px;
+        gap: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 20px rgba(37, 99, 235, 0.09);
+      }
+      .mock-sb .ms-ico {
+        color: var(--blue);
+        display: flex;
+        align-items: center;
+      }
+      .mock-sb .ms-txt {
+        font-size: 13px;
+        color: #94a3b8;
+        flex: 1;
+      }
+      .mock-sb .ms-flt {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 40px;
+        padding: 6px 14px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--muted);
+      }
+      .mock-sb .ms-x {
+        color: #94a3b8;
+        font-size: 18px;
+      }
+      .stips {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+        gap: 12px;
+      }
+      .stip {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 15px;
+      }
+      .stip-ico {
+        font-size: 22px;
+        margin-bottom: 7px;
+      }
+      .stip h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .stip p {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* ── FILTER CARDS ── */
+      .filter-outer {
+        padding-bottom: 64px;
+      }
+      .filter-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(228px, 1fr));
+        gap: 16px;
+      }
+      .filt-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        padding: 20px 18px;
+        box-shadow: var(--card-shadow);
+        transition:
+          box-shadow 0.25s,
+          border-color 0.25s;
+        animation: cardIn 0.42s ease both;
+      }
+      .filt-card:hover {
+        box-shadow: var(--card-shadow-hover);
+        border-color: rgba(37, 99, 235, 0.14);
+      }
+      .filt-top {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .filt-ico {
+        width: 42px;
+        height: 42px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+        flex-shrink: 0;
+      }
+      .fi-bl {
+        background: var(--blue-light);
+      }
+      .fi-in {
+        background: #eef2ff;
+      }
+      .fi-gr {
+        background: #dcfce7;
+      }
+      .fi-am {
+        background: #fef9c3;
+      }
+      .filt-card h3 {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .filt-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .filt-ex {
+        margin-top: 12px;
+        background: var(--bg);
+        border-radius: 8px;
+        padding: 9px 12px;
+        font-size: 12px;
+        color: var(--blue);
+        font-weight: 500;
+        border: 1px dashed var(--border);
+      }
+      .filt-ex span {
+        color: var(--muted);
+        font-weight: 400;
+        display: block;
+        margin-top: 3px;
+      }
+
+      /* ── CATEGORY SECTION ── */
+      .cat-outer {
+        padding-bottom: 64px;
+      }
+      .cat-showcase {
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: var(--card-shadow-hover);
+        overflow: hidden;
+        max-width: 840px;
+        margin: 0 auto;
+      }
+      .cs-hdr {
+        background: var(--blue-deep);
+        padding: 20px 24px;
+      }
+      .cs-hdr h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: #fff;
+      }
+      .cs-hdr p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        margin-top: 5px;
+      }
+      .cs-chips {
+        padding: 20px 18px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .cs-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 9px 18px;
+        border-radius: 40px;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1.5px solid var(--border);
+        background: var(--white);
+        color: var(--muted);
+        transition: all 0.25s cubic-bezier(0.34, 1.3, 0.64, 1);
+        user-select: none;
+      }
+      .cs-chip:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+        background: var(--blue-light);
+        transform: translateY(-2px);
+      }
+      .cs-chip.sam {
+        background: var(--blue);
+        color: #fff;
+        border-color: var(--blue);
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.32);
+        transform: translateY(-2px);
+      }
+      .cs-note {
+        padding: 0 18px 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .cs-note-ico {
+        width: 32px;
+        height: 32px;
+        background: var(--blue-light);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        flex-shrink: 0;
+      }
+      .cs-note p {
+        font-size: 12.5px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      /* ── SHOP DETAIL MOCKUP ── */
+      .shopdetail-outer {
+        padding-bottom: 64px;
+      }
+      .phone-frame {
+        max-width: 420px;
+        margin: 0 auto;
+        background: var(--white);
+        border-radius: 24px;
+        border: 1.5px solid var(--border);
+        box-shadow: var(--card-shadow-hover);
+        overflow: hidden;
+      }
+      .pf-topbar {
+        background: var(--blue-deep);
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .pf-back {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .pf-title {
+        flex: 1;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .pf-share {
+        font-size: 18px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .pf-banner {
+        background: linear-gradient(135deg, var(--blue-deep), var(--blue));
+        height: 88px;
+        position: relative;
+      }
+      .pf-avatar {
+        position: absolute;
+        bottom: -24px;
+        left: 18px;
+        width: 64px;
+        height: 64px;
+        background: var(--white);
+        border-radius: 14px;
+        border: 3px solid var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        box-shadow: var(--card-shadow);
+      }
+      .pf-body {
+        padding: 32px 18px 18px;
+      }
+      .pf-name {
+        font-family: "Playfair Display", serif;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .pf-sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 2px 0 10px;
+      }
+      .pf-tags {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .pf-tag {
+        font-size: 10.5px;
+        font-weight: 600;
+        padding: 3px 10px;
+        border-radius: 20px;
+      }
+      .pt-bl {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+      .pt-gr {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .pt-am {
+        background: #fef9c3;
+        color: #854d0e;
+      }
+      .pf-rows {
+        margin-bottom: 16px;
+      }
+      .pf-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 11px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .pf-row:last-child {
+        border-bottom: none;
+      }
+      .pf-row-ico {
+        width: 34px;
+        height: 34px;
+        background: var(--bg);
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        flex-shrink: 0;
+      }
+      .pf-row-txt {
+        flex: 1;
+      }
+      .pf-lbl {
+        font-size: 10px;
+        color: var(--muted);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .pf-val {
+        font-size: 13px;
+        color: var(--text);
+        font-weight: 500;
+        margin-top: 2px;
+        line-height: 1.4;
+      }
+      .pf-badge {
+        background: #dcfce7;
+        color: #166534;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 3px 9px;
+        border-radius: 10px;
+        align-self: center;
+        flex-shrink: 0;
+      }
+      .pf-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+      .pf-btn {
+        border: none;
+        border-radius: 40px;
+        padding: 11px 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-family: "Poppins", sans-serif;
+        transition:
+          opacity 0.15s,
+          transform 0.15s;
+      }
+      .pf-btn:hover {
+        opacity: 0.85;
+        transform: translateY(-1px);
+      }
+      .pb-call {
+        background: var(--blue);
+        color: #fff;
+      }
+      .pb-wa {
+        background: #25d366;
+        color: #fff;
+      }
+      .pb-map {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+      .pb-share {
+        background: var(--bg);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+      .detail-explain {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 28px;
+      }
+      .de-item {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 16px 18px;
+        box-shadow: var(--card-shadow);
+        transition: box-shadow 0.25s;
+      }
+      .de-item:hover {
+        box-shadow: var(--card-shadow-hover);
+      }
+      .de-item h4 {
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .de-item p {
+        font-size: 12.5px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      @media (max-width: 640px) {
+        .phone-frame {
+          max-width: 100%;
+        }
+      }
+
+      /* ── TRUST BAND ── */
+      .trust-outer {
+        padding-bottom: 64px;
+      }
+      .trust-band {
+        background: linear-gradient(135deg, var(--blue-deep) 0%, #1d4ed8 100%);
+        border-radius: var(--radius);
+        padding: 40px 36px;
+        display: flex;
+        gap: 28px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .trust-ico {
+        font-size: 52px;
+        flex-shrink: 0;
+      }
+      .trust-body h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .trust-body p {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.8;
+        margin-bottom: 14px;
+      }
+      .trust-pts {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .tp {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .tp-dot {
+        width: 22px;
+        height: 22px;
+        background: rgba(255, 255, 255, 0.18);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      @media (max-width: 640px) {
+        .trust-band {
+          padding: 24px 20px;
+        }
+      }
+
+      /* ── FAQ ── */
+      .faq-outer {
+        padding-bottom: 64px;
+      }
+      .faq-list {
+        max-width: 740px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+      }
+      .faq-q {
+        padding: 16px 20px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        user-select: none;
+        transition: background 0.15s;
+      }
+      .faq-q:hover {
+        background: var(--blue-light);
+      }
+      .faq-arr {
+        font-size: 18px;
+        color: var(--blue);
+        transition: transform 0.25s;
+        flex-shrink: 0;
+      }
+      .faq-item.open .faq-arr {
+        transform: rotate(180deg);
+      }
+      .faq-a {
+        display: none;
+        padding: 14px 20px 16px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+        border-top: 1px solid var(--border);
+      }
+      .faq-item.open .faq-a {
+        display: block;
+      }
+
+      /* ── CTA ── */
+      .cta-outer {
+        padding-bottom: 72px;
+      }
+      .cta-box {
+        background: linear-gradient(
+          135deg,
+          var(--blue-deep) 0%,
+          var(--blue) 100%
+        );
+        border-radius: var(--radius);
+        padding: 52px 36px;
+        text-align: center;
+        color: #fff;
+        max-width: 720px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-box::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 220px;
+        height: 220px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 50%;
+      }
+      .cta-box h3 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(20px, 4vw, 28px);
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .cta-box h3 em {
+        font-style: italic;
+        color: #93c5fd;
+      }
+      .cta-box p {
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: 28px;
+        line-height: 1.7;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .cta-btn-p {
+        background: #fff;
+        color: var(--blue);
+        border: none;
+        border-radius: 40px;
+        padding: 14px 34px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .cta-btn-p:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+      .cta-btn-g {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 40px;
+        padding: 14px 34px;
+        font-size: 14px;
+        font-weight: 500;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        transition: background 0.2s;
+      }
+      .cta-btn-g:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      @media (max-width: 640px) {
+        .cta-box {
+          padding: 36px 20px;
+        }
+      }
+
+      /* ── FOOTER ── */
+      .footer {
+        background: var(--white);
+        border-top: 1px solid var(--border);
+        padding: 40px 24px 28px;
+        text-align: center;
+      }
+      .f-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 2px;
+        margin-bottom: 16px;
+      }
+      .f-nav {
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .f-nav a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .f-nav a:hover {
+        color: var(--blue);
+      }
+      .f-copy {
+        font-size: 12px;
+        color: #94a3b8;
+      }
+      .f-copy a {
+        color: var(--blue);
+        text-decoration: none;
+      }
+
+      /* ── SCROLL TOP ── */
+      .totop {
+        position: fixed;
+        bottom: 28px;
+        right: 24px;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4);
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(14px) scale(0.88);
+        transition:
+          opacity 0.3s,
+          transform 0.3s;
+        z-index: 990;
+      }
+      .totop.show {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0) scale(1);
+      }
+      .totop:hover {
+        background: var(--blue-dark);
+        transform: translateY(-3px) scale(1.06) !important;
+      }
+
+      /* ── PRICING ── */
+      .pricing-outer {
+        padding-bottom: 64px;
+      }
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+        max-width: 1060px;
+        margin: 0 auto;
+      }
+      .price-card {
+        border-radius: var(--radius);
+        padding: 30px 26px;
+        position: relative;
+        overflow: hidden;
+        animation: cardIn 0.42s ease both;
+      }
+      .price-card.free {
+        background: var(--white);
+        border: 2px solid var(--border);
+        box-shadow: var(--card-shadow);
+      }
+      .price-card.paid {
+        background: linear-gradient(
+          135deg,
+          var(--blue-deep) 0%,
+          var(--blue) 100%
+        );
+        border: 2px solid var(--blue);
+        box-shadow: 0 8px 32px rgba(37, 99, 235, 0.28);
+      }
+      /* ── PREMIUM PLAN ── */
+      .price-card.premium {
+        background: linear-gradient(135deg, #7a5c10 0%, #b8942a 50%, #d4af37 100%);
+        border: 2px solid #d4af37;
+        box-shadow: 0 8px 32px rgba(184, 148, 42, 0.35);
+      }
+      .price-card.premium .price-badge-top {
+        background: rgba(255, 255, 255, 0.18);
+        color: #fff;
+      }
+      .price-card.premium .price-who {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .price-card.premium .price-amount {
+        color: #fff;
+      }
+      .price-card.premium .price-period {
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .price-card.premium .price-divider {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .price-card.premium .price-feats li {
+        color: rgba(255, 255, 255, 0.92);
+      }
+      .price-card.premium .pfc {
+        background: rgba(255, 255, 255, 0.22);
+        color: #fff;
+      }
+      .paid-corner.gold {
+        background: rgba(255, 255, 255, 0.18);
+        color: #fff;
+      }
+      /* ── END PREMIUM ── */
+      .price-badge-top {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        margin-bottom: 16px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .price-card.free .price-badge-top {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+      .price-card.paid .price-badge-top {
+        background: rgba(255, 255, 255, 0.18);
+        color: #fff;
+      }
+      .price-who {
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+      .price-card.free .price-who {
+        color: var(--muted);
+      }
+      .price-card.paid .price-who {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .price-amount {
+        font-family: "Playfair Display", serif;
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .price-card.free .price-amount {
+        color: var(--blue);
+      }
+      .price-card.paid .price-amount {
+        color: #fff;
+      }
+      .price-period {
+        font-size: 12px;
+        margin-bottom: 20px;
+      }
+      .price-card.free .price-period {
+        color: var(--muted);
+      }
+      .price-card.paid .price-period {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .price-divider {
+        height: 1px;
+        margin-bottom: 18px;
+      }
+      .price-card.free .price-divider {
+        background: var(--border);
+      }
+      .price-card.paid .price-divider {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .price-feats {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .price-feats li {
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .price-card.free .price-feats li {
+        color: var(--text);
+      }
+      .price-card.paid .price-feats li {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .pfc {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .price-card.free .pfc {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+      .price-card.paid .pfc {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+      }
+      .paid-corner {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 10px;
+        border-radius: 20px;
+        letter-spacing: 0.5px;
+      }
+
+      /* ── VERIFIED HIGHLIGHT ── */
+      .verified-outer {
+        padding-bottom: 64px;
+      }
+      .verified-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 2px solid var(--blue);
+        box-shadow:
+          0 0 0 6px rgba(37, 99, 235, 0.07),
+          var(--card-shadow-hover);
+        overflow: hidden;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .vc-header {
+        background: linear-gradient(
+          135deg,
+          var(--blue-deep) 0%,
+          var(--blue) 100%
+        );
+        padding: 26px 28px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .vc-badge-hero {
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid rgba(255, 255, 255, 0.35);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 9px 22px;
+        border-radius: 40px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.06);
+        white-space: nowrap;
+      }
+      .vc-header-txt h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 19px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 5px;
+      }
+      .vc-header-txt p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.6;
+      }
+      .vc-body {
+        padding: 24px 28px;
+      }
+      .verified-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+        gap: 13px;
+      }
+      .vg-item {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 15px;
+        transition:
+          box-shadow 0.2s,
+          border-color 0.2s;
+      }
+      .vg-item:hover {
+        box-shadow: var(--card-shadow-hover);
+        border-color: rgba(37, 99, 235, 0.2);
+      }
+      .vg-num {
+        width: 28px;
+        height: 28px;
+        background: var(--blue);
+        color: #fff;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 9px;
+      }
+      .vg-item h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .vg-item p {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      /* ── REGISTER SHOP ── */
+      .register-outer {
+        padding-bottom: 72px;
+      }
+      .register-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 1.5px solid var(--border);
+        box-shadow: var(--card-shadow-hover);
+        overflow: hidden;
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .reg-banner {
+        background: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          var(--blue-deep) 50%,
+          var(--blue) 100%
+        );
+        padding: 38px 32px;
+        position: relative;
+        overflow: hidden;
+      }
+      .reg-banner::before {
+        content: "";
+        position: absolute;
+        top: -60px;
+        right: -60px;
+        width: 280px;
+        height: 280px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 50%;
+      }
+      .reg-banner::after {
+        content: "";
+        position: absolute;
+        bottom: -40px;
+        left: -40px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 50%;
+      }
+      .reg-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 11px;
+        font-weight: 600;
+        padding: 5px 16px;
+        border-radius: 40px;
+        margin-bottom: 16px;
+        position: relative;
+        z-index: 1;
+      }
+      .reg-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #93c5fd;
+        animation: bdot 2s ease-in-out infinite;
+      }
+      .reg-banner h3 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(19px, 3.5vw, 26px);
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+        line-height: 1.25;
+      }
+      .reg-banner h3 em {
+        font-style: italic;
+        color: #93c5fd;
+      }
+      .reg-banner p {
+        font-size: 13.5px;
+        color: rgba(255, 255, 255, 0.72);
+        line-height: 1.75;
+        max-width: 540px;
+        position: relative;
+        z-index: 1;
+      }
+      .reg-body {
+        padding: 28px 32px;
+      }
+      .reg-perks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+        gap: 12px;
+        margin-bottom: 26px;
+      }
+      .reg-perk {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 14px 15px;
+        display: flex;
+        align-items: flex-start;
+        gap: 11px;
+      }
+      .reg-pico {
+        width: 36px;
+        height: 36px;
+        background: var(--blue-light);
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+      }
+      .reg-ptxt h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 2px;
+      }
+      .reg-ptxt p {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .reg-action {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .reg-btn {
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        border-radius: 40px;
+        padding: 14px 32px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .reg-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+      }
+      .reg-btn-wa {
+        background: #25d366;
+        color: #fff;
+        border: none;
+        border-radius: 40px;
+        padding: 14px 28px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        transition: transform 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .reg-btn-wa:hover {
+        transform: translateY(-2px);
+      }
+      .reg-note {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .reg-note-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #22c55e;
+        flex-shrink: 0;
+      }
+      @media (max-width: 640px) {
+        .reg-banner {
+          padding: 24px 20px;
+        }
+        .reg-body {
+          padding: 20px;
+        }
+        .reg-action {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .reg-btn,
+        .reg-btn-wa {
+          justify-content: center;
+        }
+      }
+      /* ── REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(22px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.55s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal.d1 {
+        transition-delay: 0.08s;
+      }
+      .reveal.d2 {
+        transition-delay: 0.16s;
+      }
+      .reveal.d3 {
+        transition-delay: 0.24s;
+      }
+       .theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 20px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.toggle-track {
+  width: 44px;
+  height: 24px;
+  border-radius: 40px;
+  background: #cbd5e1;
+  border: 1.5px solid #94a3b8;
+  position: relative;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+[data-theme="dark"] .toggle-track {
+  background: #2563eb;
+  border-color: #3b82f6;
+}
+
+.toggle-thumb {
+  position: absolute;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+[data-theme="dark"] .toggle-thumb {
+  transform: translateX(20px);
+}
+
+.toggle-label {
+  font-size: 16px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover .toggle-track {
+  border-color: var(--blue);
+}
+
+.theme-toggle:hover .toggle-label {
+  transform: rotate(15deg) scale(1.15);
+}
+
+@media (max-width: 768px) {
+  .theme-toggle {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: auto;
+  }
+  .toggle-label {
+    display: none;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <!-- ===== NAVBAR ===== -->
+    <header class="navbar" id="navbar">
+      <a href="index.html" class="logo">SHAHKOT</a>
+      <button class="menu-btn" id="menuBtn" onclick="toggleMenu()">
+        &#9776;
+      </button>
+      <nav id="nav">
+        <a href="index.html">Home</a>
+        <div class="category">
+          <button class="category-btn" onclick="toggleDropdown()">
+            Categories &#9662;
+          </button>
+          <div class="dropdown" id="dropdown">
+            <a href="index.html?cat=all">&#127978; All</a>
+            <a href="index.html?cat=medical">&#127973; Medical</a>
+            <a href="index.html?cat=electronics">&#128241; Electronics</a>
+            <a href="index.html?cat=grocery">&#128717; Grocery</a>
+            <a href="index.html?cat=clothing">&#128248; Clothing</a>
+            <a href="index.html?cat=education">&#127891; Education</a>
+          </div>
+        </div>
+        <a href="about.html">About</a>
+        <a href="how_to_use.html" class="active">Kaisy Istemal Karein</a>
+        <a href="how_to_use.html#plans">Plan's</a>
+      </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-overlay"></div>
+      <div class="hero-grid"></div>
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>Complete User Guide
+        </div>
+        <h1>Shahkot Directory<br /><em>Istemal Karna Seekhein.</em></h1>
+        <p>
+          App install karne se shop ki poori details dekhne tak — ek mukammal A
+          to Z guide.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION 1 — INSTALL VIDEO
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#128241; Step 1 — Installation</div>
+        <h2>App Install Karne Ka <em>Tarika</em></h2>
+        <p>
+          Yeh video dekh kar apne mobile ya PC par Shahkot Directory bilkul
+          asani se install karein
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="video-outer">
+      <div class="page-wrap">
+        <div class="video-card reveal">
+          <div class="vc-topbar">
+            <div class="vc-dot r"></div>
+            <div class="vc-dot y"></div>
+            <div class="vc-dot g"></div>
+            <span class="vc-title"
+              >&#127916; Shahkot Directory — Install Tutorial</span
+            >
+          </div>
+          <div class="video-wrap">
+            <video id="installVid" controls preload="metadata" playsinline>
+              <source src="Shahkot-Directory-install.mp4" type="video/mp4" />
+            </video>
+            <div class="vid-fallback" id="vidFallback">
+              <button
+                class="vplay"
+                onclick="document.getElementById('installVid').play()"
+              >
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+              <div class="vp-title">Install Tutorial Video</div>
+              <div class="vp-sub">
+                Shahkot-Directory-install.mp4 — same folder mein rakho
+              </div>
+            </div>
+          </div>
+          <div class="vc-footer">
+            <div class="vcf-left">
+              <div class="vcf-ico">&#128241;</div>
+              <div class="vcf-info">
+                <strong>App Install Tutorial</strong>
+              </div>
+            </div>
+            <div class="vcf-badge">&#10003; Latest Version</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION 2 — INSTALL STEPS
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#128295; Step by Step</div>
+        <h2>Install Karne Ke <em>Aasaan Qadam</em></h2>
+        <p>
+          In steps ko follow karein aur seconds mein Shahkot Directory set up ho
+          jaayegi
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="install-outer">
+      <div class="page-wrap">
+        <div class="timeline">
+          <div class="tl-step reveal">
+            <div class="tl-num">1</div>
+            <div class="tl-body">
+              <h3>&#128242; Website Ya Link Browser Mein Kholo</h3>
+              <p>
+                Apne mobile ke browser (Chrome ya Safari) mein Shahkot Directory
+                ka link open karein. Direct search kar sakte hain ya diya gaya
+                link use karein.
+              </p>
+              <div class="tl-tip">
+                &#128161; Chrome browser use karna best hai
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-step reveal">
+            <div class="tl-num">2</div>
+            <div class="tl-body">
+              <h3>&#128228; Share Ya 3-Dots Icon Dabayein</h3>
+              <p>
+                <strong>iOS (iPhone):</strong> Browser mein Share button
+                (&#9633;&#8593;) dabayein. <strong>Android:</strong> Top-right
+                corner mein teen dots (&#8942;) ya menu icon par click karein.
+              </p>
+              <div class="tl-tip">
+                &#128161; iPhone par Safari se karna best hai
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-step reveal">
+            <div class="tl-num">3</div>
+            <div class="tl-body">
+              <h3>&#127968; "Add to Home Screen" Select Karein</h3>
+              <p>
+                Menu mein "Add to Home Screen" ya "Install App" ka option
+                milega. Is par tap karein — app bilkul native app ki tarah
+                install ho jaayegi.
+              </p>
+            </div>
+          </div>
+
+          <div class="tl-step reveal">
+            <div class="tl-num">4</div>
+            <div class="tl-body">
+              <h3>&#10003; Naam Confirm Karke "Add" Dabayein</h3>
+              <p>
+                "Shahkot Directory" naam dikhega — isko confirm karein aur Add
+                dabayein. App aapke home screen par aa jaayegi bilkul normal app
+                ki tarah.
+              </p>
+              <div class="tl-tip">
+                &#127881; App install ho gayi! Ab home screen se directly open
+                karein
+              </div>
+            </div>
+          </div>
+
+          <div class="tl-step reveal">
+            <div class="tl-num">5</div>
+            <div class="tl-body">
+              <h3>&#128187; PC / Desktop Par Install Karna</h3>
+              <p>
+                Chrome mein website open karein &#8594; address bar ke daayein
+                taraf Install icon milega &#8594; click karein &#8594; "Install"
+                dabayein. Desktop shortcut bhi ban jaayega.
+              </p>
+              <div class="tl-tip">
+                &#128161; Yeh PWA hai — bilkul desktop software ki tarah kaam
+                karta hai
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION 3 — SEARCH GUIDE
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#128269; Search</div>
+        <h2>Search Kaise <em>Karein</em></h2>
+        <p>
+          Shahkot ki koi bhi dukaan ya business seconds mein dhundh nikaalein
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="search-demo-outer">
+      <div class="page-wrap">
+        <div class="sdemo-card reveal">
+          <div class="sd-hdr">
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="rgba(255,255,255,0.6)"
+              stroke-width="2.2"
+              viewBox="0 0 24 24"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <span>Search Bar — Yahan Type Karein</span>
+          </div>
+          <div class="sd-body">
+            <div class="mock-sb">
+              <div class="ms-ico">
+                <svg
+                  width="16"
+                  height="16"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </div>
+              <div class="ms-txt">
+                Dukaan ya business ka naam type karein...
+              </div>
+              <div class="ms-flt">All &#9662;</div>
+              <div class="ms-x">&#215;</div>
+            </div>
+            <div class="stips">
+              <div class="stip">
+                <div class="stip-ico">&#127978;</div>
+                <h4>Dukaan Ka Naam</h4>
+                <p>
+                  "Ali Medical" ya sirf "Ali" type karein — results foran aa
+                  jaayenge
+                </p>
+              </div>
+              <div class="stip">
+                <div class="stip-ico">&#127973;</div>
+                <h4>Business Type</h4>
+                <p>
+                  "Medical" ya "Grocery" type karein — us type ki saari shops
+                  list ho jaayengi
+                </p>
+              </div>
+              <div class="stip">
+                <div class="stip-ico">&#128205;</div>
+                <h4>Gali Ya Road</h4>
+                <p>
+                  "Main Bazaar" ya "GT Road" type karein — sirf us area ki
+                  dukaanein aayengi
+                </p>
+              </div>
+              <div class="stip">
+                <div class="stip-ico">&#128100;</div>
+                <h4>Owner Ka Naam</h4>
+                <p>
+                  Dukandaar ka naam type karein — directly us ki shop dhundh lo
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feat-grid">
+          <div class="feat-card reveal">
+            <div class="feat-num">1</div>
+            <h3>&#9000; Kuch Bhi Type Karein</h3>
+            <p>
+              Busniess ka name, category ya address (kuch bhi pata ho). Poora naam yaad
+              nahi toh bhi chalega — Na-mukamal naam se bhi sahi results aate hain.
+            </p>
+          </div>
+          <div class="feat-card reveal d1">
+            <div class="feat-num">2</div>
+            <h3>&#9889; Real-Time Results</h3>
+            <p>
+              Type karte hi results update hote hain — Enter dabane ki zaroorat
+              bilkul nahi. Jo match karta hai woh foran screen par aa jaata hai.
+            </p>
+          </div>
+          <div class="feat-card reveal d2">
+            <div class="feat-num">3</div>
+            <h3>&#128070; Naam Tap Karo — Details Dekhein</h3>
+            <p>
+              Result list mein apni marzi ki shop par click karein — uski
+              poori details wala page khul jaayega instantly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION 4 — SEARCH FILTERS
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#127917; Search Filters</div>
+        <h2>Filter Ka <em>Istemal Karein</em></h2>
+        <p>
+          Search ko aur bhi accurate banaayein — bilkul woh dhundhein jo chahiye
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="filter-outer">
+      <div class="page-wrap">
+        <div class="filter-grid">
+          <div class="filt-card reveal">
+            <div class="filt-top">
+              <div class="filt-ico fi-bl">&#128288;</div>
+              <h3>Shop Name Filter</h3>
+            </div>
+            <p>
+              Sirf shop ke naam se search karein. Agar aapko ek specific dukaan
+              ka naam pata hai toh yeh sabse fast option hai.
+            </p>
+            <div class="filt-ex">
+              &#128288; Example: "Shop Name" select karke "Hassan" type karein
+              <span>&#8594; Sirf "Hassan" naam wali dukaanein dikhein gi</span>
+            </div>
+          </div>
+          <div class="filt-card reveal d1">
+            <div class="filt-top">
+              <div class="filt-ico fi-in">&#128100;</div>
+              <h3>Owner Filter</h3>
+            </div>
+            <p>
+              Dukandaar ke naam se search karein. Agar dukan ky bary main kuch nahi pata or sirf owner ka name pata hy to sirf (owner filter) istemal kerain.
+            </p>
+            <div class="filt-ex">
+              &#128100; Example: "Owner" filter par "Aslam" type karein
+              <span
+                >&#8594; Aslam sahib ki saari dukaanein list ho jaayengi</span
+              >
+            </div>
+          </div>
+          <div class="filt-card reveal d2">
+            <div class="filt-top">
+              <div class="filt-ico fi-gr">&#127991;</div>
+              <h3>Category Filter</h3>
+            </div>
+            <p>
+              Business type ke mutabiq search karein. Medical, Electronics,
+              Clothing — sirf woh category type karein aur filtered results
+              paayein.
+            </p>
+            <div class="filt-ex">
+              &#127973; Example: "Category" select karke "Medical" type karein
+              <span>&#8594; Sirf medical shops list ho jaayengi</span>
+            </div>
+          </div>
+          <div class="filt-card reveal d3">
+            <div class="filt-top">
+              <div class="filt-ico fi-am">&#128739;</div>
+              <h3>Road / Area Filter</h3>
+            </div>
+            <p>
+              Kisi specific gali, road ya mohalle ki dukaanein dhundhin. Apne
+              qareeb ki shops dekhna chahte hain toh yeh filter best hai.
+            </p>
+            <div class="filt-ex">
+              &#128205; Example: "Road" filter par "Main Bazaar" type karein
+              <span>&#8594; Main Bazaar ki saari dukaanein mil jaayengi</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION 5 — CATEGORIES
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#128194; Categories</div>
+        <h2>Category Section Ka <em>Istemal</em></h2>
+        <p>
+          Seedha apni zaroorat ki category select karein — search ki bhi
+          zaroorat nahi
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="cat-outer">
+      <div class="page-wrap">
+        <div class="cat-showcase reveal">
+          <div class="cs-hdr">
+            <h3>Category Chips — Tap Karo, Foran Results Lo</h3>
+            <p>
+              Home page par yeh chips hamesha nazar aati hain — koi bhi ek tap
+              karo aur sirf usi category ki dukaanein dekhein
+            </p>
+          </div>
+          <div class="cs-chips">
+            <div class="cs-chip sam">&#127978; All</div>
+            <div class="cs-chip">&#127973; Medical</div>
+            <div class="cs-chip">&#128241; Electronics</div>
+            <div class="cs-chip">&#128717; Grocery</div>
+            <div class="cs-chip">&#128248; Clothing</div>
+            <div class="cs-chip">&#127891; Education</div>
+          </div>
+          <div class="cs-note">
+            <div class="cs-note-ico">&#128161;</div>
+            <p>
+              Ek category chip tap karte hi search bar saaf ho jaata hai aur
+              sirf us category ki dukaanein list ho jaati hain. "All" tap karo —
+              sab wapas aa jaata hai. Active chip neeli ho jaati hai taake pata
+              chale kaunsa filter on hai.
+            </p>
+          </div>
+        </div>
+
+        <div class="feat-grid" style="margin-top: 22px">
+          <div class="feat-card reveal">
+            <div class="feat-num">1</div>
+            <h3>&#127968; Home Page Kholo</h3>
+            <p>
+              App open karte hi upar search bar ke neeche category chips ka row
+              nazar aata hai — colorful rounded buttons ki shakal mein.
+            </p>
+          </div>
+          <div class="feat-card reveal d1">
+            <div class="feat-num">2</div>
+            <h3>&#128070; Apni Category Tap Karo</h3>
+            <p>
+              Jo type ki dukaan chahiye us chip par tap karein. Example: doctor
+              ya dawai dhundh rahe hain toh "Medical" tap karein.
+            </p>
+          </div>
+          <div class="feat-card reveal d2">
+            <div class="feat-num">3</div>
+            <h3>&#128203; Filtered Results Browse Karein</h3>
+            <p>
+              Ab sirf us category ki dukaanein dikhain gi — naam, status aur
+              button ke sath. Pasand aaye toh tap kar ke poori details dekhein.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION 6 — SHOP DETAIL PAGE
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#127978; Shop Details</div>
+        <h2>Shop Ka <em>Detail Page</em></h2>
+        <p>
+          Kisi bhi shop par "View Details" tap karein — poori genuine
+          information ek jagah milti hai
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="shopdetail-outer">
+      <div class="page-wrap">
+        <div class="phone-frame reveal">
+          <div class="pf-topbar">
+            <span class="pf-back">&#8592; Back</span>
+            <span class="pf-title">Shop Details</span>
+            <span class="pf-share">&#8599;</span>
+          </div>
+          <div class="pf-banner">
+            <div class="pf-avatar">&#127978;</div>
+          </div>
+          <div class="pf-body">
+            <div class="pf-name">Ali General Store</div>
+            <div class="pf-sub">
+              Main Bazaar, Shahkot &middot; General Store
+            </div>
+            <div class="pf-tags">
+              <span class="pf-tag pt-gr">&#128994; Open Now</span>
+              <span class="pf-tag pt-bl">&#11088; 4.8</span>
+              <span class="pf-tag pt-am">&#10003; Verified</span>
+            </div>
+            <div class="pf-rows">
+              <div class="pf-row">
+                <div class="pf-row-ico">&#128248;</div>
+                <div class="pf-row-txt">
+                  <div class="pf-lbl">Latest Photos</div>
+                  <div class="pf-val">
+                    3 real photos — hamari team ne verify karke add ki hain
+                  </div>
+                </div>
+              </div>
+              <div class="pf-row">
+                <div class="pf-row-ico">&#128100;</div>
+                <div class="pf-row-txt">
+                  <div class="pf-lbl">Owner / About</div>
+                  <div class="pf-val">
+                    Real owner photo aur team-verified description
+                  </div>
+                </div>
+              </div>
+              <div class="pf-row">
+                <div class="pf-row-ico">&#128205;</div>
+                <div class="pf-row-txt">
+                  <div class="pf-lbl">Complete Address</div>
+                  <div class="pf-val">
+                    Gali no., mohalla, landmark sab ke sath
+                  </div>
+                </div>
+                <div class="pf-badge">Latest</div>
+              </div>
+              <div class="pf-row">
+                <div class="pf-row-ico">&#9200;</div>
+                <div class="pf-row-txt">
+                  <div class="pf-lbl">Opening / Closing Time</div>
+                  <div class="pf-val">Mon–Sat: 8:00 AM – 10:00 PM</div>
+                </div>
+              </div>
+              <div class="pf-row">
+                <div class="pf-row-ico">&#128506;</div>
+                <div class="pf-row-txt">
+                  <div class="pf-lbl">Google Map Location</div>
+                  <div class="pf-val">
+                    Exact location — ek tap mein navigation shuru
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pf-actions">
+              <button class="pf-btn pb-call">&#128222; Direct Call</button>
+              <button class="pf-btn pb-wa">&#128172; WhatsApp</button>
+              <button class="pf-btn pb-map">&#128506; Google Map</button>
+              <button class="pf-btn pb-share">&#8599; Share</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-explain">
+          <div class="de-item reveal">
+            <h4>&#128248; Latest Photos</h4>
+            <p>
+              Hamari team khud sab business ki photos leti hai — team foran update kar deti hai. Purani ya fake koi
+              image nahi.
+            </p>
+          </div>
+          <div class="de-item reveal d1">
+            <h4>&#128100; Real Owner Info</h4>
+            <p>
+              Owner ki real photo aur genuine description — hamari team ne
+              directly owner se le kar add ki hai. Bilkul authentic information.
+            </p>
+          </div>
+          <div class="de-item reveal d2">
+            <h4>&#128222; Direct Call Button</h4>
+            <p>
+              Number par tap karein — seedha phone call shuru ho jaayegi. Number
+              manually dial karne ki zaroorat bilkul nahi.
+            </p>
+          </div>
+          <div class="de-item reveal">
+            <h4>&#128172; WhatsApp Button</h4>
+            <p>
+              WhatsApp icon tap karein — business owner se directly chat shuru
+              ho jaayegi. Sabse fast tarika contact karne ka.
+            </p>
+          </div>
+          <div class="de-item reveal d1">
+            <h4>&#128506; Google Maps</h4>
+            <p>
+              Map button dabayein — Google Maps app khulegi aur dukaan ki exact
+              GPS location ke sath navigation shuru ho jaayega.
+            </p>
+          </div>
+          <div class="de-item reveal d2">
+            <h4>&#9200; Timing — Open/Closed</h4>
+            <p>
+              Opening aur closing time clearly likha hota hai. Agar dukaan abhi
+              khuli hai toh "Open Now" badge bhi dikhai deta hai. Dukan band hony sy 30min pehly "Closing soon" ka badge lag jata hai.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION 7 — TRUST
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#10003; Yaqeen Karein</div>
+        <h2>Yeh Information <em>Latest Kyun Hai?</em></h2>
+        <p>
+          Hamari team khud sary busniness ki complete details jamma karti hai or update karti hai. Agar busniness owner chahy to details ko or modify kiya jata hai. Jis sy ap tak bilkul sahi information pohanchti hai.
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="trust-outer">
+      <div class="page-wrap">
+        <div class="trust-band reveal">
+          <div class="trust-ico">&#128260;</div>
+          <div class="trust-body">
+            <h3>
+              Owner Details Share Karta Hai — Hamari Team Foran Update Kar Deti
+              Hai!
+            </h3>
+            <p>
+              Jab bhi koi business owner apni nai photos, updated number, ya koi
+              bhi change share karta hai, hamari dedicated team bilkul usi waqt
+              Shahkot Directory mein update kar deti hai. Isliye jo bhi aapko
+              nazar aata hai woh hamesha fresh aur reliable hota hai.
+            </p>
+            <div class="trust-pts">
+              <div class="tp">
+                <div class="tp-dot">&#10003;</div>
+                Photos latest hain — team khud click karti hai or usi time update karti hai.
+              </div>
+              <div class="tp">
+                <div class="tp-dot">&#10003;</div>
+                Number aur WhatsApp verified — hamari team ne confirm kiya hua hai.
+              </div>
+              <div class="tp">
+                <div class="tp-dot">&#10003;</div>
+                Address aur Google Maps location bilkul accurate hai.
+              </div>
+              <div class="tp">
+                <div class="tp-dot">&#10003;</div>
+                Timing real — owner se confirm karke team ne add ki hai.
+              </div>
+              <div class="tp">
+                <div class="tp-dot">&#10003;</div>
+                About section mein owner ki real photo aur genuine info hai.
+              </div>
+              <div class="tp">
+                <div class="tp-dot">&#10003;</div>
+                Verified badge wali shops ki details bilkul latest or authentic hain.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION 8 — FAQ
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#10067; FAQ</div>
+        <h2>Aksar Pooche Jaane Wale <em>Sawal</em></h2>
+        <p>Koi confusion ho toh yahan zaroor jawab milega</p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="faq-outer">
+      <div class="page-wrap">
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <div class="faq-q">
+              Kya Shahkot Directory bilkul free hai?<span class="faq-arr"
+                >&#9662;</span
+              >
+            </div>
+            <div class="faq-a">
+              Haan, Shahkot Directory 100% free hai. Search karein, shop ki
+              details dekhein, call karein, WhatsApp karein — sab kuch bilkul
+              muft. Koi hidden charges nahi hain.
+            </div>
+          </div>
+          <div class="faq-item reveal d1">
+            <div class="faq-q">
+              Agar dukaan band ho jaaye toh information galat nahi ho
+              jaati?<span class="faq-arr">&#9662;</span>
+            </div>
+            <div class="faq-a">
+              Business owners hamari team ko changes share karte hain — aur team
+              foran directory update kar deti hai. Isliye information hamesha
+              latest rehti hai. Verified badge wali shops specially monitored
+              hain.
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <div class="faq-q">
+              Search karne par koi result nahi aa raha — kya karein?<span
+                class="faq-arr"
+                >&#9662;</span
+              >
+            </div>
+            <div class="faq-a">
+              Chand cheezein try karein: (1) Spelling check karein, (2) Filter
+              "All" par set karein, (3) Chhota ya simpler keyword use karein,
+              (4) Category chip se browse karein — direct search se zyada
+              results milte hain. Agar phir bhi nahi mila toh woh dukaan abhi
+              registered nahi hai.
+            </div>
+          </div>
+          <div class="faq-item reveal d1">
+            <div class="faq-q">
+              Apni dukaan Shahkot Directory mein add karwana chahein toh?<span
+                class="faq-arr"
+                >&#9662;</span
+              >
+            </div>
+            <div class="faq-a">
+              Bilkul! Agar aap Shahkot main kisi bhi business ky owner/manager hain toh apni
+              shop list karwa sakte hain. Yeh ek affordable monthly subscription
+              par available hai. Humse directly WhatsApp ya contact page se
+              rabta karein — hamari team aapki poori madad karegi.
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <div class="faq-q">
+              Google Maps button tap kiya par map nahi khula — kya masla
+              hai?<span class="faq-arr">&#9662;</span>
+            </div>
+            <div class="faq-a">
+              Google Maps app aapke phone par installed honi chahiye. Agar nahi
+              hai toh browser mein Google Maps khulega. Agar woh bhi nahi khula
+              toh internet connection check karein. Kabhi kabhi pehli baar
+              permission maangta hai — "Allow" dabayein.
+            </div>
+          </div>
+          <div class="faq-item reveal d1">
+            <div class="faq-q">
+              "Verified" badge kya hai or jin par nahi hy wo shops?<span class="faq-arr"
+                >&#9662;</span
+              >
+            </div>
+            <div class="faq-a">
+              Verified badge wali shops ko hamri team zyada monitored karti hai. Is main owner daily updates karwa sakta hai jis sy latest information ap tak pohanchti hai.
+              <br><br>
+              Jin par verified ka badge nahi hy unki bhi details bilkul correct hoti hain magar yeh monthly bases par update hoti hain.
+            </div>
+          </div>
+          <div class="faq-item reveal d1">
+            <div class="faq-q">
+              Free Tip!<span class="faq-arr"
+                >&#9662;</span
+              >
+            </div>
+            <div class="faq-a">
+              Ap jo bhi dukan, busniess, resturent etc search karain to jany sy pehly us busniess ky contact/whatsapp number par lazmi rabta karain. Takee ap ghar bethy hi apny kaam ky mutalik us busniess ki kuch details ly lain. Or apka fazool main chakkar na lagy.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION — FREE FOR USERS / PAID FOR BUSINESS
+================================================= -->
+    <div class="page-wrap" id="plans">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#128176; Pricing</div>
+        <h2>Users Ke Liye <em>Bilkul Free!</em></h2>
+        <p>
+          Shahkot Directory browse karna aur contact karna hamesha free hai —
+          business owners ke liye special listing plans available hain
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="pricing-outer">
+      <div class="page-wrap">
+        <div class="pricing-grid">
+
+          <!-- FREE PLAN -->
+          <div class="price-card free reveal">
+            <div class="price-badge-top">&#128100; For Users</div>
+            <div class="price-who">App use karne wale</div>
+            <div class="price-amount">Free</div>
+            <div class="price-period">koi charges nahi</div>
+            <div class="price-divider"></div>
+            <ul class="price-feats">
+              <li><span class="pfc">&#10003;</span>Shops search karein</li>
+              <li><span class="pfc">&#10003;</span>Complete details dekhein</li>
+              <li><span class="pfc">&#10003;</span>Direct call karein</li>
+              <li><span class="pfc">&#10003;</span>WhatsApp karo</li>
+              <li><span class="pfc">&#10003;</span>Google Maps navigation</li>
+              <li><span class="pfc">&#10003;</span>Categories browse karein</li>
+            </ul>
+          </div>
+
+          <!-- BUSINESS PLAN -->
+          <div class="price-card paid reveal d1">
+            <div class="paid-corner">&#11088; Business Plan</div>
+            <div class="price-badge-top">&#127978; For Business Owners</div>
+            <div class="price-who">Apni dukaan list karwayein</div>
+            <div class="price-amount">Monthly</div>
+            <div class="price-period">Affordable subscription — details ke liye contact karein</div>
+            <div class="price-divider"></div>
+            <ul class="price-feats">
+              <li><span class="pfc">&#10003;</span>Directory mein listing</li>
+              <li><span class="pfc">&#10003;</span>Photos, timing, address add</li>
+              <li><span class="pfc">&#10003;</span>Call &amp; WhatsApp button</li>
+              <li><span class="pfc">&#10003;</span>Google Maps location</li>
+              <li><span class="pfc">&#10003;</span>Monthly updates</li>
+              <li><span class="pfc">&#10003;</span>Customer Support</li>
+            </ul>
+          </div>
+
+          <!-- PREMIUM PLAN -->
+          <div class="price-card premium reveal d2">
+            <div class="paid-corner gold">&#9733; Premium Plan</div>
+            <div class="price-badge-top">&#10024; Premium Business</div>
+            <div class="price-who">Maximum visibility chahiye</div>
+            <div class="price-amount">Premium</div>
+            <div class="price-period">Best value — details ke liye contact karein</div>
+            <div class="price-divider"></div>
+            <ul class="price-feats">
+              <li><span class="pfc">&#10003;</span>Directory mein listing</li>
+              <li><span class="pfc">&#10003;</span>Photos, timing, address add</li>
+              <li><span class="pfc">&#10003;</span>Call &amp; WhatsApp button</li>
+              <li><span class="pfc">&#10003;</span>Google Maps location</li>
+              <li><span class="pfc">&#10003;</span>Daily updates</li>
+              <li><span class="pfc">&#10003;</span>Social media links (Facebook, Instagram, etc.)</li>
+              <li><span class="pfc">&#10003;</span>&#10003; Verified badge highlight</li>
+              <li><span class="pfc">&#10003;</span>Priority customer support</li>
+              <li><span class="pfc">&#10003;</span>Owner real photo &amp; bio</li>
+              <li><span class="pfc">&#10003;</span>Top search results mein priority</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION — VERIFIED BADGE HIGHLIGHT
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#9989; Verified Badge</div>
+        <h2>Verified Badge Wali Shops — <em>100% Trusted</em></h2>
+        <p>
+          Yeh badge sirf unhi shops ko milta hai jo apny busniess ko propar time dety hain. Or jo details hamary sath share ki hoi hain bilkul usi ky mutabik apny busniess ko follow karty hain.
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="verified-outer">
+      <div class="page-wrap">
+        <div class="verified-card reveal">
+          <div class="vc-header">
+            <div class="vc-badge-hero">
+              <span>&#10003;</span> Verified Business
+            </div>
+            <div class="vc-header-txt">
+              <h3>Yeh Badge Kyun Khaas Hai?</h3>
+              <p>
+                Verified badge ek guarantee hai — is shop ki saari details
+                hamari team ne personally check karke confirm ki hain. Number,
+                address, photos — sab authentic.
+              </p>
+            </div>
+          </div>
+          <div class="vc-body">
+            <div class="verified-grid">
+              <div class="vg-item">
+                <div class="vg-num">1</div>
+                <h4>&#128222; Number Verified</h4>
+                <p>
+                  Hamari team ne directly call karke number confirm kiya hua hai
+                  — koi wrong number nahi milega.
+                </p>
+              </div>
+              <div class="vg-item">
+                <div class="vg-num">2</div>
+                <h4>&#128205; Location Checked</h4>
+                <p>
+                  Address aur Google Maps pin hamari team ne physically ya
+                  digitally verify kiya hua hai.
+                </p>
+              </div>
+              <div class="vg-item">
+                <div class="vg-num">3</div>
+                <h4>&#128248; Photos Authentic</h4>
+                <p>
+                  Shown photos actual business ki hain — koi copied ya
+                  misleading image nahi hai.
+                </p>
+              </div>
+              <div class="vg-item">
+                <div class="vg-num">4</div>
+                <h4>&#128100; Owner Confirmed</h4>
+                <p>
+                  Business owner ki identity hamari team ne confirm ki hai —
+                  real person, real business.
+                </p>
+              </div>
+              <div class="vg-item">
+                <div class="vg-num">5</div>
+                <h4>&#9200; Timing Accurate</h4>
+                <p>
+                  Opening aur closing time owner se directly le kar add ki gayi
+                  hai — reliable information.
+                </p>
+              </div>
+              <div class="vg-item">
+                <div class="vg-num">6</div>
+                <h4>&#128260; Regularly Updated</h4>
+                <p>
+                  Verified shops ki information regular check hoti hai — changes
+                  hone par foran update ho jaati hai.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     SECTION — REGISTER YOUR SHOP
+================================================= -->
+    <div class="page-wrap">
+      <div class="section-head reveal">
+        <div class="sec-tag">&#10133; Business Owner?</div>
+        <h2>Apni Shop <em>Abhi Add Karwayein!</em></h2>
+        <p>
+          Agar aapki dukaan Shahkot Directory mein nahi hai — toh aaj hi list
+          karwayein
+        </p>
+        <div class="sec-line"></div>
+      </div>
+    </div>
+
+    <section class="register-outer">
+      <div class="page-wrap">
+        <div class="register-card reveal">
+          <div class="reg-banner">
+            <div class="reg-tag">
+              <span class="reg-dot"></span>Abhi Moqa Lein
+            </div>
+            <h3>
+              Kya Aapki Shop Shahkot Directory<br />Mein <em>Add Nahi Hai?</em>
+            </h3>
+            <p>
+              Rozana hazaaron log Shahkot Directory par apni zaroorat ki dukaan
+              dhundh rahe hain. Apni business yahan list karwayein aur untak
+              bilkul directly pahunchein — bina kisi marketing ke.
+            </p>
+          </div>
+          <div class="reg-body">
+            <div class="reg-perks">
+              <div class="reg-perk">
+                <div class="reg-pico">&#128269;</div>
+                <div class="reg-ptxt">
+                  <h4>Customers Khud Dhundhein Ge</h4>
+                  <p>
+                    Jo log aapki category dhundhte hain unhe aapki dukaan foran
+                    nazar aayegi
+                  </p>
+                </div>
+              </div>
+              <div class="reg-perk">
+                <div class="reg-pico">&#10003;</div>
+                <div class="reg-ptxt">
+                  <h4>Verified Badge Milega</h4>
+                  <p>
+                    Team verification ke baad trusted badge lag jaata hai —
+                    customers ka trust badhta hai
+                  </p>
+                </div>
+              </div>
+              <div class="reg-perk">
+                <div class="reg-pico">&#128222;</div>
+                <div class="reg-ptxt">
+                  <h4>Direct Call &amp; WhatsApp</h4>
+                  <p>
+                    Customers seedha aapko call ya WhatsApp kar sakte hain — ek
+                    tap mein
+                  </p>
+                </div>
+              </div>
+              <div class="reg-perk">
+                <div class="reg-pico">&#128506;</div>
+                <div class="reg-ptxt">
+                  <h4>Google Maps Location</h4>
+                  <p>
+                    Customers navigation se seedha aapki dukaan tak aa sakte
+                    hain
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="reg-action">
+              <button
+                class="reg-btn"
+                onclick="window.location.href = 'contact.html'"
+              >
+                &#127978; Apni Shop Add Karwayein
+              </button>
+              <button
+                class="reg-btn-wa"
+                onclick="window.open('https://wa.me/923000000000', '_blank')"
+              >
+                &#128172; WhatsApp Karein
+              </button>
+            </div>
+            <div class="reg-note">
+              <span class="reg-note-dot"></span>
+              Listing affordable monthly subscription par available hai —
+              details ke liye abhi contact karein
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================
+     CTA
+================================================= -->
+    <section class="cta-outer">
+      <div class="page-wrap">
+        <div class="cta-box reveal">
+          <h3>Ab <em>Shahkot Directory</em> Istemal Karein!</h3>
+          <p>
+            Shahkot ki koi bhi dukaan seconds mein dhundhin — bilkul free,
+            hamesha updated
+          </p>
+          <div class="cta-btns">
+            <button
+              class="cta-btn-p"
+              onclick="window.location.href = 'index.html'"
+            >
+              &#128269; Shops Browse Karein
+            </button>
+            <button
+              class="cta-btn-g"
+              onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+            >
+              &#128241; Install Guide Dobara Dekhein
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+      <div class="f-logo">SHAHKOT</div>
+      <nav class="f-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="how_to_use.html#plans">Plan's</a>
+      </nav>
+      <p class="f-copy">
+        &copy; 2026 <a href="index.html">Shahkot Directory</a> &mdash; Designed
+        &amp; Developed by Badar-Zaman
+      </p>
+    </footer>
+
+    <button
+      class="totop"
+      id="toTop"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      &#8593;
+    </button>
+
+    <script>
+      /* ==================== DARK MODE APPLY ==================== */
+(function () {
+  const saved = localStorage.getItem("sk_theme");
+  if (saved === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+})();
+      /* ── NAVBAR ── */
+      function toggleMenu() {
+        var nav = document.getElementById("nav"),
+          btn = document.getElementById("menuBtn");
+        nav.classList.toggle("active");
+        btn.innerHTML = nav.classList.contains("active")
+          ? "&#10006;"
+          : "&#9776;";
+      }
+
+      /* ── CATEGORY DROPDOWN ── */
+      function toggleDropdown() {
+        document.getElementById("dropdown").classList.toggle("show");
+      }
+      document.addEventListener("click", function (e) {
+        var dd = document.getElementById("dropdown");
+        var btn = document.querySelector(".category-btn");
+        if (btn && !btn.contains(e.target) && !dd.contains(e.target)) {
+          dd.classList.remove("show");
+        }
+      });
+      window.addEventListener("scroll", function () {
+        document
+          .getElementById("navbar")
+          .classList.toggle("scrolled", window.scrollY > 10);
+        document
+          .getElementById("toTop")
+          .classList.toggle("show", window.scrollY > 500);
+      });
+
+      /* ── FAQ ── */
+      document.querySelectorAll(".faq-q").forEach(function (q) {
+        q.addEventListener("click", function () {
+          var item = q.parentElement,
+            wasOpen = item.classList.contains("open");
+          document.querySelectorAll(".faq-item").forEach(function (i) {
+            i.classList.remove("open");
+          });
+          if (!wasOpen) item.classList.add("open");
+        });
+      });
+
+      /* ── SCROLL REVEAL ── */
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        obs.observe(el);
+      });
+
+      /* ── VIDEO FALLBACK ── */
+      var vid = document.getElementById("installVid");
+      var fb = document.getElementById("vidFallback");
+      if (vid) {
+        vid.addEventListener("error", function () {
+          vid.style.display = "none";
+          fb.style.display = "flex";
+        });
+        setTimeout(function () {
+          if (vid.readyState === 0 && vid.networkState === 3) {
+            vid.style.display = "none";
+            fb.style.display = "flex";
+          }
+        }, 1500);
+      }
+
+      /* ── CATEGORY CHIP DEMO ── */
+      document.querySelectorAll(".cs-chip").forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          document.querySelectorAll(".cs-chip").forEach(function (c) {
+            c.classList.remove("sam");
+          });
+          this.classList.add("sam");
+        });
+      });
+      /* ==================== SERVICE WORKER REGISTER (OFFLINE SUPPORT) ==================== */
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then(() => console.log("Shahkot Directory: offline mode ready ✅"))
+          .catch((err) => console.log("Service worker failed:", err));
+      });
+    }
+    </script>
+  </body>
+</html>

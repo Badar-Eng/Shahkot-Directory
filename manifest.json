@@ -1,0 +1,21 @@
+{
+  "name": "Shahkot Directory",
+  "short_name": "Shahkot",
+  "description": "Shahkot ki tamam shops aur services ek jagah",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "images/skt-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/skt-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
