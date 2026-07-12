@@ -1,4 +1,4 @@
-const CACHE_NAME = "shahkot-cache-v5";
+const CACHE_NAME = "shahkot-cache-v6";
 
 const APP_SHELL = [
   "/",
