@@ -1,4 +1,4 @@
-const CACHE_NAME = "shahkot-cache-v4"; // v3 se v4 — images + debug fix
+const CACHE_NAME = "shahkot-cache-v5";
 
 const APP_SHELL = [
   "/",
@@ -25,16 +25,18 @@ self.addEventListener("install", (event) => {
         }
       }
 
-      // Step 2: shops.json padho aur HAR shop ki image bhi cache karo
+      // Step 2: shops.json padho aur HAR shop ki HAR image cache karo
       try {
         const res = await fetch("/shops.json");
         const shops = await res.json();
         for (const shop of shops) {
-          if (shop.cardImage) {
+          const imgs = [shop.cardImage, shop.hero, shop.ownerImage, ...(shop.gallery || [])];
+          for (const img of imgs) {
+            if (!img) continue;
             try {
-              await cache.add(shop.cardImage);
+              await cache.add(img);
             } catch (err) {
-              console.error("❌ Image FAIL:", shop.cardImage);
+              console.error("❌ Image FAIL:", img);
             }
           }
         }
@@ -80,17 +82,19 @@ self.addEventListener("fetch", (event) => {
     );
     return;
   }
-
   // shops.json aur images: Network First (fresh mile to update, warna cache se)
-  if (requestURL.href.includes("shops.json") || requestURL.href.includes("/images/") || requestURL.href.includes(".jpg") || requestURL.href.includes(".jpeg") || requestURL.href.includes(".png")) {
+  if (requestURL.href.includes("shops.json") || requestURL.href.includes("/images/") || requestURL.pathname.endsWith(".jpg") || requestURL.pathname.endsWith(".jpeg") || requestURL.pathname.endsWith(".png")) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
           const resClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, resClone));
+          // query-string wale timestamp ko ignore karke, sirf clean path pe cache karo
+          caches.open(CACHE_NAME).then((cache) => cache.put(requestURL.pathname, resClone));
           return response;
         })
-        .catch(() => caches.match(event.request))
+        .catch(() =>
+          caches.match(requestURL.pathname, { ignoreSearch: true })
+        )
     );
     return;
   }

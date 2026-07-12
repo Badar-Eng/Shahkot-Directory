@@ -836,7 +836,7 @@
       z-index: 4;
     }
 
-   @media (max-width: 640px) {
+    @media (max-width: 640px) {
       .hero {
         min-height: 26vh;
         padding: 22px 20px 32px;
@@ -1160,7 +1160,7 @@
       flex: 1;
     }
 
-   .rec-del {
+    .rec-del {
       margin-left: auto;
       padding-left: 10px;
       font-size: 16px;
@@ -2190,53 +2190,56 @@
 
   <div class="sticky-header-group">
 
-  <!-- ===== DAROOD PAK ===== -->
-  <div class="darood-band">
-    <div class="darood-arabic">
-      اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ
+    <!-- ===== DAROOD PAK ===== -->
+    <div class="darood-band">
+      <div class="darood-arabic">
+        اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ
+      </div>
+      <div class="darood-line"><span></span></div>
     </div>
-    <div class="darood-line"><span></span></div>
-  </div>
 
-  <!-- ===== SEARCH ===== -->
-  <div class="search-section" id="searchSec">
-    <div class="search-wrap">
-      <div class="search-box">
-        <span class="s-icon">
-          <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
-        </span>
-        <input type="text" id="search" placeholder="Search shops, categories..." autocomplete="off" />
-        <div class="search-filter">
-          <button class="filter-btn" id="filterBtn" onclick="toggleFilterDropdown()">
-            <span id="filterLabel">All</span>
-            <span class="filter-arrow">▾</span>
-          </button>
-          <div class="filter-dropdown" id="filterDropdown">
-            <div class="filter-option active" data-value="all" onclick="selectFilter('all', 'All')">
-              All
-            </div>
-            <div class="filter-option" data-value="name" onclick="selectFilter('name', 'Shop Name')">
-              Shop Name
-            </div>
-            <div class="filter-option" data-value="owner" onclick="selectFilter('owner', 'Owner')">
-              Owner
-            </div>
-            <div class="filter-option" data-value="category" onclick="selectFilter('category', 'Category')">
-              Category
-            </div>
-            <!-- <div class="filter-option" data-value="road" onclick="selectFilter('road', 'Road')">
+    <!-- ===== SEARCH ===== -->
+    <div class="search-section" id="searchSec">
+      <div class="search-wrap">
+        <div class="search-box">
+          <span class="s-icon">
+            <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </span>
+          <input type="text" id="search" placeholder="Search shops, categories..." autocomplete="off" />
+          <div class="search-filter">
+            <button class="filter-btn" id="filterBtn" onclick="toggleFilterDropdown()">
+              <span id="filterLabel">All</span>
+              <span class="filter-arrow">▾</span>
+            </button>
+            <div class="filter-dropdown" id="filterDropdown">
+              <div class="filter-option active" data-value="all" onclick="selectFilter('all', 'All')">
+                All
+              </div>
+              <div class="filter-option" data-value="name" onclick="selectFilter('name', 'Shop Name')">
+                Shop Name
+              </div>
+              <div class="filter-option" data-value="owner" onclick="selectFilter('owner', 'Owner')">
+                Owner
+              </div>
+              <div class="filter-option" data-value="category" onclick="selectFilter('category', 'Category')">
+                Category
+              </div>
+              <!-- <div class="filter-option" data-value="road" onclick="selectFilter('road', 'Road')">
               Road
             </div> -->
+              <div class="filter-option" data-value="nearby" onclick="selectFilter('nearby', 'Nearby')">
+                📍 Nearby
+              </div>
+            </div>
           </div>
+          <span class="s-clear" id="sClear" onclick="clearSearch()">×</span>
         </div>
-        <span class="s-clear" id="sClear" onclick="clearSearch()">×</span>
+        <div class="suggestions" id="suggestions"></div>
       </div>
-      <div class="suggestions" id="suggestions"></div>
     </div>
-  </div>
 
   </div>
 
@@ -2259,6 +2262,15 @@
     </div>
     <div class="chip" data-cat="education" onclick="filterCat('education')">
       Education
+    </div>
+    <div class="chip" data-cat="education" onclick="filterCat('resturent')">
+      Resturant's
+    </div>
+    <div class="chip" data-cat="education" onclick="filterCat('mobile')">
+      Mobile's & Laptop
+    </div>
+    <div class="chip" data-cat="education" onclick="filterCat('docotr')">
+      Doctor's
     </div>
   </div>
 
@@ -2665,7 +2677,7 @@
         const h = document.getElementById("scrollHint");
         if (h) h.remove();
       }
-     const stickyGroup = document.querySelector(".sticky-header-group");
+      const stickyGroup = document.querySelector(".sticky-header-group");
       const isStuck = stickyGroup.getBoundingClientRect().top <= 68;
       document.querySelector(".darood-band").classList.toggle("stuck", isStuck);
       document.getElementById("searchSec").classList.toggle("stuck", isStuck);
@@ -2693,17 +2705,17 @@
         btn = document.querySelector(".category-btn");
       if (btn && !btn.contains(e.target) && !dd.contains(e.target))
         dd.classList.remove("show");
-    }); 
+    });
 
     /* ==================== DATA ==================== */
     let allShops = [],
       activeCat = "all";
     fetch("shops.json")
-  .then((r) => r.json())
-  .then((data) => {
-    // Hidden shops (billing panel se hide ki hui) live site pe nahi dikhengi
-    allShops = data.filter((s) => !s.hidden);
-    const params = new URLSearchParams(window.location.search);
+      .then((r) => r.json())
+      .then((data) => {
+        // Hidden shops (billing panel se hide ki hui) live site pe nahi dikhengi
+        allShops = data.filter((s) => !s.hidden);
+        const params = new URLSearchParams(window.location.search);
         const cat = params.get("cat");
         if (cat) filterCat(cat);
         else render(data);
@@ -3001,7 +3013,7 @@
     const inp = document.getElementById("search"),
       sug = document.getElementById("suggestions");
 
-   function saveRecent(term) {
+    function saveRecent(term) {
       const t = term.trim();
       if (!t) return;
       recents = recents.filter((r) => r.toLowerCase() !== t.toLowerCase());
@@ -3094,7 +3106,7 @@
         lbl.textContent = "Recent searches";
         sug.appendChild(lbl);
         recents
-          recents
+        recents
           .slice(0, 5)
           .forEach((item) => {
             const d = document.createElement("div");
@@ -3157,7 +3169,7 @@
       });
       sug.style.display = "block";
     }
-    
+
     let searchDebounce;
 
     inp.addEventListener("focus", function () {
