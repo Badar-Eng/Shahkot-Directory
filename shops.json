@@ -130,7 +130,14 @@
     "timing": "08:00AM - 06:00 PM",
     "address": "Nankana Road near Govt. Elementry School No.3, Shahkot",
 
-    "map": "https://www.google.com/maps?q=Furqan+Mughal+Autos+Shahkot&output=embed"
+    "map": "https://www.google.com/maps?q=Furqan+Mughal+Autos+Shahkot&output=embed",
+
+     "banner": {
+      "active": true,
+      "position": 1,
+      "image": "/images/Mughal Autos/hero.webp",
+      "title": "Trusted Bike Workshop - Mughal Auto"
+    }
   },
      {
     "id": 453,
@@ -155,7 +162,13 @@
     "timing": "10:00AM - 07:00 PM",
     "address": "Anar gali No.2 near hera matching center, Shahkot",
 
-    "map": "https://www.google.com/maps?q=Decent+Baby+Shoe's+Shahkot&output=embed"
+    "map": "https://www.google.com/maps?q=Decent+Baby+Shoe's+Shahkot&output=embed",
+     "banner": {
+      "active": true,
+      "position": 2,
+      "image": "/images/Decent Baby Shoe's/hero.webp",
+      "title": "Trusted Lady's shos shop - Anar Gali"
+    }
   },
        {
     "id": 1981,

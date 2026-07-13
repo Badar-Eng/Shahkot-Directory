@@ -856,6 +856,98 @@
         font-size: 12px;
       }
     }
+    /* ==================== BANNER SLIDER ==================== */
+    .banner-slider {
+      position: relative;
+      width: 100%;
+      height: 140px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .banner-slider::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 36px;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    @media (min-width: 640px) {
+      .banner-slider {
+        height: 200px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .banner-slider {
+        max-width: 1100px;
+        margin: 14px auto 0;
+        height: 260px;
+        border-radius: 16px;
+      }
+    }
+
+    .banner-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .banner-slide {
+      flex: 0 0 100%;
+      height: 100%;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .banner-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .banner-caption {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      padding: 14px 18px;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .banner-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+
+    .banner-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .banner-dot.active {
+      background: #fff;
+      width: 20px;
+      border-radius: 4px;
+    }
 
     /* ==================== DAROOD BAND ==================== */
     .darood-band {
@@ -1228,7 +1320,7 @@
 
     .chip:hover {
       border-color: var(--blue);
-      color: white;
+      color: rgb(0, 0, 0);
       background: var(--blue-light);
       transform: translateY(-2px);
     }
@@ -2198,6 +2290,12 @@
         Pharmacies, Schools, Electronics, Clothing aur bahut kuch — sab ek jagah, bilkul FREE.
       </p>
     </div>
+</section>
+
+  <!-- ===== BANNER SLIDER ===== -->
+  <section class="banner-slider" id="bannerSlider" style="display:none">
+    <div class="banner-track" id="bannerTrack"></div>
+    <div class="banner-dots" id="bannerDots"></div>
   </section>
 
   <div class="sticky-header-group">
@@ -2719,6 +2817,117 @@
         dd.classList.remove("show");
     });
 
+/* ==================== BANNER SLIDER ==================== */
+    let bannerIndex = 0, bannerSyncTimer = null, bannersData = [], bannerPausedUntil = 0, bannerDragged = false;
+    const BANNER_INTERVAL = 3000;
+
+    function buildBannerSlider(shops) {
+      bannersData = shops
+        .filter((s) => s.banner && s.banner.active !== false)
+        .sort((a, b) => (a.banner.position || 0) - (b.banner.position || 0));
+      if (!bannersData.length) return;
+
+      const section = document.getElementById("bannerSlider");
+      const track = document.getElementById("bannerTrack");
+      const dots = document.getElementById("bannerDots");
+      section.style.display = "block";
+      track.innerHTML = "";
+      dots.innerHTML = "";
+
+      bannersData.forEach((shop, i) => {
+        const b = shop.banner;
+        const slide = document.createElement("div");
+        slide.className = "banner-slide";
+        slide.innerHTML = `<img src="${b.image}" alt="${b.title || shop.name}" loading="lazy">${b.title ? `<div class="banner-caption">${b.title}</div>` : ""}`;
+        slide.onclick = () => {
+          if (bannerDragged) return;
+          sessionStorage.setItem("sk_scrollY", window.scrollY);
+          window.location.href = `details.html?id=${shop.id}`;
+        };
+        track.appendChild(slide);
+
+        if (bannersData.length > 1) {
+          const dot = document.createElement("div");
+          dot.className = "banner-dot" + (i === 0 ? " active" : "");
+          dot.onclick = (e) => {
+            e.stopPropagation();
+            goToBanner(i, false);
+          };
+          dots.appendChild(dot);
+        }
+      });
+
+      if (bannersData.length > 1) {
+        bannerIndex = currentSyncedIndex();
+        track.style.transition = "none";
+        track.style.transform = `translateX(-${bannerIndex * 100}%)`;
+        document.querySelectorAll(".banner-dot").forEach((d, idx) => {
+          d.classList.toggle("active", idx === bannerIndex);
+        });
+        requestAnimationFrame(() => { track.style.transition = ""; });
+        setupBannerSwipe(section);
+        startBannerAuto();
+      }
+    }
+
+    function currentSyncedIndex() {
+      return Math.floor(Date.now() / BANNER_INTERVAL) % bannersData.length;
+    }
+
+    function goToBanner(i, isAuto) {
+      bannerIndex = ((i % bannersData.length) + bannersData.length) % bannersData.length;
+      const track = document.getElementById("bannerTrack");
+      track.style.transform = `translateX(-${bannerIndex * 100}%)`;
+      document.querySelectorAll(".banner-dot").forEach((d, idx) => {
+        d.classList.toggle("active", idx === bannerIndex);
+      });
+      if (!isAuto) bannerPausedUntil = Date.now() + 4000;
+    }
+
+    function startBannerAuto() {
+      clearInterval(bannerSyncTimer);
+      bannerSyncTimer = setInterval(() => {
+        if (Date.now() < bannerPausedUntil) return;
+        const idx = currentSyncedIndex();
+        if (idx !== bannerIndex) goToBanner(idx, true);
+      }, 500);
+    }
+
+    function setupBannerSwipe(section) {
+      let startX = 0, startY = 0, dragging = false;
+
+      const onStart = (x, y) => {
+        startX = x; startY = y; dragging = true; bannerDragged = false;
+      };
+      const onEnd = (x, y) => {
+        if (!dragging) return;
+        dragging = false;
+        const diffX = x - startX, diffY = y - startY;
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+          bannerDragged = true;
+          if (diffX < 0) goToBanner(bannerIndex + 1, false);
+          else goToBanner(bannerIndex - 1, false);
+        }
+      };
+
+      section.addEventListener("touchstart", (e) => {
+        onStart(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+      section.addEventListener("touchend", (e) => {
+        onEnd(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
+      });
+
+      section.addEventListener("mousedown", (e) => {
+        onStart(e.clientX, e.clientY);
+      });
+      section.addEventListener("mouseup", (e) => {
+        onEnd(e.clientX, e.clientY);
+      });
+      section.addEventListener("mouseleave", () => {
+        dragging = false;
+      });
+    }
+    
     /* ==================== DATA ==================== */
     let allShops = [],
       activeCat = "all";
@@ -2727,6 +2936,7 @@
       .then((data) => {
         // Hidden shops (billing panel se hide ki hui) live site pe nahi dikhengi
         allShops = data.filter((s) => !s.hidden);
+        buildBannerSlider(allShops);
         const params = new URLSearchParams(window.location.search);
         const cat = params.get("cat");
         if (cat) filterCat(cat);
