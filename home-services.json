@@ -1,0 +1,21 @@
+[
+  {
+    "id": "svc-001",
+    "name": "Muhammad Aslam - Electrician",
+    "ownerName": "",
+    "category": "electrician",
+    "cardImage": "images/services/aslam-electrician.jpg",
+    "hero": "images/services/aslam-hero.jpg",
+    "about": "**12 saal ka tajurba** rakhtay hain electrical work mein.||House wiring, AC/fan installation, short circuit repair — sab kuch guarantee ke saath.",
+    "gallery": ["images/services/aslam-work1.jpg", "images/services/aslam-work2.jpg"],
+    "timing": "08:00 AM - 10:00 PM",
+    "verified": "ok",
+    "hidden": false,
+    "phone": "03001234567",
+    "whatsapp": "03001234567",
+    "address": "Railway Road, Shahkot",
+    "map": "https://maps.google.com/maps?q=Railway+Road+Shahkot&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    "details": "House wiring, AC/fan installation, short circuit repair.",
+    "keywords": "electrician bijli wiring switch board"
+  }
+]

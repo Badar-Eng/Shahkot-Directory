@@ -16,11 +16,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Shahkot ki shops ki complete details dekhein. Contact, address, timing aur images ek hi page par." />
-  <meta name="keywords" content="Shahkot shops, shop details Shahkot, Shahkot market, shops in Shahkot" />
+    content="Shahkot ke home service professionals ki complete details dekhein. Contact, timing aur work gallery ek hi page par." />
+  <meta name="keywords" content="Shahkot electrician, Shahkot plumber, home services Shahkot, Shahkot professionals" />
   <meta name="author" content="Badar - Shahkot Directory" />
   <meta name="robots" content="index, follow" />
-  <title>Shop Details | Shahkot</title>
+  <title>Service Details | Shahkot</title>
 
   <link rel="icon" href="shahkot.jpg" type="image/x-icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -247,11 +247,6 @@
     [data-theme="dark"] .cbox span a[href^="mailto:"],
     [data-theme="dark"] .cbox span a[href^="https://mail.google.com"] {
       color: #e2e8f0;
-    }
-
-    [data-theme="dark"] .svc-card {
-      background: #1e293b;
-      border-color: #334155;
     }
 
     body {
@@ -763,122 +758,6 @@
       .gcard img {
         height: 180px;
       }
-    }
-
-    /* ==================== LINKED HOME SERVICES ==================== */
-    .linked-services-outer {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
-
-    @media (max-width: 600px) {
-      .linked-services-outer {
-        padding: 0 14px;
-      }
-    }
-
-    .linked-services-scroll {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding-bottom: 10px;
-    }
-
-    .linked-services-scroll::-webkit-scrollbar {
-      height: 3px;
-    }
-
-    .linked-services-scroll::-webkit-scrollbar-track {
-      background: var(--border);
-      border-radius: 2px;
-    }
-
-    .linked-services-scroll::-webkit-scrollbar-thumb {
-      background: var(--blue);
-      border-radius: 2px;
-    }
-
-    .svc-card {
-      flex: 0 0 240px;
-      scroll-snap-align: start;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 14px;
-      text-decoration: none;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-      transition:
-        transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1),
-        box-shadow 0.3s,
-        border-color 0.3s;
-    }
-
-    .svc-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 14px 34px rgba(37, 99, 235, 0.15);
-      border-color: rgba(37, 99, 235, 0.25);
-    }
-
-    .svc-img {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 2px solid var(--blue-mid);
-    }
-
-    .svc-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .svc-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .svc-info h4 {
-      font-size: 13.5px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 3px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .svc-cat {
-      font-size: 11px;
-      color: var(--blue);
-      font-weight: 600;
-      text-transform: capitalize;
-      background: var(--blue-light);
-      padding: 2px 9px;
-      border-radius: 20px;
-      display: inline-block;
-    }
-
-    .svc-arrow {
-      font-size: 16px;
-      color: var(--muted);
-      flex-shrink: 0;
-      transition:
-        transform 0.25s,
-        color 0.25s;
-    }
-
-    .svc-card:hover .svc-arrow {
-      transform: translateX(3px);
-      color: var(--blue);
     }
 
     /* ==================== ABOUT ==================== */
@@ -1519,7 +1398,7 @@
         </div>
       </div>
       <a href="about.html">About</a>
-      <a href="how_to_use.html">Kaisy istemal karein</a>
+      <a href="services.html">Services</a>
     </nav>
   </header>
 
@@ -1545,14 +1424,6 @@
       <div class="gcard"><img src="ahmed2.jpg" alt="" /></div>
       <div class="gcard"><img src="shahkot.jpg" alt="" /></div>
     </div>
-  </div>
-
-  <!-- LINKED HOME SERVICES -->
-  <div class="linked-services-outer reveal" id="linkedServicesOuter" style="display: none">
-    <div class="sec-head">
-      <h2>Home Services Available</h2>
-    </div>
-    <div class="linked-services-scroll" id="linkedServicesScroll"></div>
   </div>
 
   <!-- ABOUT -->
@@ -1601,7 +1472,7 @@
     <nav class="f-nav">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="how_to_use.html">Services</a>
+      <a href="services.html">Services</a>
     </nav>
     <p class="f-copy">
       &copy; 2025 <a href="index.html">Shahkot Directory</a> — Designed &
@@ -1802,61 +1673,20 @@
       return h * 60 + parseInt(m);
     }
 
-    /* LINKED HOME SERVICES */
-    function renderLinkedServices(ids) {
-      const outer = document.getElementById("linkedServicesOuter");
-      if (!ids || !ids.length) {
-        outer.style.display = "none";
-        return;
-      }
-      fetch("../home-services.json")
-        .then((r) => r.json())
-        .then((services) => {
-          const matched = services.filter(
-            (s) => ids.includes(s.id) && !s.hidden,
-          );
-          if (!matched.length) {
-            outer.style.display = "none";
-            return;
-          }
-          outer.style.display = "block";
-          const scroll = document.getElementById("linkedServicesScroll");
-          scroll.innerHTML = "";
-          matched.forEach((svc) => {
-            const a = document.createElement("a");
-            a.href = `service-details.html?id=${svc.id}`;
-            a.className = "svc-card";
-            a.innerHTML = `
-              <div class="svc-img"><img src="${svc.cardImage}" alt="${svc.name}" loading="lazy"></div>
-              <div class="svc-info">
-                <h4>${svc.name}</h4>
-                <span class="svc-cat">${svc.category}</span>
-              </div>
-              <span class="svc-arrow">&#8594;</span>`;
-            scroll.appendChild(a);
-          });
-        })
-        .catch((err) => {
-          console.log("Linked services load failed:", err);
-          outer.style.display = "none";
-        });
-    }
-
     /* DATA LOAD */
     document.addEventListener("DOMContentLoaded", () => {
       const id = new URLSearchParams(window.location.search).get("id");
 
-      fetch("../shops.json")
+      fetch("../home-services.json")
         .then((r) => r.json())
         .then((data) => {
           const shop = data.find((s) => s.id == id);
           if (!shop) {
-            document.body.innerHTML = `<div style="text-align:center;margin-top:120px;font-family:Poppins,sans-serif;"><h2 style="color:#64748b;">No shop found</h2></div>`;
+            document.body.innerHTML = `<div style="text-align:center;margin-top:120px;font-family:Poppins,sans-serif;"><h2 style="color:#64748b;">No service found</h2></div>`;
             return;
           }
 
-          document.title = shop.name + " | Shahkot";
-          const favicon = document.querySelector("link[rel='icon']");
+          document.title = shop.name + " | Shahkot";          const favicon = document.querySelector("link[rel='icon']");
           if (favicon)
             favicon.href = shop.favicon || shop.cardImage || shop.hero;
 
@@ -1914,9 +1744,6 @@
           } else {
             document.querySelector(".gallery-outer").style.display = "none";
           }
-
-          // Linked Home Services
-          renderLinkedServices(shop.linkedServices);
 
           // Contact
           showOpenBadge(shop.timing);

@@ -669,7 +669,7 @@
     /* ==================== HERO ==================== */
     .hero {
       margin-top: 68px;
-      min-height: 30vh;
+      min-height: auto;
       background: url("shahkot.jpg") center/cover no-repeat;
       position: relative;
       display: flex;
@@ -678,7 +678,7 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
-      padding: 28px 24px 40px;
+      padding: 14px 20px 20px;
     }
 
     .hero-overlay {
@@ -780,7 +780,7 @@
       text-transform: uppercase;
       padding: 5px 14px;
       border-radius: 40px;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       backdrop-filter: blur(10px);
       animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.06s both;
     }
@@ -809,10 +809,10 @@
 
     .hero-content h1 {
       font-family: "Playfair Display", serif;
-      font-size: 32px;
+      font-size: 22px;
       line-height: 1.15;
       color: #fff;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       letter-spacing: 0.3px;
       animation: hReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
     }
@@ -823,7 +823,7 @@
     }
 
     .hero-content p {
-      font-size: 13px;
+      font-size: 11.5px;
       color: rgba(255, 255, 255, 0.75);
       line-height: 1.5;
       max-width: 420px;
@@ -837,25 +837,26 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 40px;
+      height: 30px;
       background: linear-gradient(to bottom, transparent, var(--bg));
       z-index: 4;
     }
 
     @media (max-width: 640px) {
       .hero {
-        min-height: 26vh;
-        padding: 22px 20px 32px;
+        min-height: auto;
+        padding: 10px 16px 16px;
       }
 
       .hero-content h1 {
-        font-size: 24px;
+        font-size: 17px;
       }
 
       .hero-content p {
-        font-size: 12px;
+        font-size: 10.5px;
       }
     }
+
     /* ==================== BANNER SLIDER ==================== */
     .banner-slider {
       position: relative;
@@ -966,6 +967,19 @@
       z-index: 999;
     }
 
+    .header-hide-group {
+      max-height: 220px;
+      overflow: hidden;
+      opacity: 1;
+      transition: max-height 0.32s ease, opacity 0.25s ease;
+    }
+
+    .header-hide-group.hide {
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+    }
+
     .darood-band.stuck {
       box-shadow: 0 4px 16px rgba(184, 148, 42, 0.12);
     }
@@ -1040,6 +1054,21 @@
       max-width: 580px;
       position: relative;
       overflow: visible;
+    }
+
+    /* ==================== SEARCH + MODE TOGGLE ROW ==================== */
+    .search-toggle-row {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-toggle-row .search-wrap {
+      flex: 1;
+      max-width: none;
     }
 
     .search-box {
@@ -1204,6 +1233,95 @@
       display: block;
     }
 
+    /* ==================== MODE TOGGLE (Shops / Home Services) ==================== */
+    .mode-toggle {
+      position: relative;
+      display: inline-flex;
+      background: var(--white);
+      border: 1.5px solid rgba(37, 99, 235, 0.18);
+      border-radius: 50px;
+      padding: 4px;
+      box-shadow:
+        0 2px 20px rgba(37, 99, 235, 0.09),
+        0 0 0 5px rgba(37, 99, 235, 0.04);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .mode-slider {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      height: calc(100% - 8px);
+      width: calc(50% - 4px);
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      border-radius: 50px;
+      transition: transform 0.4s cubic-bezier(0.34, 1.3, 0.64, 1);
+      z-index: 0;
+    }
+
+    .mode-toggle.services .mode-slider {
+      transform: translateX(100%);
+    }
+
+    .mode-btn {
+      position: relative;
+      z-index: 1;
+      border: none;
+      background: transparent;
+      padding: 11px 18px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      border-radius: 50px;
+      transition: color 0.35s;
+      white-space: nowrap;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mode-btn.active {
+      color: #fff;
+    }
+
+    [data-theme="dark"] .mode-toggle {
+      background: #1e293b;
+      border-color: #334155;
+    }
+
+    @media (max-width: 640px) {
+      .search-toggle-row {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .mode-toggle {
+        width: 100%;
+        justify-content: center;
+        animation: modeToggleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+      }
+
+      .mode-btn {
+        flex: 1;
+        justify-content: center;
+      }
+    }
+
+    @keyframes modeToggleIn {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .suggestions {
       position: absolute;
       top: calc(100% + 10px);
@@ -1284,7 +1402,7 @@
     }
 
     /* ==================== CHIPS ==================== */
-    .chips-wrap {
+   .chips-wrap {
       max-width: 100%;
       margin: 20px auto;
       padding: 5px 24px 22px;
@@ -1294,6 +1412,12 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
+    }
+
+    .sticky-header-group .chips-wrap {
+      background: var(--bg);
+      margin: 0 auto;
+      padding: 10px 24px 14px;
     }
 
     .chips-wrap::-webkit-scrollbar {
@@ -2290,7 +2414,7 @@
         Pharmacies, Schools, Electronics, Clothing aur bahut kuch — sab ek jagah, bilkul FREE.
       </p>
     </div>
-</section>
+  </section>
 
   <!-- ===== BANNER SLIDER ===== -->
   <section class="banner-slider" id="bannerSlider" style="display:none">
@@ -2298,63 +2422,70 @@
     <div class="banner-dots" id="bannerDots"></div>
   </section>
 
-  <div class="sticky-header-group">
-
-    <!-- ===== DAROOD PAK ===== -->
-    <div class="darood-band">
-      <div class="darood-arabic">
-        اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ
-      </div>
-      <div class="darood-line"><span></span></div>
+  <!-- ===== DAROOD PAK ===== -->
+  <div class="darood-band">
+    <div class="darood-arabic">
+      اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ
     </div>
-
-    <!-- ===== SEARCH ===== -->
-    <div class="search-section" id="searchSec">
-      <div class="search-wrap">
-        <div class="search-box">
-          <span class="s-icon">
-            <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </span>
-          <input type="text" id="search" placeholder="Search shops, categories..." autocomplete="off" />
-          <div class="search-filter">
-            <button class="filter-btn" id="filterBtn" onclick="toggleFilterDropdown()">
-              <span id="filterLabel">All</span>
-              <span class="filter-arrow">▾</span>
-            </button>
-            <div class="filter-dropdown" id="filterDropdown">
-              <div class="filter-option active" data-value="all" onclick="selectFilter('all', 'All')">
-                All
-              </div>
-              <div class="filter-option" data-value="name" onclick="selectFilter('name', 'Shop Name')">
-                Shop Name
-              </div>
-              <div class="filter-option" data-value="owner" onclick="selectFilter('owner', 'Owner')">
-                Owner
-              </div>
-              <div class="filter-option" data-value="category" onclick="selectFilter('category', 'Category')">
-                Category
-              </div>
-              <!-- <div class="filter-option" data-value="road" onclick="selectFilter('road', 'Road')">
-              Road
-            </div> -->
-              <div class="filter-option" data-value="nearby" onclick="selectFilter('nearby', 'Nearby')">
-                📍 Nearby
-              </div>
-            </div>
-          </div>
-          <span class="s-clear" id="sClear" onclick="clearSearch()">×</span>
-        </div>
-        <div class="suggestions" id="suggestions"></div>
-      </div>
-    </div>
-
+    <div class="darood-line"><span></span></div>
   </div>
 
-  <!-- ===== CATEGORY CHIPS ===== -->
-  <div class="chips-wrap">
+  <div class="sticky-header-group" id="stickyHeaderGroup">
+
+    <div class="header-hide-group" id="headerHideGroup">
+    <!-- ===== SEARCH + MODE TOGGLE ===== -->
+    <div class="search-section" id="searchSec">
+      <div class="search-toggle-row">
+        <div class="search-wrap">
+          <div class="search-box">
+            <span class="s-icon">
+              <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </span>
+            <input type="text" id="search" placeholder="Search shops, categories..." autocomplete="off" />
+            <div class="search-filter">
+              <button class="filter-btn" id="filterBtn" onclick="toggleFilterDropdown()">
+                <span id="filterLabel">All</span>
+                <span class="filter-arrow">▾</span>
+              </button>
+              <div class="filter-dropdown" id="filterDropdown">
+                <div class="filter-option active" data-value="all" onclick="selectFilter('all', 'All')">
+                  All
+                </div>
+                <div class="filter-option" data-value="name" onclick="selectFilter('name', 'Shop Name')">
+                  Shop Name
+                </div>
+                <div class="filter-option" data-value="owner" onclick="selectFilter('owner', 'Owner')">
+                  Owner
+                </div>
+                <div class="filter-option" data-value="category" onclick="selectFilter('category', 'Category')">
+                  Category
+                </div>
+                <div class="filter-option" data-value="nearby" onclick="selectFilter('nearby', 'Nearby')">
+                  📍 Nearby
+                </div>
+              </div>
+            </div>
+            <span class="s-clear" id="sClear" onclick="clearSearch()">×</span>
+          </div>
+          <div class="suggestions" id="suggestions"></div>
+        </div>
+
+<!-- ===== MODE TOGGLE: Shops / Home Services ===== -->
+        <div class="mode-toggle" id="modeToggle">
+          <div class="mode-slider" id="modeSlider"></div>
+          <button class="mode-btn active" data-mode="shops" onclick="setMode('shops')">🏪 Shops</button>
+          <button class="mode-btn" data-mode="services" onclick="setMode('services')">🛠️ Services</button>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+  <!-- ===== CATEGORY CHIPS (Shops) ===== -->
+  <div class="chips-wrap" id="shopChips">
     <div class="chip active" data-cat="all" onclick="filterCat('all')">
       All
     </div>
@@ -2373,22 +2504,48 @@
     <div class="chip" data-cat="education" onclick="filterCat('education')">
       Education
     </div>
-    <div class="chip" data-cat="education" onclick="filterCat('resturent')">
+    <div class="chip" data-cat="resturent" onclick="filterCat('resturent')">
       Resturant's
     </div>
-    <div class="chip" data-cat="education" onclick="filterCat('mobile')">
+    <div class="chip" data-cat="mobile" onclick="filterCat('mobile')">
       Mobile's & Laptop
     </div>
-    <div class="chip" data-cat="education" onclick="filterCat('docotr')">
+    <div class="chip" data-cat="docotr" onclick="filterCat('docotr')">
       Doctor's
     </div>
+  </div>
+
+  <!-- ===== CATEGORY CHIPS (Home Services) ===== -->
+  <div class="chips-wrap" id="serviceChips" style="display:none">
+    <div class="chip active" data-cat="all" onclick="filterCat('all')">
+      All
+    </div>
+    <div class="chip" data-cat="electrician" onclick="filterCat('electrician')">
+      ⚡ Electrician
+    </div>
+    <div class="chip" data-cat="plumber" onclick="filterCat('plumber')">
+      🔧 Plumber
+    </div>
+    <div class="chip" data-cat="ac-mechanic" onclick="filterCat('ac-mechanic')">
+      ❄️ AC Mechanic
+    </div>
+    <div class="chip" data-cat="carpenter" onclick="filterCat('carpenter')">
+      🪚 Carpenter
+    </div>
+    <div class="chip" data-cat="painter" onclick="filterCat('painter')">
+      🎨 Painter
+    </div>
+   <div class="chip" data-cat="tutor" onclick="filterCat('tutor')">
+      📚 Home Tutor
+    </div>
+  </div>
   </div>
 
   <!-- ===== VERIFIED SHOPS SECTION ===== -->
   <section class="verified-section" id="verifiedSection" style="display: none">
     <div class="verified-head">
       <div class="verified-head-left">
-        <span class="verified-head-title">✓ Verified Shops</span>
+        <span class="verified-head-title" id="verifiedHeadTitle">✓ Verified Shops</span>
         <span class="verified-head-badge" id="verifiedCount">0 shops</span>
       </div>
       <button class="verified-expand-btn" id="verifiedExpandBtn" onclick="toggleVerifiedExpand()">
@@ -2484,11 +2641,6 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="f-logo">SHAHKOT</div>
-    <!-- <nav class="f-nav">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="services.html">Services</a> -->
-    </nav>
     <p class="f-copy">
       &copy; 2026 <a href="index.html">Shahkot Directory</a> — Designed &amp;
       Developed by Badar-Zaman
@@ -2538,6 +2690,70 @@
         if (text) text.textContent = "Light Mode";
       }
     });
+
+    /* ==================== MODE TOGGLE (Shops / Home Services) ==================== */
+    let currentMode = localStorage.getItem("sk_mode") || "shops";
+    const dataSources = { shops: "shops.json", services: "home-services.json" };
+
+    const catNamesShops = {
+      all: "All Shops",
+      medical: "Medical & Health",
+      electronics: "Electronics",
+      grocery: "Grocery & Daily",
+      clothing: "Clothing & Fashion",
+      education: "Education",
+      resturent: "Restaurants",
+      mobile: "Mobiles & Laptops",
+      docotr: "Doctors",
+    };
+
+    const catNamesServices = {
+      all: "All Services",
+      electrician: "Electricians",
+      plumber: "Plumbers",
+      "ac-mechanic": "AC Mechanics",
+      carpenter: "Carpenters",
+      painter: "Painters",
+      tutor: "Home Tutors",
+    };
+
+    function getCatNames() {
+      return currentMode === "services" ? catNamesServices : catNamesShops;
+    }
+
+    function setMode(mode) {
+      if (mode === currentMode) return;
+      currentMode = mode;
+      document.getElementById("modeToggle").classList.toggle("services", mode === "services");
+      document.querySelectorAll(".mode-btn").forEach((b) => b.classList.toggle("active", b.dataset.mode === mode));
+      document.getElementById("shopChips").style.display = mode === "shops" ? "flex" : "none";
+      document.getElementById("serviceChips").style.display = mode === "services" ? "flex" : "none";
+      document.getElementById("verifiedHeadTitle").textContent =
+        mode === "services" ? "✓ Verified Professionals" : "✓ Verified Shops";
+      document.getElementById("search").placeholder =
+        mode === "services" ? "Search services, professionals..." : "Search shops, categories...";
+      localStorage.setItem("sk_mode", mode);
+      document.getElementById("search").value = "";
+      document.getElementById("sClear").classList.remove("on");
+      loadDataForMode(mode);
+    }
+
+    function loadDataForMode(mode) {
+      fetch(dataSources[mode])
+        .then((r) => r.json())
+        .then((data) => {
+          allShops = data.filter((s) => !s.hidden);
+          buildBannerSlider(allShops);
+          filterCat("all");
+        })
+        .catch((err) => {
+          console.log("Data load failed:", err);
+          allShops = [];
+          render([]);
+          setCount(0);
+        });
+    }
+
     /* ==================== GRID VIEW TOGGLE (MOBILE + DESKTOP) ==================== */
     let currentView = "2"; // mobile default; desktop default "5" set DOMContentLoaded mein
 
@@ -2640,7 +2856,7 @@
       const searchInput = document.getElementById("search");
       document.getElementById("filterLabel").textContent = label;
       const placeholders = {
-        all: "Search shops, categories...",
+        all: currentMode === "services" ? "Search services, professionals..." : "Search shops, categories...",
         name: "Search shop names...",
         owner: "Search owners...",
         category: "Search categories...",
@@ -2740,7 +2956,7 @@
       chip.onclick = () => filterTimeCategory(slot, cats, label);
       chip.innerHTML = label;
       chip.style.borderColor = color;
-      const allChip = document.querySelector('.chip[data-cat="all"]');
+      const allChip = document.querySelector('#shopChips .chip[data-cat="all"]');
       if (allChip) allChip.after(chip);
     }
 
@@ -2778,7 +2994,8 @@
       }
     });
 
-    /* ==================== SCROLL ==================== */
+   /* ==================== SCROLL ==================== */
+    let lastScrollY = window.scrollY;
     window.addEventListener("scroll", () => {
       const y = window.scrollY;
       document.getElementById("navbar").classList.toggle("scrolled", y > 10);
@@ -2787,10 +3004,24 @@
         const h = document.getElementById("scrollHint");
         if (h) h.remove();
       }
-      const stickyGroup = document.querySelector(".sticky-header-group");
+      const stickyGroup = document.getElementById("stickyHeaderGroup");
+      const hideGroup = document.getElementById("headerHideGroup");
       const isStuck = stickyGroup.getBoundingClientRect().top <= 68;
-      document.querySelector(".darood-band").classList.toggle("stuck", isStuck);
       document.getElementById("searchSec").classList.toggle("stuck", isStuck);
+
+      // YouTube-style: sirf jab bar pin ho chuka ho tabhi hide/show chalay
+      // warna banner/darood scroll ke sath normal flow mein hi upar jaye
+      // Sirf search+toggle hide hota hai — category chips hamesha visible rehte hain
+      if (isStuck) {
+        if (y > lastScrollY && y > 150) {
+          hideGroup.classList.add("hide");
+        } else {
+          hideGroup.classList.remove("hide");
+        }
+      } else {
+        hideGroup.classList.remove("hide");
+      }
+      lastScrollY = y <= 0 ? 0 : y;
     });
 
     /* ==================== MENU ==================== */
@@ -2817,7 +3048,7 @@
         dd.classList.remove("show");
     });
 
-/* ==================== BANNER SLIDER ==================== */
+    /* ==================== BANNER SLIDER ==================== */
     let bannerIndex = 0, bannerSyncTimer = null, bannersData = [], bannerPausedUntil = 0, bannerDragged = false;
     const BANNER_INTERVAL = 3000;
 
@@ -2825,14 +3056,20 @@
       bannersData = shops
         .filter((s) => s.banner && s.banner.active !== false)
         .sort((a, b) => (a.banner.position || 0) - (b.banner.position || 0));
-      if (!bannersData.length) return;
 
       const section = document.getElementById("bannerSlider");
       const track = document.getElementById("bannerTrack");
       const dots = document.getElementById("bannerDots");
-      section.style.display = "block";
+      clearInterval(bannerSyncTimer);
       track.innerHTML = "";
       dots.innerHTML = "";
+
+      if (!bannersData.length) {
+        section.style.display = "none";
+        return;
+      }
+
+      section.style.display = "block";
 
       bannersData.forEach((shop, i) => {
         const b = shop.banner;
@@ -2927,14 +3164,25 @@
         dragging = false;
       });
     }
-    
-    /* ==================== DATA ==================== */
+
+    /* ==================== DATA (mode-aware) ==================== */
     let allShops = [],
       activeCat = "all";
-    fetch("shops.json")
+
+    // Page load par saved mode ke mutabiq UI set karo
+    document.getElementById("modeToggle").classList.toggle("services", currentMode === "services");
+    document.querySelectorAll(".mode-btn").forEach((b) => b.classList.toggle("active", b.dataset.mode === currentMode));
+    document.getElementById("shopChips").style.display = currentMode === "shops" ? "flex" : "none";
+    document.getElementById("serviceChips").style.display = currentMode === "services" ? "flex" : "none";
+    document.getElementById("verifiedHeadTitle").textContent =
+      currentMode === "services" ? "✓ Verified Professionals" : "✓ Verified Shops";
+    document.getElementById("search").placeholder =
+      currentMode === "services" ? "Search services, professionals..." : "Search shops, categories...";
+
+    fetch(dataSources[currentMode])
       .then((r) => r.json())
       .then((data) => {
-        // Hidden shops (billing panel se hide ki hui) live site pe nahi dikhengi
+        // Hidden entries (billing panel se hide ki hui) live site pe nahi dikhengi
         allShops = data.filter((s) => !s.hidden);
         buildBannerSlider(allShops);
         const params = new URLSearchParams(window.location.search);
@@ -2962,6 +3210,9 @@
             });
           }, 60);
         }
+      })
+      .catch((err) => {
+        console.log("Data load failed:", err);
       });
 
     /* ==================== STATUS BADGE ==================== */
@@ -3152,7 +3403,7 @@
       const grid = document.getElementById("shops");
       grid.innerHTML = "";
       if (!data.length) {
-        grid.innerHTML = `<div class="empty-state"><div class="empty-ico">🔍</div><h3>Koi shop nahi mili</h3><p>Alag keywords ya category try karein</p></div>`;
+        grid.innerHTML = `<div class="empty-state"><div class="empty-ico">🔍</div><h3>Koi ${currentMode === "services" ? "service" : "shop"} nahi mili</h3><p>Alag keywords ya category try karein</p></div>`;
         renderVerified([]);
         return;
       }
@@ -3192,21 +3443,13 @@
 
     /* ==================== COUNT ==================== */
     function setCount(n, q) {
+      const noun = currentMode === "services" ? "service" : "shop";
       document.getElementById("listCount").innerHTML = q
         ? `<strong>${n}</strong> result${n !== 1 ? "s" : ""} for "<strong>${q}</strong>"`
-        : `<strong>${n}</strong> shop${n !== 1 ? "s" : ""} found`;
+        : `<strong>${n}</strong> ${noun}${n !== 1 ? "s" : ""} found`;
     }
 
     /* ==================== CATEGORY FILTER ==================== */
-    const catNames = {
-      all: "All Shops",
-      medical: "Medical & Health",
-      electronics: "Electronics",
-      grocery: "Grocery & Daily",
-      clothing: "Clothing & Fashion",
-      education: "Education",
-    };
-
     function filterCat(cat) {
       activeCat = cat;
       const shopsEl = document.getElementById("shops");
@@ -3217,7 +3460,7 @@
       document
         .querySelectorAll(".chip")
         .forEach((c) => c.classList.toggle("active", c.dataset.cat === cat));
-      document.getElementById("listTitle").textContent = catNames[cat] || cat;
+      document.getElementById("listTitle").textContent = getCatNames()[cat] || cat;
       const out =
         cat === "all"
           ? allShops
@@ -3328,7 +3571,6 @@
         lbl.textContent = "Recent searches";
         sug.appendChild(lbl);
         recents
-        recents
           .slice(0, 5)
           .forEach((item) => {
             const d = document.createElement("div");
@@ -3353,7 +3595,7 @@
         return;
       }
 
-      // Type karte waqt -> matching shops suggest karo
+      // Type karte waqt -> matching entries suggest karo
       const matches = [];
       const seen = new Set();
 

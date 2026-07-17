@@ -24,7 +24,14 @@
     "timing": "10:00AM - 04:00 PM",
     "address": "Nankana Road near Govt. Elementry School No.3, Shahkot",
 
-    "map": "https://www.google.com/maps?q=Ayesha+Dental+Clinic+Shahkot&output=embed"
+    "map": "https://www.google.com/maps?q=Ayesha+Dental+Clinic+Shahkot&output=embed",
+
+    "banner": {
+      "active": true,
+      "position": 3,
+      "image": "/images/Ayesha Dental Clinic/hero.webp",
+      "title": "Afforable Services and Trusted Doctors"
+    }
   },
   
   {
@@ -168,7 +175,8 @@
       "position": 2,
       "image": "/images/Decent Baby Shoe's/hero.webp",
       "title": "Trusted Lady's shos shop - Anar Gali"
-    }
+    },
+    "linkedServices": ["svc-001", "svc-003"]
   },
        {
     "id": 1981,
