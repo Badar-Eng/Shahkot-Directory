@@ -962,22 +962,33 @@
     }
 
     .sticky-header-group {
-      position: sticky;
-      top: 68px;
+      position: relative;
       z-index: 999;
     }
 
+    .sticky-header-group.pinned {
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background: var(--bg);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .sticky-spacer {
+      height: 0;
+      transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
     .header-hide-group {
-      max-height: 220px;
       overflow: hidden;
-      opacity: 1;
-      transition: max-height 0.32s ease, opacity 0.25s ease;
+      max-height: var(--hdr-h, 300px);
+      transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .header-hide-group.hide {
       max-height: 0;
-      opacity: 0;
-      pointer-events: none;
     }
 
     .darood-band.stuck {
@@ -1402,7 +1413,7 @@
     }
 
     /* ==================== CHIPS ==================== */
-   .chips-wrap {
+    .chips-wrap {
       max-width: 100%;
       margin: 20px auto;
       padding: 5px 24px 22px;
@@ -2430,115 +2441,116 @@
     <div class="darood-line"><span></span></div>
   </div>
 
+  <div class="sticky-spacer" id="stickySpacer"></div>
   <div class="sticky-header-group" id="stickyHeaderGroup">
 
     <div class="header-hide-group" id="headerHideGroup">
-    <!-- ===== SEARCH + MODE TOGGLE ===== -->
-    <div class="search-section" id="searchSec">
-      <div class="search-toggle-row">
-        <div class="search-wrap">
-          <div class="search-box">
-            <span class="s-icon">
-              <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
-            </span>
-            <input type="text" id="search" placeholder="Search shops, categories..." autocomplete="off" />
-            <div class="search-filter">
-              <button class="filter-btn" id="filterBtn" onclick="toggleFilterDropdown()">
-                <span id="filterLabel">All</span>
-                <span class="filter-arrow">▾</span>
-              </button>
-              <div class="filter-dropdown" id="filterDropdown">
-                <div class="filter-option active" data-value="all" onclick="selectFilter('all', 'All')">
-                  All
-                </div>
-                <div class="filter-option" data-value="name" onclick="selectFilter('name', 'Shop Name')">
-                  Shop Name
-                </div>
-                <div class="filter-option" data-value="owner" onclick="selectFilter('owner', 'Owner')">
-                  Owner
-                </div>
-                <div class="filter-option" data-value="category" onclick="selectFilter('category', 'Category')">
-                  Category
-                </div>
-                <div class="filter-option" data-value="nearby" onclick="selectFilter('nearby', 'Nearby')">
-                  📍 Nearby
+      <!-- ===== SEARCH + MODE TOGGLE ===== -->
+      <div class="search-section" id="searchSec">
+        <div class="search-toggle-row">
+          <div class="search-wrap">
+            <div class="search-box">
+              <span class="s-icon">
+                <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </span>
+              <input type="text" id="search" placeholder="Search shops, categories..." autocomplete="off" />
+              <div class="search-filter">
+                <button class="filter-btn" id="filterBtn" onclick="toggleFilterDropdown()">
+                  <span id="filterLabel">All</span>
+                  <span class="filter-arrow">▾</span>
+                </button>
+                <div class="filter-dropdown" id="filterDropdown">
+                  <div class="filter-option active" data-value="all" onclick="selectFilter('all', 'All')">
+                    All
+                  </div>
+                  <div class="filter-option" data-value="name" onclick="selectFilter('name', 'Shop Name')">
+                    Shop Name
+                  </div>
+                  <div class="filter-option" data-value="owner" onclick="selectFilter('owner', 'Owner')">
+                    Owner
+                  </div>
+                  <div class="filter-option" data-value="category" onclick="selectFilter('category', 'Category')">
+                    Category
+                  </div>
+                  <div class="filter-option" data-value="nearby" onclick="selectFilter('nearby', 'Nearby')">
+                    📍 Nearby
+                  </div>
                 </div>
               </div>
+              <span class="s-clear" id="sClear" onclick="clearSearch()">×</span>
             </div>
-            <span class="s-clear" id="sClear" onclick="clearSearch()">×</span>
+            <div class="suggestions" id="suggestions"></div>
           </div>
-          <div class="suggestions" id="suggestions"></div>
-        </div>
 
-<!-- ===== MODE TOGGLE: Shops / Home Services ===== -->
-        <div class="mode-toggle" id="modeToggle">
-          <div class="mode-slider" id="modeSlider"></div>
-          <button class="mode-btn active" data-mode="shops" onclick="setMode('shops')">🏪 Shops</button>
-          <button class="mode-btn" data-mode="services" onclick="setMode('services')">🛠️ Services</button>
+          <!-- ===== MODE TOGGLE: Shops / Home Services ===== -->
+          <div class="mode-toggle" id="modeToggle">
+            <div class="mode-slider" id="modeSlider"></div>
+            <button class="mode-btn active" data-mode="shops" onclick="setMode('shops')">🏪 Shops</button>
+            <button class="mode-btn" data-mode="services" onclick="setMode('services')">🛠️ Services</button>
+          </div>
         </div>
+      </div>
+
+    </div>
+
+    <!-- ===== CATEGORY CHIPS (Shops) ===== -->
+    <div class="chips-wrap" id="shopChips">
+      <div class="chip active" data-cat="all" onclick="filterCat('all')">
+        All
+      </div>
+      <div class="chip" data-cat="medical" onclick="filterCat('medical')">
+        Medical
+      </div>
+      <div class="chip" data-cat="electronics" onclick="filterCat('electronics')">
+        Electronics
+      </div>
+      <div class="chip" data-cat="grocery" onclick="filterCat('grocery')">
+        Grocery
+      </div>
+      <div class="chip" data-cat="clothing" onclick="filterCat('clothing')">
+        Clothing
+      </div>
+      <div class="chip" data-cat="education" onclick="filterCat('education')">
+        Education
+      </div>
+      <div class="chip" data-cat="resturent" onclick="filterCat('resturent')">
+        Resturant's
+      </div>
+      <div class="chip" data-cat="mobile" onclick="filterCat('mobile')">
+        Mobile's & Laptop
+      </div>
+      <div class="chip" data-cat="docotr" onclick="filterCat('docotr')">
+        Doctor's
       </div>
     </div>
 
+    <!-- ===== CATEGORY CHIPS (Home Services) ===== -->
+    <div class="chips-wrap" id="serviceChips" style="display:none">
+      <div class="chip active" data-cat="all" onclick="filterCat('all')">
+        All
+      </div>
+      <div class="chip" data-cat="electrician" onclick="filterCat('electrician')">
+        ⚡ Electrician
+      </div>
+      <div class="chip" data-cat="plumber" onclick="filterCat('plumber')">
+        🔧 Plumber
+      </div>
+      <div class="chip" data-cat="ac-mechanic" onclick="filterCat('ac-mechanic')">
+        ❄️ AC Mechanic
+      </div>
+      <div class="chip" data-cat="carpenter" onclick="filterCat('carpenter')">
+        🪚 Carpenter
+      </div>
+      <div class="chip" data-cat="painter" onclick="filterCat('painter')">
+        🎨 Painter
+      </div>
+      <div class="chip" data-cat="tutor" onclick="filterCat('tutor')">
+        📚 Home Tutor
+      </div>
     </div>
-
-  <!-- ===== CATEGORY CHIPS (Shops) ===== -->
-  <div class="chips-wrap" id="shopChips">
-    <div class="chip active" data-cat="all" onclick="filterCat('all')">
-      All
-    </div>
-    <div class="chip" data-cat="medical" onclick="filterCat('medical')">
-      Medical
-    </div>
-    <div class="chip" data-cat="electronics" onclick="filterCat('electronics')">
-      Electronics
-    </div>
-    <div class="chip" data-cat="grocery" onclick="filterCat('grocery')">
-      Grocery
-    </div>
-    <div class="chip" data-cat="clothing" onclick="filterCat('clothing')">
-      Clothing
-    </div>
-    <div class="chip" data-cat="education" onclick="filterCat('education')">
-      Education
-    </div>
-    <div class="chip" data-cat="resturent" onclick="filterCat('resturent')">
-      Resturant's
-    </div>
-    <div class="chip" data-cat="mobile" onclick="filterCat('mobile')">
-      Mobile's & Laptop
-    </div>
-    <div class="chip" data-cat="docotr" onclick="filterCat('docotr')">
-      Doctor's
-    </div>
-  </div>
-
-  <!-- ===== CATEGORY CHIPS (Home Services) ===== -->
-  <div class="chips-wrap" id="serviceChips" style="display:none">
-    <div class="chip active" data-cat="all" onclick="filterCat('all')">
-      All
-    </div>
-    <div class="chip" data-cat="electrician" onclick="filterCat('electrician')">
-      ⚡ Electrician
-    </div>
-    <div class="chip" data-cat="plumber" onclick="filterCat('plumber')">
-      🔧 Plumber
-    </div>
-    <div class="chip" data-cat="ac-mechanic" onclick="filterCat('ac-mechanic')">
-      ❄️ AC Mechanic
-    </div>
-    <div class="chip" data-cat="carpenter" onclick="filterCat('carpenter')">
-      🪚 Carpenter
-    </div>
-    <div class="chip" data-cat="painter" onclick="filterCat('painter')">
-      🎨 Painter
-    </div>
-   <div class="chip" data-cat="tutor" onclick="filterCat('tutor')">
-      📚 Home Tutor
-    </div>
-  </div>
   </div>
 
   <!-- ===== VERIFIED SHOPS SECTION ===== -->
@@ -2736,6 +2748,7 @@
       document.getElementById("search").value = "";
       document.getElementById("sClear").classList.remove("on");
       loadDataForMode(mode);
+      requestAnimationFrame(measureStickyHeader);
     }
 
     function loadDataForMode(mode) {
@@ -2994,9 +3007,47 @@
       }
     });
 
-   /* ==================== SCROLL ==================== */
-    let lastScrollY = window.scrollY;
-    window.addEventListener("scroll", () => {
+    /* ==================== STICKY HEADER MEASURE (ek dafa, scroll ke dauran nahi) ==================== */
+    let stickyTriggerY = 0, headerHeight = 0, chipsHeight = 0;
+
+    function measureStickyHeader() {
+      const group = document.getElementById("stickyHeaderGroup");
+      const hideGroup = document.getElementById("headerHideGroup");
+      const spacer = document.getElementById("stickySpacer");
+      if (!group || !hideGroup || !spacer) return;
+
+      // temporarily unpin karo taake real dimensions mil sakein
+      group.classList.remove("pinned");
+      spacer.style.height = "0px";
+      hideGroup.classList.remove("hide");
+
+      // ek frame baad measure karo (paint ke baad)
+      requestAnimationFrame(() => {
+        headerHeight = hideGroup.offsetHeight;
+        document.documentElement.style.setProperty("--hdr-h", headerHeight + "px");
+
+        const shopChips = document.getElementById("shopChips");
+        const serviceChips = document.getElementById("serviceChips");
+        chipsHeight = shopChips.style.display !== "none"
+          ? shopChips.offsetHeight
+          : serviceChips.offsetHeight;
+
+        const rect = group.getBoundingClientRect();
+        stickyTriggerY = rect.top + window.scrollY - 68;
+
+        // ab scroll ke mutabiq sahi state restore karo
+        handleScroll();
+      });
+    }
+    window.addEventListener("load", measureStickyHeader);
+    window.addEventListener("resize", measureStickyHeader);
+
+    /* ==================== SCROLL (rAF-throttled, smooth) ==================== */
+    let lastY = window.scrollY;
+    let scrollTicking = false;
+
+    function handleScroll() {
+      if (stickyTriggerY === 0 && window.scrollY < 50) return; // measure hone ka wait karo
       const y = window.scrollY;
       document.getElementById("navbar").classList.toggle("scrolled", y > 10);
       document.getElementById("toTop").classList.toggle("show", y > 500);
@@ -3004,25 +3055,40 @@
         const h = document.getElementById("scrollHint");
         if (h) h.remove();
       }
-      const stickyGroup = document.getElementById("stickyHeaderGroup");
-      const hideGroup = document.getElementById("headerHideGroup");
-      const isStuck = stickyGroup.getBoundingClientRect().top <= 68;
-      document.getElementById("searchSec").classList.toggle("stuck", isStuck);
 
-      // YouTube-style: sirf jab bar pin ho chuka ho tabhi hide/show chalay
-      // warna banner/darood scroll ke sath normal flow mein hi upar jaye
-      // Sirf search+toggle hide hota hai — category chips hamesha visible rehte hain
-      if (isStuck) {
-        if (y > lastScrollY && y > 150) {
-          hideGroup.classList.add("hide");
-        } else {
-          hideGroup.classList.remove("hide");
+      const group = document.getElementById("stickyHeaderGroup");
+      const hideGroup = document.getElementById("headerHideGroup");
+      const spacer = document.getElementById("stickySpacer");
+      const shouldPin = y >= stickyTriggerY;
+      document.getElementById("searchSec").classList.toggle("stuck", shouldPin);
+
+      const delta = y - lastY;
+      let collapsed = hideGroup.classList.contains("hide");
+
+      if (shouldPin) {
+        if (delta > 4 && y > stickyTriggerY + 40) {
+          collapsed = true;
+        } else if (delta < -4) {
+          collapsed = false;
         }
       } else {
-        hideGroup.classList.remove("hide");
+        collapsed = false;
       }
-      lastScrollY = y <= 0 ? 0 : y;
-    });
+
+      hideGroup.classList.toggle("hide", collapsed);
+      group.classList.toggle("pinned", shouldPin);
+      spacer.style.height = shouldPin ? (collapsed ? chipsHeight : headerHeight + chipsHeight) + "px" : "0px";
+
+      lastY = y <= 0 ? 0 : y;
+      scrollTicking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+      if (!scrollTicking) {
+        scrollTicking = true;
+        requestAnimationFrame(handleScroll);
+      }
+    }, { passive: true });
 
     /* ==================== MENU ==================== */
     function toggleMenu() {
@@ -3066,6 +3132,7 @@
 
       if (!bannersData.length) {
         section.style.display = "none";
+        requestAnimationFrame(measureStickyHeader);
         return;
       }
 
@@ -3105,6 +3172,7 @@
         setupBannerSwipe(section);
         startBannerAuto();
       }
+      requestAnimationFrame(measureStickyHeader);
     }
 
     function currentSyncedIndex() {
