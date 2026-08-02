@@ -252,6 +252,33 @@
     "address": "Anar gali No.2 near hera matching center, Shahkot",
 
     "map": ""
+  },
+
+  {
+    "id": 10113,
+    "name": "Jamia Masjid Eid-gah",
+    "details": "jamia masjid, masjid, masjid in shahkot, mosque",
+    "category": "masjid",
+
+    "cardImage": "/images/Jamia Masjid Eidgah/hero.webp",
+    "hero": "/images/Jamia Masjid Eidgah/hero.webp",
+
+    "gallery": ["/images/Jamia Masjid Eidgah/g1.webp","/images/Jamia Masjid Eidgah/g2.webp", "/images/Jamia Masjid Eidgah/g3.webp"],
+
+    "about": "Shahkot Sale Mela Anar gali ki ak kafi mashoor dukan hy jha par daily life ki sari cheezy gadets, kitchen accesories, complete makeup etc **(Friday OFF)**",
+
+    "ownerName": "Saeed Sab",
+    "ownerImage": "/images/Jamia Masjid Eidgah/owner.webp",
+    "ownerInfo": "",
+
+    "phone": "0303-9948812",
+    "whatsapp": "0303-9948812",
+    "email": "",
+    "timing": "",
+    "address": "Old Collage Road near Al-barkat Plaza, Shahkot",
+
+    "map": "https://www.google.com/maps?q=Shahkot+Sale+Mela+Shahkot&output=embed"
   }
+
   
 ]
