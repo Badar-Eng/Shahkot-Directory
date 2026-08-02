@@ -972,23 +972,40 @@
       left: 0;
       right: 0;
       width: 100%;
-      background: var(--bg);
+      background: rgba(248, 250, 252, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: box-shadow 0.3s ease;
+    }
+
+    [data-theme="dark"] .sticky-header-group.pinned {
+      background: rgba(15, 23, 42, 0.92);
     }
 
     .sticky-spacer {
       height: 0;
-      transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .header-hide-group {
-      overflow: hidden;
+      overflow: visible;
       max-height: var(--hdr-h, 300px);
-      transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .header-hide-group.hide {
+      overflow: hidden;
       max-height: 0;
+    }
+
+    /* chips row sits right after the (sometimes fixed) search bar —
+       give it its own stacking context so it never paints over the
+       search suggestions dropdown, and a solid bg so it never looks
+       "overlaid" on the search/toggle row during the collapse animation */
+    .sticky-header-group .chips-wrap {
+      position: relative;
+      z-index: 1;
     }
 
     .darood-band.stuck {
@@ -3020,11 +3037,15 @@
       group.classList.remove("pinned");
       spacer.style.height = "0px";
       hideGroup.classList.remove("hide");
+      // purana --hdr-h khud ko clip kar deta tha (self-referencing measurement bug),
+      // isliye pehle max-height fully release karo taake natural height mile
+      hideGroup.style.maxHeight = "none";
 
       // ek frame baad measure karo (paint ke baad)
       requestAnimationFrame(() => {
         headerHeight = hideGroup.offsetHeight;
         document.documentElement.style.setProperty("--hdr-h", headerHeight + "px");
+        hideGroup.style.maxHeight = ""; // ab CSS wapas --hdr-h se control karega
 
         const shopChips = document.getElementById("shopChips");
         const serviceChips = document.getElementById("serviceChips");
@@ -3042,9 +3063,20 @@
     window.addEventListener("load", measureStickyHeader);
     window.addEventListener("resize", measureStickyHeader);
 
-    /* ==================== SCROLL (rAF-throttled, smooth) ==================== */
+    /* ==================== SCROLL (rAF-throttled, smooth) ====================
+       Purana logic per-frame raw delta par react karta tha, jo chhote
+       trackpad/mobile jitters par bhi flicker kar deta tha. Ab hum
+       direction ke hisaab se scroll distance accumulate karte hain aur
+       sirf tab collapse/expand karte hain jab ek "iraadi" (deliberate)
+       scroll ho chuki ho — is se motion bohot zyada smooth aur professional
+       lagti hai, halki si hysteresis ke sath. */
     let lastY = window.scrollY;
     let scrollTicking = false;
+    let scrollDir = 0;   // 1 = down, -1 = up
+    let scrollAccum = 0; // consistent-direction scroll ka accumulated distance
+
+    const HIDE_THRESHOLD = 28; // itna neeche scroll ho tabhi header chupega
+    const SHOW_THRESHOLD = 10; // thoda sa upar scroll hote hi header wapas aa jaye
 
     function handleScroll() {
       if (stickyTriggerY === 0 && window.scrollY < 50) return; // measure hone ka wait karo
@@ -3063,16 +3095,24 @@
       document.getElementById("searchSec").classList.toggle("stuck", shouldPin);
 
       const delta = y - lastY;
+      const dir = delta > 0 ? 1 : delta < 0 ? -1 : scrollDir;
+      if (dir !== scrollDir) {
+        scrollDir = dir;
+        scrollAccum = 0; // direction badli, naya count shuru
+      }
+      scrollAccum += Math.abs(delta);
+
       let collapsed = hideGroup.classList.contains("hide");
 
       if (shouldPin) {
-        if (delta > 4 && y > stickyTriggerY + 40) {
+        if (scrollDir === 1 && y > stickyTriggerY + 40 && scrollAccum > HIDE_THRESHOLD) {
           collapsed = true;
-        } else if (delta < -4) {
+        } else if (scrollDir === -1 && scrollAccum > SHOW_THRESHOLD) {
           collapsed = false;
         }
       } else {
         collapsed = false;
+        scrollAccum = 0;
       }
 
       hideGroup.classList.toggle("hide", collapsed);
