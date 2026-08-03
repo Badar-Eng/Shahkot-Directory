@@ -976,6 +976,7 @@
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      will-change: transform;
       transition: box-shadow 0.3s ease;
     }
 
@@ -985,7 +986,7 @@
 
     .sticky-spacer {
       height: 0;
-      transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: none;
     }
 
     .header-hide-group {
@@ -1264,7 +1265,8 @@
     /* ==================== MODE TOGGLE (Shops / Home Services) ==================== */
     .mode-toggle {
       position: relative;
-      display: inline-flex;
+      /* display: inline-flex; */
+      display: none;
       background: var(--white);
       border: 1.5px solid rgba(37, 99, 235, 0.18);
       border-radius: 50px;
@@ -2032,12 +2034,10 @@
     @keyframes cardIn {
       from {
         opacity: 0;
-        transform: translateY(18px) scale(0.97);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
       }
     }
 
@@ -2502,8 +2502,8 @@
           <!-- ===== MODE TOGGLE: Shops / Home Services ===== -->
           <div class="mode-toggle" id="modeToggle">
             <div class="mode-slider" id="modeSlider"></div>
-            <button class="mode-btn active" data-mode="shops" onclick="setMode('shops')"> Shops</button>
-            <button class="mode-btn" data-mode="services" onclick="setMode('services')"> Services</button>
+            <!-- <button class="mode-btn active" data-mode="shops" onclick="setMode('shops')"> Shops</button> -->
+            <!-- <button class="mode-btn" data-mode="services" onclick="setMode('services')"> Services</button> -->
           </div>
         </div>
       </div>
@@ -3380,7 +3380,6 @@
       verified.forEach((shop, i) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.style.animationDelay = Math.min(i * 0.05, 0.4) + "s";
         card.innerHTML = `<div class="verified-badge">✓ Verified</div>
             <div class="card-img"><img src="${shop.cardImage}" alt="${shop.name}" loading="lazy"></div>
             <div class="card-body"><h3>${shop.name}</h3>${getStatusBadge(shop.timing)}</div>
@@ -3519,7 +3518,6 @@
       data.forEach((shop, i) => {
         const card = document.createElement("div");
         card.className = "card";
-        card.style.animationDelay = Math.min(i * 0.05, 0.5) + "s";
 
         if (isListView) {
           const status = getStatusInfo(shop.timing);
@@ -3559,12 +3557,6 @@
 
     /* ==================== CATEGORY FILTER ==================== */
     function filterCat(cat) {
-      activeCat = cat;
-      const shopsEl = document.getElementById("shops");
-      window.scrollTo({
-        top: shopsEl.getBoundingClientRect().top + window.scrollY - 280,
-        behavior: "smooth",
-      });
       document
         .querySelectorAll(".chip")
         .forEach((c) => c.classList.toggle("active", c.dataset.cat === cat));
