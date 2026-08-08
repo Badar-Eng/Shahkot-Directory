@@ -278,7 +278,37 @@
     "address": "Old Collage Road near Al-barkat Plaza, Shahkot",
 
     "map": "https://www.google.com/maps?q=Shahkot+Sale+Mela+Shahkot&output=embed"
+  },
+  {
+  "id": 2121,
+  "name": "Black Ball Snooker Club",
+  "details": "سنوکر کلب",
+  "category": "",
+  "verified": "ok",
+  "favicon": "../images/Black Ball Snooker Club/favicon.webp",
+  "cardImage": "/images/Black Ball Snooker Club/hero.webp",
+  "hero": "/images/Black Ball Snooker Club/hero.webp",
+  "gallery": [
+    "/images/Black Ball Snooker Club/g1.webp",
+    "/images/Black Ball Snooker Club/g2.webp",
+    "/images/Black Ball Snooker Club/g3.webp"
+  ],
+  "about": "",
+  "ownerName": "Umar Ikhlaq",
+  "ownerImage": "/images/Black Ball Snooker Club/owner.webp",
+  "ownerInfo": "",
+  "phone": "0325-6678552",
+  "whatsapp": "0325-6678552",
+  "email": "",
+  "timing": "03:00 PM - 12:00 AM",
+  "address": "Bilal Town, Back side of Dua's kitchen, Shahkot",
+  "map": "https://www.google.com/maps?q=Black+Ball+Snooker+Club+Shahkot&output=embed",
+  "banner": {
+    "active": true,
+    "position": 1,
+    "image": "/images/Black Ball Snooker Club/hero.webp",
+    "title": "New Premium Snooker Club"
   }
+}
 
-  
 ]
