@@ -2029,6 +2029,9 @@
         border-color 0.3s;
       position: relative;
       animation: cardIn 0.42s ease both;
+
+      content-visibility: auto;
+      contain-intrinsic-size: 320px;
     }
 
     @keyframes cardIn {
@@ -3506,45 +3509,198 @@
     }
 
     /* ==================== RENDER (MAIN GRID) ==================== */
+    /* Progressive rendering:
+       - Pehle limited cards render hote hain
+       - Scroll par next batch automatically render hota hai
+       - Existing search/category/view functions same rahenge
+    */
+
+    const INITIAL_RENDER_COUNT = 20;
+    const RENDER_BATCH_SIZE = 20;
+
+    let currentRenderData = [];
+    let currentRenderIndex = 0;
+    let renderObserver = null;
+
     function render(data) {
       const grid = document.getElementById("shops");
+
+      // Purana observer band karo
+      if (renderObserver) {
+        renderObserver.disconnect();
+        renderObserver = null;
+      }
+
       grid.innerHTML = "";
+
       if (!data.length) {
-        grid.innerHTML = `<div class="empty-state"><div class="empty-ico">🔍</div><h3>Koi ${currentMode === "services" ? "service" : "shop"} nahi mili</h3><p>Alag keywords ya category try karein</p></div>`;
+        grid.innerHTML = `<div class="empty-state">
+      <div class="empty-ico">🔍</div>
+      <h3>Koi ${currentMode === "services" ? "service" : "shop"} nahi mili</h3>
+      <p>Alag keywords ya category try karein</p>
+    </div>`;
+
         renderVerified([]);
         return;
       }
+
+      // Current filtered/search data save
+      currentRenderData = data;
+      currentRenderIndex = 0;
+
+      // Pehla batch immediately render
+      renderNextBatch();
+
+      // Verified section ka existing system bilkul same
+      renderVerified(data);
+    }
+
+
+    /* ==================== RENDER NEXT BATCH ==================== */
+    function renderNextBatch() {
+      const grid = document.getElementById("shops");
+
+      if (currentRenderIndex >= currentRenderData.length) {
+        removeLoadMoreTrigger();
+        return;
+      }
+
+      const start = currentRenderIndex;
+
+      // Initial 20 ya next 20
+      const end = Math.min(
+        start + (start === 0 ? INITIAL_RENDER_COUNT : RENDER_BATCH_SIZE),
+        currentRenderData.length
+      );
+
+      const batch = currentRenderData.slice(start, end);
       const isListView = grid.classList.contains("grid-list");
-      data.forEach((shop, i) => {
+
+      const fragment = document.createDocumentFragment();
+
+      batch.forEach((shop) => {
         const card = document.createElement("div");
         card.className = "card";
 
         if (isListView) {
           const status = getStatusInfo(shop.timing);
-          card.innerHTML = `${shop.verified === "ok" ? '<div class="verified-badge">✓ Verified</div>' : ""}
-              <div class="card-img"><img src="${shop.cardImage}" alt="${shop.name}" loading="lazy"></div>
-              <div class="card-body">
-                <h3>${shop.name}</h3>
-                ${shop.category ? `<span class="list-cat">${shop.category}</span>` : ""}
-                ${status.text ? `<div class="card-status ${status.cls}">${status.text}</div>` : ""}
-                ${getListActions(shop)}
-              </div>`;
+
+          card.innerHTML = `${shop.verified === "ok"
+            ? '<div class="verified-badge">✓ Verified</div>'
+            : ""}
+        <div class="card-img">
+          <img
+            src="${shop.cardImage}"
+            alt="${shop.name}"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="card-body">
+          <h3>${shop.name}</h3>
+          ${shop.category ? `<span class="list-cat">${shop.category}</span>` : ""}
+          ${status.text
+              ? `<div class="card-status ${status.cls}">${status.text}</div>`
+              : ""}
+          ${getListActions(shop)}
+        </div>`;
         } else {
-          card.innerHTML = `${shop.verified === "ok" ? '<div class="verified-badge">✓ Verified</div>' : ""}
-              <div class="card-img"><img src="${shop.cardImage}" alt="${shop.name}" loading="lazy"></div>
-              <div class="card-body"><h3>${shop.name}</h3>${getStatusBadge(shop.timing)}</div>
-              <a href="details.html?id=${shop.id}" class="card-btn" onclick="sessionStorage.setItem('sk_scrollY', window.scrollY)">View Details</a>`;
+          card.innerHTML = `${shop.verified === "ok"
+            ? '<div class="verified-badge">✓ Verified</div>'
+            : ""}
+        <div class="card-img">
+          <img
+            src="${shop.cardImage}"
+            alt="${shop.name}"
+            loading="lazy"
+            decoding="async"
+          >
+        </div>
+        <div class="card-body">
+          <h3>${shop.name}</h3>
+          ${getStatusBadge(shop.timing)}
+        </div>
+        <a
+          href="details.html?id=${shop.id}"
+          class="card-btn"
+          onclick="sessionStorage.setItem('sk_scrollY', window.scrollY)"
+        >
+          View Details
+        </a>`;
         }
 
         card.style.cursor = "pointer";
+
         card.onclick = (e) => {
-          if (e.target.closest(".card-btn") || e.target.closest(".list-action-btn")) return;
+          if (
+            e.target.closest(".card-btn") ||
+            e.target.closest(".list-action-btn")
+          ) {
+            return;
+          }
+
           sessionStorage.setItem("sk_scrollY", window.scrollY);
           window.location.href = `details.html?id=${shop.id}`;
         };
-        grid.appendChild(card);
+
+        fragment.appendChild(card);
       });
-      renderVerified(data);
+
+      // Ek hi DOM operation
+      grid.appendChild(fragment);
+
+      currentRenderIndex = end;
+
+      setupLoadMoreTrigger();
+    }
+
+
+    /* ==================== LOAD MORE TRIGGER ==================== */
+    function setupLoadMoreTrigger() {
+      const grid = document.getElementById("shops");
+
+      removeLoadMoreTrigger();
+
+      if (currentRenderIndex >= currentRenderData.length) {
+        return;
+      }
+
+      const trigger = document.createElement("div");
+
+      trigger.id = "shopLoadTrigger";
+      trigger.setAttribute("aria-hidden", "true");
+
+      trigger.style.width = "100%";
+      trigger.style.height = "1px";
+      trigger.style.marginTop = "20px";
+
+      grid.appendChild(trigger);
+
+      // Browser jab trigger ke qareeb aaye
+      renderObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            renderNextBatch();
+          }
+        },
+        {
+          root: null,
+          rootMargin: "600px 0px",
+          threshold: 0
+        }
+      );
+
+      renderObserver.observe(trigger);
+    }
+
+
+    /* ==================== REMOVE LOAD TRIGGER ==================== */
+    function removeLoadMoreTrigger() {
+      const trigger = document.getElementById("shopLoadTrigger");
+
+      if (trigger) {
+        trigger.remove();
+      }
     }
 
     /* ==================== COUNT ==================== */
