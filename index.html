@@ -3081,6 +3081,9 @@
     const HIDE_THRESHOLD = 28; // itna neeche scroll ho tabhi header chupega
     const SHOW_THRESHOLD = 10; // thoda sa upar scroll hote hi header wapas aa jaye
 
+    let isPinned = false;          // NAYA
+const PIN_BUFFER = 6;          // NAYA — flicker rokne wala buffer (px)
+
     function handleScroll() {
       if (stickyTriggerY === 0 && window.scrollY < 50) return; // measure hone ka wait karo
       const y = window.scrollY;
@@ -3094,7 +3097,12 @@
       const group = document.getElementById("stickyHeaderGroup");
       const hideGroup = document.getElementById("headerHideGroup");
       const spacer = document.getElementById("stickySpacer");
-      const shouldPin = y >= stickyTriggerY;
+      if (!isPinned && y >= stickyTriggerY + PIN_BUFFER) {
+  isPinned = true;
+} else if (isPinned && y <= stickyTriggerY - PIN_BUFFER) {
+  isPinned = false;
+}
+const shouldPin = isPinned;
       document.getElementById("searchSec").classList.toggle("stuck", shouldPin);
 
       const delta = y - lastY;
