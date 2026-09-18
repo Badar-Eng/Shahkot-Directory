@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Extensionless URL ke liye internal routing
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*?)/?$ $1.html [NC,L]
+
+# Optional: Agar koi .html likh kar access kare toh clean URL par redirect karne ke liye
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,R=301,L]
