@@ -858,19 +858,14 @@
     }
 
     /* ==================== BANNER SLIDER ==================== */
-    .banner-slide {
-      flex: 0 0 100%;
-      height: 100%;
+    .banner-slider {
       position: relative;
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-drag: none;
+      width: 100%;
+      height: 140px;
+      overflow: hidden;
+      background: var(--bg);
     }
 
-    .banner-slide img {
-      -webkit-user-drag: none;
-      pointer-events: none;
-    }
 
     .banner-slider::before {
       content: "";
@@ -910,6 +905,13 @@
       height: 100%;
       position: relative;
       cursor: pointer;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .banner-slide img {
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .banner-slide img {
@@ -957,7 +959,8 @@
     }
 
     /* ==================== DAROOD BAND ==================== */
-    .darood-band {
+        .darood-band {
+      position: relative;
       background: var(--gold-bg);
       border-top: 1px solid rgba(184, 148, 42, 0.2);
       border-bottom: 1px solid rgba(184, 148, 42, 0.2);
@@ -1019,10 +1022,11 @@
       box-shadow: 0 4px 16px rgba(184, 148, 42, 0.12);
     }
 
-    .darood-band::before {
+        .darood-band::before {
       content: "";
       position: absolute;
       inset: 0;
+      pointer-events: none;
       background: radial-gradient(ellipse 70% 80% at 50% 50%,
           rgba(184, 148, 42, 0.06),
           transparent);
@@ -1661,6 +1665,11 @@
       grid-template-columns: repeat(2, 1fr);
       overflow: hidden;
       transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .verified-grid .card {
+      content-visibility: visible;
+      contain-intrinsic-size: auto;
     }
 
     @media (min-width: 640px) {
@@ -3422,6 +3431,17 @@
           applyOneRowHeight(verified.length);
         });
       });
+
+      // images load hone ke baad card height change hoti hai, dobara measure karo
+      grid.querySelectorAll("img").forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener("load", () => {
+            if (!document.getElementById("verifiedExpandBtn").classList.contains("expanded")) {
+              applyOneRowHeight(verified.length);
+            }
+          }, { once: true });
+        }
+      });
     }
 
     /* ==================== ONE-ROW HEIGHT ==================== */
@@ -3440,7 +3460,7 @@
       }
       const cards = grid.querySelectorAll(".card");
       if (!cards.length) return;
-      const cardH = cards[0].offsetHeight;
+      const cardH = Math.ceil(cards[0].getBoundingClientRect().height);
       const gap =
         window.innerWidth >= 1024 ? 18 : window.innerWidth >= 640 ? 16 : 14;
       grid.style.maxHeight = cardH + gap + "px";
@@ -3459,6 +3479,9 @@
         const count = grid.querySelectorAll(".card").length;
         btn.classList.remove("expanded");
         label.textContent = "See All";
+        // "none" se wapas pixel value par aane ke liye pehle current height set karo
+        grid.style.maxHeight = grid.scrollHeight + "px";
+        void grid.offsetHeight;
         applyOneRowHeight(count);
         setTimeout(() => {
           document
@@ -3466,12 +3489,18 @@
             .scrollIntoView({ behavior: "smooth", block: "start" });
         }, 100);
       } else {
-        grid.style.maxHeight = grid.scrollHeight + "px";
+        // pehle max-height release karo taake asli height measure ho
+        const startH = grid.offsetHeight;
+        grid.style.maxHeight = "none";
+        const fullH = grid.scrollHeight;
+        grid.style.maxHeight = startH + "px";
+        void grid.offsetHeight; // reflow force
+        grid.style.maxHeight = fullH + "px";
         fade.classList.add("hidden");
         btn.classList.add("expanded");
         label.textContent = "Show Less";
         setTimeout(() => {
-          grid.style.maxHeight = "9999px";
+          grid.style.maxHeight = "none";
         }, 520);
       }
     }
