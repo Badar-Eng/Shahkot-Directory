@@ -26,7 +26,7 @@
     "banner": {
       "active": true,
       "position": 3,
-      "image": "/images/Ayesha Dental Clinic/hero.webp",
+      "image": "/images/Ayesha Dental Clinic/banner.webp",
       "title": "Afforable Services and Trusted Doctors"
     }
   },
@@ -126,7 +126,7 @@
     "banner": {
       "active": true,
       "position": 1,
-      "image": "/images/Mughal Autos/hero.webp",
+      "image": "/images/Mughal Autos/banner.webp",
       "title": "Trusted Bike Workshop - Mughal Auto"
     }
   },
