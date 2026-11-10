@@ -151,17 +151,7 @@
     "email": "",
     "timing": "10:00AM - 07:00 PM",
     "address": "Anar gali No.2 near hera matching center, Shahkot",
-    "map": "https://www.google.com/maps?q=Decent+Baby+Shoe's+Shahkot&output=embed",
-    "banner": {
-      "active": true,
-      "position": 2,
-      "image": "/images/Decent Baby Shoe's/hero.webp",
-      "title": "Trusted Lady's shos shop - Anar Gali"
-    },
-    "linkedServices": [
-      "svc-001",
-      "svc-003"
-    ]
+    "map": "https://www.google.com/maps?q=Decent+Baby+Shoe's+Shahkot&output=embed"
   },
   {
     "id": 1981,
