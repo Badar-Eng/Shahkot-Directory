@@ -858,12 +858,18 @@
     }
 
     /* ==================== BANNER SLIDER ==================== */
-    .banner-slider {
+    .banner-slide {
+      flex: 0 0 100%;
+      height: 100%;
       position: relative;
-      width: 100%;
-      height: 140px;
-      overflow: hidden;
-      background: var(--bg);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .banner-slide img {
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
     .banner-slider::before {
@@ -3082,7 +3088,7 @@
     const SHOW_THRESHOLD = 10; // thoda sa upar scroll hote hi header wapas aa jaye
 
     let isPinned = false;          // NAYA
-const PIN_BUFFER = 6;          // NAYA — flicker rokne wala buffer (px)
+    const PIN_BUFFER = 6;          // NAYA — flicker rokne wala buffer (px)
 
     function handleScroll() {
       if (stickyTriggerY === 0 && window.scrollY < 50) return; // measure hone ka wait karo
@@ -3098,11 +3104,11 @@ const PIN_BUFFER = 6;          // NAYA — flicker rokne wala buffer (px)
       const hideGroup = document.getElementById("headerHideGroup");
       const spacer = document.getElementById("stickySpacer");
       if (!isPinned && y >= stickyTriggerY + PIN_BUFFER) {
-  isPinned = true;
-} else if (isPinned && y <= stickyTriggerY - PIN_BUFFER) {
-  isPinned = false;
-}
-const shouldPin = isPinned;
+        isPinned = true;
+      } else if (isPinned && y <= stickyTriggerY - PIN_BUFFER) {
+        isPinned = false;
+      }
+      const shouldPin = isPinned;
       document.getElementById("searchSec").classList.toggle("stuck", shouldPin);
 
       const delta = y - lastY;
@@ -3194,11 +3200,11 @@ const shouldPin = isPinned;
         const slide = document.createElement("div");
         slide.className = "banner-slide";
         slide.innerHTML = `<img src="${b.image}" alt="${b.title || shop.name}" loading="lazy">${b.title ? `<div class="banner-caption">${b.title}</div>` : ""}`;
-        slide.onclick = () => {
+        slide.addEventListener("click", () => {
           if (bannerDragged) return;
           sessionStorage.setItem("sk_scrollY", window.scrollY);
           window.location.href = `details.html?id=${shop.id}`;
-        };
+        });
         track.appendChild(slide);
 
         if (bannersData.length > 1) {
@@ -3220,7 +3226,10 @@ const shouldPin = isPinned;
           d.classList.toggle("active", idx === bannerIndex);
         });
         requestAnimationFrame(() => { track.style.transition = ""; });
-        setupBannerSwipe(section);
+        if (!section.dataset.swipeReady) {
+          setupBannerSwipe(section);
+          section.dataset.swipeReady = "1";
+        }
         startBannerAuto();
       }
       requestAnimationFrame(measureStickyHeader);
@@ -3263,6 +3272,10 @@ const shouldPin = isPinned;
           bannerDragged = true;
           if (diffX < 0) goToBanner(bannerIndex + 1, false);
           else goToBanner(bannerIndex - 1, false);
+          // click event ke baad flag reset karo
+          setTimeout(() => { bannerDragged = false; }, 50);
+        } else {
+          bannerDragged = false;
         }
       };
 
